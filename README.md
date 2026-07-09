@@ -29,9 +29,9 @@ linked from the footer (needed for Meta/WhatsApp Business review):
 - `terms.html`
 - `privacy.html`
 
-**Before going live**, replace the placeholder contact address
-`support@yourdomain.com` in `terms.html` and `privacy.html` (it appears in
-all three language versions in each file) with your real support email.
+The contact address in `terms.html` and `privacy.html` is
+`feedback@prolivescore.site` (it appears in all three language versions in
+each file — update all six spots if it ever changes).
 
 ## How subscribing works
 
