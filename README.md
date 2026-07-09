@@ -4,7 +4,9 @@ Landing page for free live cricket & football score alerts via SMS and WhatsApp.
 
 ## Run it
 
-It's a single static file — no build step, no dependencies:
+Static files only — no build step, no dependencies. Fonts (Big Shoulders
+Display, Archivo, IBM Plex Mono) are self-hosted in `fonts/`, so the pages
+render identically offline and without any third-party requests:
 
 ```sh
 open index.html          # macOS

@@ -5,32 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LIVESCORE ALERTS — Free SMS &amp; WhatsApp Live Scores</title>
 <meta name="description" content="Free live cricket & football scores delivered straight to your phone by SMS and WhatsApp. Subscribe in 10 seconds.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,600;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700&family=Chivo+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:'Big Shoulders Display';src:url('fonts/big-shoulders-display-var.woff2') format('woff2');font-weight:100 900;font-display:swap}
+  @font-face{font-family:'Archivo';src:url('fonts/archivo-var.woff2') format('woff2');font-weight:100 900;font-display:swap}
+  @font-face{font-family:'IBM Plex Mono';src:url('fonts/ibm-plex-mono-400.woff2') format('woff2');font-weight:400;font-display:swap}
+  @font-face{font-family:'IBM Plex Mono';src:url('fonts/ibm-plex-mono-500.woff2') format('woff2');font-weight:500;font-display:swap}
+  @font-face{font-family:'IBM Plex Mono';src:url('fonts/ibm-plex-mono-600.woff2') format('woff2');font-weight:600;font-display:swap}
+
   :root{
     --pitch:#040b1c;
-    --pitch-2:#071433;
-    --panel:#0a1b3f;
     --panel-edge:#16336e;
     --volt:#2f7bff;
     --volt-hi:#6fb1ff;
     --ice:#dbe9ff;
+    --gold:#ffd21e;
+    --ink:#0a1020;
     --wa:#25d366;
     --sms:#3d9bff;
     --live:#ff3b3b;
-    --gold:#ffc93d;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     background:var(--pitch);
     color:var(--ice);
-    font-family:'Barlow',sans-serif;
+    font-family:'Archivo',sans-serif;
     overflow-x:hidden;
   }
-  ::selection{background:var(--volt);color:#fff}
+  ::selection{background:var(--gold);color:var(--ink)}
 
   /* ---------- stadium backdrop ---------- */
   .stadium{
@@ -56,53 +58,77 @@
 
   /* ---------- score ticker ---------- */
   .ticker{
-    background:#020814;
-    border-bottom:1px solid rgba(80,140,255,.25);
+    background:#01040c;
+    border-bottom:1px solid #13244a;
     overflow:hidden;white-space:nowrap;
-    font-family:'Chivo Mono',monospace;
-    font-size:.78rem;letter-spacing:.04em;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.76rem;letter-spacing:.03em;
     padding:.5rem 0;
-    position:relative;z-index:5;
+    position:relative;z-index:6;
   }
   .ticker__track{display:inline-block;animation:tick 38s linear infinite}
-  .ticker__track span{margin:0 1.6rem;color:#8fb4e8}
+  .ticker__track span{margin:0 1.7rem;color:#8fb4e8}
   .ticker__track b{color:#fff;font-weight:500}
   .ticker__track .up{color:var(--wa)}
   .ticker__track .ht{color:var(--gold)}
+  .tag{
+    display:inline-block;padding:0 .35rem;margin-right:.5rem;
+    font-size:.62rem;font-weight:600;letter-spacing:.08em;
+    color:var(--ink);vertical-align:1px;
+  }
+  .tag--cri{background:var(--gold)}
+  .tag--fbl{background:var(--wa)}
   @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* ---------- header ---------- */
   header{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:1.1rem clamp(1rem,5vw,4rem);
     position:relative;z-index:5;
+    display:flex;align-items:center;gap:2.2rem;
+    padding:.85rem clamp(1rem,4vw,3.5rem);
+    background:rgba(2,7,18,.9);
+    border-bottom:1px solid #13244a;
   }
-  .logo{
-    font-family:'Barlow Condensed',sans-serif;
-    font-style:italic;font-weight:900;
-    font-size:1.5rem;letter-spacing:.02em;
-    text-transform:uppercase;color:#fff;text-decoration:none;
-    display:flex;align-items:center;gap:.55rem;
+  .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+  .crest{
+    width:2.7rem;height:2.9rem;flex-shrink:0;
+    background:var(--gold);
+    clip-path:polygon(0 0,100% 0,100% 74%,50% 100%,0 74%);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+    font-size:1.35rem;color:var(--ink);letter-spacing:.02em;
+    padding-bottom:.35rem;
   }
-  .logo__dot{
-    width:.85rem;height:.85rem;border-radius:50%;
-    background:var(--live);
-    box-shadow:0 0 12px var(--live);
-    animation:pulse 1.6s ease-in-out infinite;
+  .wordmark b{
+    display:block;font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;font-size:1.35rem;letter-spacing:.05em;
+    text-transform:uppercase;color:#fff;line-height:1;
   }
-  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}
-  .logo em{color:var(--volt-hi);font-style:italic}
-  .header-cta{
-    font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:700;
-    text-transform:uppercase;letter-spacing:.06em;font-size:1rem;
-    color:#fff;text-decoration:none;
-    border:1.5px solid var(--volt);
-    padding:.45rem 1.3rem;
-    clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
-    background:rgba(47,123,255,.12);
-    transition:background .2s;
+  .wordmark span{
+    display:block;font-family:'IBM Plex Mono',monospace;
+    font-size:.52rem;letter-spacing:.3em;color:#7d9dd0;
+    text-transform:uppercase;margin-top:.25rem;
   }
-  .header-cta:hover{background:var(--volt)}
+  nav{display:flex;gap:1.6rem;margin-left:auto}
+  nav a{
+    font-family:'Big Shoulders Display',sans-serif;font-weight:700;
+    font-size:1.02rem;letter-spacing:.12em;text-transform:uppercase;
+    color:#9db8e2;text-decoration:none;padding:.3rem 0;
+    border-bottom:2px solid transparent;
+    transition:color .15s,border-color .15s;
+  }
+  nav a:hover{color:#fff;border-color:var(--gold)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    text-transform:uppercase;letter-spacing:.1em;text-decoration:none;
+    background:var(--gold);color:var(--ink);border:none;cursor:pointer;
+    box-shadow:.28rem .28rem 0 rgba(9,20,48,.9);
+    transition:transform .12s,box-shadow .12s,background .12s;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:.45rem .45rem 0 rgba(9,20,48,.9);background:#ffdc4d}
+  .btn:active{transform:translate(1px,1px);box-shadow:.15rem .15rem 0 rgba(9,20,48,.9)}
+  .btn--head{font-size:.98rem;padding:.55rem 1.2rem}
+  @media(max-width:760px){nav{display:none}.btn--head{margin-left:auto}}
 
   /* ---------- hero ---------- */
   .hero{
@@ -110,64 +136,58 @@
     display:grid;grid-template-columns:1.15fr .85fr;
     gap:clamp(2rem,4vw,4rem);
     align-items:center;
-    padding:clamp(2rem,6vh,5rem) clamp(1rem,5vw,4rem) clamp(3rem,8vh,6rem);
+    padding:clamp(2rem,6vh,4.5rem) clamp(1rem,4vw,3.5rem) clamp(3rem,8vh,5.5rem);
     max-width:1220px;margin:0 auto;
   }
   .kicker{
-    display:inline-flex;align-items:center;gap:.5rem;
-    font-family:'Chivo Mono',monospace;font-size:.72rem;
-    letter-spacing:.22em;text-transform:uppercase;color:var(--volt-hi);
-    border:1px solid rgba(111,177,255,.35);
-    padding:.4rem .9rem;margin-bottom:1.4rem;
-    background:rgba(10,27,63,.6);
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;
+    letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);background:#01040c;
+    border:1px solid #24406e;border-left:3px solid var(--live);
+    padding:.45rem .9rem;margin-bottom:1.5rem;
   }
-  .kicker::before{content:"";width:.5rem;height:.5rem;background:var(--live);border-radius:50%;box-shadow:0 0 8px var(--live);animation:pulse 1.6s infinite}
+  .kicker::before{content:"";width:.45rem;height:.45rem;background:var(--live);border-radius:50%;box-shadow:0 0 8px var(--live);animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}
   h1{
-    font-family:'Barlow Condensed',sans-serif;
-    font-style:italic;font-weight:900;
-    text-transform:uppercase;
-    font-size:clamp(3.2rem,8vw,6.2rem);
-    line-height:.92;letter-spacing:-.01em;
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:900;text-transform:uppercase;
+    font-size:clamp(3.4rem,8.5vw,6.6rem);
+    line-height:.88;letter-spacing:.005em;
     color:#fff;
   }
-  h1 .free{
-    display:block;
-    color:transparent;
-    -webkit-text-stroke:2px #e8f1ff;
-    text-shadow:0 0 40px rgba(160,200,255,.35);
-  }
   h1 .score{
-    display:block;
-    background:linear-gradient(92deg,#9cc6ff 0%,var(--volt) 55%,#1b56c9 100%);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 6px 24px rgba(47,123,255,.45));
+    display:block;color:var(--volt-hi);
+    text-shadow:.045em .045em 0 #0c2a66;
+  }
+  h1 .l3{
+    display:block;font-size:.44em;font-weight:800;
+    letter-spacing:.045em;color:#fff;margin-top:.14em;
   }
   .sub{
-    margin-top:1.3rem;max-width:34rem;
-    font-size:1.08rem;line-height:1.65;color:#a9c3ea;
+    margin-top:1.4rem;max-width:34rem;
+    font-size:1.06rem;line-height:1.7;color:#a9c3ea;
   }
   .sub b{color:#fff;font-weight:600}
   .channel-row{display:flex;gap:.8rem;margin-top:1.6rem;flex-wrap:wrap}
   .chip{
     display:inline-flex;align-items:center;gap:.5rem;
-    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-style:italic;
-    text-transform:uppercase;letter-spacing:.05em;font-size:1.02rem;
-    padding:.5rem 1.1rem;color:#fff;
-    clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    text-transform:uppercase;letter-spacing:.1em;font-size:1rem;
+    padding:.5rem 1rem;color:#fff;
+    box-shadow:.22rem .22rem 0 rgba(1,6,18,.8);
   }
-  .chip--wa{background:linear-gradient(135deg,#1e9e50,#25d366);box-shadow:0 4px 20px rgba(37,211,102,.35)}
-  .chip--sms{background:linear-gradient(135deg,#1c5dc9,#3d9bff);box-shadow:0 4px 20px rgba(61,155,255,.35)}
+  .chip--wa{background:#189a4f}
+  .chip--sms{background:#1c5dc9}
   .chip svg{width:1.05rem;height:1.05rem;fill:#fff}
-  .hero-stats{
-    display:flex;gap:2.2rem;margin-top:2.2rem;flex-wrap:wrap;
-  }
-  .stat{border-left:2px solid var(--volt);padding-left:.9rem}
+  .hero-stats{display:flex;gap:0;margin-top:2.3rem;flex-wrap:wrap;border:1px solid #1b345f;background:rgba(2,8,22,.6)}
+  .stat{padding:.9rem 1.4rem;border-right:1px solid #1b345f;flex:1;min-width:8rem}
+  .stat:last-child{border-right:none}
   .stat b{
-    display:block;font-family:'Barlow Condensed',sans-serif;font-style:italic;
-    font-weight:800;font-size:1.9rem;color:#fff;line-height:1;
+    display:block;font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;font-size:1.9rem;color:var(--gold);line-height:1;
   }
-  .stat span{font-family:'Chivo Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#7d9dd0}
+  .stat span{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#7d9dd0}
 
   /* ---------- phone mock ---------- */
   .phone-wrap{position:relative;display:flex;justify-content:center}
@@ -182,10 +202,10 @@
   }
   .phone__notch{width:38%;height:.85rem;background:#0a1428;border-radius:1rem;margin:0 auto .9rem;border:1px solid #22335a}
   .phone__time{
-    text-align:center;font-family:'Chivo Mono',monospace;
-    font-size:2.6rem;font-weight:500;color:#fff;letter-spacing:.02em;
+    text-align:center;font-family:'Big Shoulders Display',sans-serif;
+    font-size:3rem;font-weight:700;color:#fff;letter-spacing:.06em;
   }
-  .phone__date{text-align:center;font-family:'Chivo Mono',monospace;font-size:.7rem;color:#7d9dd0;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.1rem}
+  .phone__date{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#7d9dd0;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.1rem}
   .notif{
     background:rgba(233,241,255,.96);color:#0d1526;
     border-radius:.9rem;padding:.7rem .8rem;
@@ -205,7 +225,7 @@
   .notif__icon svg{width:1.2rem;height:1.2rem;fill:#fff}
   .notif__body{font-size:.72rem;line-height:1.45;min-width:0}
   .notif__body b{display:block;font-size:.73rem;letter-spacing:.02em}
-  .notif__body .mono{font-family:'Chivo Mono',monospace;font-size:.68rem;color:#22314f}
+  .notif__body .mono{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:#22314f}
   .notif__now{margin-left:auto;font-size:.62rem;color:#5c6b8a;flex-shrink:0}
   .phone-badge{
     position:absolute;z-index:2;
@@ -227,58 +247,65 @@
   .fixtures{
     position:relative;z-index:4;
     max-width:1220px;margin:0 auto;
-    padding:0 clamp(1rem,5vw,4rem) clamp(3rem,7vh,5rem);
+    padding:0 clamp(1rem,4vw,3.5rem) clamp(3rem,7vh,5rem);
   }
   .section-head{
-    display:flex;align-items:baseline;gap:1rem;margin-bottom:1.6rem;flex-wrap:wrap;
+    display:flex;align-items:center;gap:1rem;margin-bottom:1.6rem;flex-wrap:wrap;
   }
   h2{
-    font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:800;
-    text-transform:uppercase;font-size:clamp(1.7rem,3.5vw,2.4rem);color:#fff;letter-spacing:.01em;
+    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    text-transform:uppercase;font-size:clamp(1.8rem,3.5vw,2.5rem);
+    color:#fff;letter-spacing:.04em;
   }
-  .section-head .rule{flex:1;height:2px;background:linear-gradient(90deg,var(--volt),transparent);min-width:60px}
+  .section-head .rule{flex:1;height:3px;background:repeating-linear-gradient(90deg,var(--gold) 0 14px,transparent 14px 24px);min-width:60px;opacity:.75}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1rem}
   .card{
     background:linear-gradient(155deg,rgba(20,45,102,.75),rgba(8,20,48,.9));
     border:1px solid var(--panel-edge);
     padding:1.1rem 1.2rem 1rem;
     position:relative;overflow:hidden;
-    clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%);
     transition:transform .2s,border-color .2s;
   }
-  .card:hover{transform:translateY(-4px);border-color:var(--volt)}
+  .card:hover{transform:translateY(-4px);border-color:var(--gold)}
   .card::before{
     content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
-    background:linear-gradient(180deg,var(--volt-hi),var(--volt));
+    background:var(--gold);
   }
+  .card__sport{
+    position:absolute;right:0;top:0;
+    font-family:'IBM Plex Mono',monospace;font-size:.56rem;font-weight:600;
+    letter-spacing:.14em;color:var(--ink);
+    padding:.22rem .55rem;
+  }
+  .card__sport--cri{background:var(--gold)}
+  .card__sport--fbl{background:var(--wa)}
   .card__league{
-    font-family:'Chivo Mono',monospace;font-size:.62rem;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--volt-hi);margin-bottom:.7rem;
+    font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--volt-hi);margin:.9rem 0 .7rem;
+    max-width:85%;
   }
-  .card__teams{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:800;text-transform:uppercase;font-size:1.28rem;line-height:1.15;color:#fff}
+  .card__teams{font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.4rem;line-height:1.08;letter-spacing:.03em;color:#fff}
   .card__vs{
-    display:inline-block;background:var(--volt);color:#fff;font-size:.68rem;
-    font-family:'Chivo Mono',monospace;font-weight:700;
-    padding:.1rem .45rem;margin:.25rem 0;
-    clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);
+    display:inline-block;background:var(--volt);color:#fff;font-size:.64rem;
+    font-family:'IBM Plex Mono',monospace;font-weight:600;
+    padding:.12rem .4rem;margin:.3rem 0;vertical-align:.15em;
   }
   .card__time{
-    margin-top:.8rem;display:flex;align-items:center;gap:.45rem;
-    font-family:'Chivo Mono',monospace;font-size:.74rem;color:#9db8e2;
+    margin-top:.85rem;display:flex;align-items:center;gap:.45rem;
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9db8e2;
   }
   .card__time svg{width:.85rem;height:.85rem;fill:none;stroke:#9db8e2;stroke-width:2}
-  .card__ball{position:absolute;right:.7rem;top:.7rem;font-size:1.4rem;filter:drop-shadow(0 3px 8px rgba(0,0,0,.5))}
 
   /* ---------- form ---------- */
   .signup{
     position:relative;z-index:4;
     max-width:760px;margin:0 auto;
-    padding:0 clamp(1rem,5vw,2rem) clamp(4rem,9vh,7rem);
+    padding:0 clamp(1rem,4vw,2rem) clamp(4rem,9vh,6.5rem);
   }
   .form-shell{
     background:linear-gradient(160deg,rgba(16,38,88,.92),rgba(6,15,38,.96));
     border:1px solid var(--panel-edge);
-    clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,26px 100%,0 calc(100% - 26px));
+    border-top:4px solid var(--gold);
     padding:clamp(1.6rem,4vw,2.8rem);
     box-shadow:0 40px 100px rgba(0,8,30,.7);
   }
@@ -286,17 +313,16 @@
   .form-shell p.lede{color:#9db8e2;font-size:.98rem;margin-bottom:1.8rem}
   .field{margin-bottom:1.25rem}
   label{
-    display:block;font-family:'Chivo Mono',monospace;font-size:.66rem;
+    display:block;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
     letter-spacing:.18em;text-transform:uppercase;color:var(--volt-hi);margin-bottom:.45rem;
   }
   input[type=text],input[type=tel],select{
     width:100%;padding:.85rem 1rem;
     background:#060f26;border:1px solid #1d3567;color:#fff;
-    font-family:'Barlow',sans-serif;font-size:1rem;
-    clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+    font-family:'Archivo',sans-serif;font-size:1rem;
     transition:border-color .2s;
   }
-  input:focus,select:focus{outline:none;border-color:var(--volt)}
+  input:focus,select:focus{outline:none;border-color:var(--gold)}
   input::placeholder{color:#4d648f}
   select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236fb1ff' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
   .row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
@@ -306,53 +332,66 @@
   .toggle span{
     display:flex;align-items:center;justify-content:center;gap:.55rem;
     padding:.85rem .5rem;border:1.5px solid #1d3567;color:#9db8e2;
-    font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:700;
-    text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem;
-    clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    text-transform:uppercase;letter-spacing:.1em;font-size:1.05rem;
     transition:all .18s;cursor:pointer;
   }
   .toggle svg{width:1.1rem;height:1.1rem;fill:currentColor}
   .toggle input:checked + span.wa{background:rgba(37,211,102,.16);border-color:var(--wa);color:#5df09b}
   .toggle input:checked + span.sms{background:rgba(61,155,255,.16);border-color:var(--sms);color:#7cc0ff}
   .consent{display:flex;gap:.7rem;align-items:flex-start;margin:1.4rem 0 1.6rem;font-size:.8rem;color:#8aa5cf;line-height:1.5}
-  .consent input{margin-top:.2rem;accent-color:var(--volt);width:1rem;height:1rem;flex-shrink:0}
-  .btn-sub{
-    width:100%;border:none;cursor:pointer;
-    font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:900;
-    text-transform:uppercase;letter-spacing:.08em;
-    font-size:clamp(1.3rem,3vw,1.7rem);color:#fff;
-    padding:1rem 1.5rem;
-    background:linear-gradient(92deg,#6fb1ff 0%,var(--volt) 45%,#1b56c9 100%);
-    clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);
-    box-shadow:0 10px 40px rgba(47,123,255,.5),inset 0 1px 0 rgba(255,255,255,.35);
-    display:flex;align-items:center;justify-content:center;gap:.7rem;
-    transition:transform .15s,box-shadow .15s;
+  .consent input{margin-top:.2rem;accent-color:var(--gold);width:1rem;height:1rem;flex-shrink:0}
+  .btn--sub{
+    width:100%;font-size:clamp(1.3rem,3vw,1.6rem);padding:.95rem 1.5rem;
   }
-  .btn-sub:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(47,123,255,.65),inset 0 1px 0 rgba(255,255,255,.35)}
-  .btn-sub:active{transform:translateY(0)}
-  .btn-sub .arrow{font-style:normal;font-weight:700}
   .form-note{
-    text-align:center;margin-top:1.1rem;font-family:'Chivo Mono',monospace;
-    font-size:.68rem;letter-spacing:.1em;color:#6b87b6;text-transform:uppercase;
+    text-align:center;margin-top:1.2rem;font-family:'IBM Plex Mono',monospace;
+    font-size:.66rem;letter-spacing:.1em;color:#6b87b6;text-transform:uppercase;
   }
   .err{color:#ff8080;font-size:.78rem;margin-top:.35rem;display:none}
   .field.invalid .err{display:block}
   .field.invalid input{border-color:var(--live)}
+
+  /* ---------- footer ---------- */
   footer{
     position:relative;z-index:4;
-    border-top:1px solid rgba(80,140,255,.18);
-    padding:1.6rem clamp(1rem,5vw,4rem);
-    display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
-    font-family:'Chivo Mono',monospace;font-size:.68rem;letter-spacing:.1em;
-    text-transform:uppercase;color:#5c749e;background:rgba(2,8,20,.75);
+    background:#01040c;
+    border-top:4px solid var(--gold);
   }
-  footer a{color:#8fb4e8;text-decoration:none}
-  footer a:hover{color:#fff}
+  .foot-grid{
+    max-width:1220px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;
+    padding:2.6rem clamp(1rem,4vw,3.5rem) 2.2rem;
+  }
+  .foot-brand .brand{margin-bottom:1rem}
+  .foot-brand p{font-size:.86rem;line-height:1.65;color:#7d94bd;max-width:26rem}
+  .foot-col h4{
+    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    font-size:1rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:.9rem;
+  }
+  .foot-col ul{list-style:none}
+  .foot-col li{margin-bottom:.55rem}
+  .foot-col a{color:#9db8e2;text-decoration:none;font-size:.88rem;transition:color .15s}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{
+    border-top:1px solid #101d3a;
+    padding:1.1rem clamp(1rem,4vw,3.5rem);
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+    max-width:1220px;margin:0 auto;
+    font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.1em;
+    text-transform:uppercase;color:#54688c;
+  }
+  .foot-bottom .stop{color:#8fb4e8}
+  @media(max-width:760px){
+    .foot-grid{grid-template-columns:1fr;gap:1.8rem}
+  }
 
   @media(max-width:860px){
     .hero{grid-template-columns:1fr;text-align:center;padding-top:2.5rem}
     .sub{margin-left:auto;margin-right:auto}
-    .channel-row,.hero-stats{justify-content:center}
+    .channel-row{justify-content:center}
+    .kicker{margin-left:auto;margin-right:auto}
     .phone{transform:rotate(0)}
     .row-2{grid-template-columns:1fr}
   }
@@ -364,22 +403,33 @@
 <!-- live ticker -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker__track">
-    <span>🏏 <b>ENG vs IND</b> · IND <span class="up">128/4 (15.2)</span></span>
-    <span>⚽ <b>FRA vs MAR</b> · FRA <span class="ht">1–0 (HT)</span></span>
-    <span>🏏 <b>HYD E-CHAMPIONS vs AVITA KHAMMAM ACES</b> · TODAY 19:15</span>
-    <span>🏏 <b>KARIMNAGAR DIAMONDS vs RANGA REDDY RISERS</b> · TODAY 14:15</span>
-    <span>⚽ <b>FIFA WORLD CUP</b> · FRANCE vs MOROCCO · TOMORROW 01:30</span>
-    <span>🏏 <b>ENG vs IND</b> · IND <span class="up">128/4 (15.2)</span></span>
-    <span>⚽ <b>FRA vs MAR</b> · FRA <span class="ht">1–0 (HT)</span></span>
-    <span>🏏 <b>HYD E-CHAMPIONS vs AVITA KHAMMAM ACES</b> · TODAY 19:15</span>
-    <span>🏏 <b>KARIMNAGAR DIAMONDS vs RANGA REDDY RISERS</b> · TODAY 14:15</span>
-    <span>⚽ <b>FIFA WORLD CUP</b> · FRANCE vs MOROCCO · TOMORROW 01:30</span>
+    <span><i class="tag tag--cri">CRI</i><b>ENG vs IND</b> · IND <span class="up">128/4 (15.2)</span></span>
+    <span><i class="tag tag--fbl">FBL</i><b>FRA vs MAR</b> · FRA <span class="ht">1–0 (HT)</span></span>
+    <span><i class="tag tag--cri">CRI</i><b>HYD E-CHAMPIONS vs AVITA KHAMMAM ACES</b> · TODAY 19:15</span>
+    <span><i class="tag tag--cri">CRI</i><b>KARIMNAGAR DIAMONDS vs RANGA REDDY RISERS</b> · TODAY 14:15</span>
+    <span><i class="tag tag--fbl">FBL</i><b>FIFA WORLD CUP</b> · FRANCE vs MOROCCO · TOMORROW 01:30</span>
+    <span><i class="tag tag--cri">CRI</i><b>ENG vs IND</b> · IND <span class="up">128/4 (15.2)</span></span>
+    <span><i class="tag tag--fbl">FBL</i><b>FRA vs MAR</b> · FRA <span class="ht">1–0 (HT)</span></span>
+    <span><i class="tag tag--cri">CRI</i><b>HYD E-CHAMPIONS vs AVITA KHAMMAM ACES</b> · TODAY 19:15</span>
+    <span><i class="tag tag--cri">CRI</i><b>KARIMNAGAR DIAMONDS vs RANGA REDDY RISERS</b> · TODAY 14:15</span>
+    <span><i class="tag tag--fbl">FBL</i><b>FIFA WORLD CUP</b> · FRANCE vs MOROCCO · TOMORROW 01:30</span>
   </div>
 </div>
 
 <header>
-  <a class="logo" href="#"><span class="logo__dot"></span>Live<em>Score</em>&nbsp;Alerts</a>
-  <a class="header-cta" href="#subscribe">Subscribe Free</a>
+  <a class="brand" href="#">
+    <span class="crest">LS</span>
+    <span class="wordmark">
+      <b>Livescore Alerts</b>
+      <span>Free SMS &amp; WhatsApp</span>
+    </span>
+  </a>
+  <nav>
+    <a href="#fixtures">Fixtures</a>
+    <a href="#subscribe">Coverage</a>
+    <a href="#subscribe">How it works</a>
+  </nav>
+  <a class="btn btn--head" href="#subscribe">Get Free Alerts</a>
 </header>
 
 <main>
@@ -387,9 +437,9 @@
     <div>
       <span class="kicker">Live now · Ball by ball · Goal by goal</span>
       <h1>
-        <span class="free">Free</span>
+        Free
         <span class="score">Live Score</span>
-        SMS &amp; WhatsApp Alerts
+        <span class="l3">SMS &amp; WhatsApp Alerts</span>
       </h1>
       <p class="sub">Never miss a wicket, a goal or a final whistle again. Get <b>instant match updates</b> for cricket and football delivered straight to your phone — <b>no app, no data plan, no cost.</b></p>
       <div class="channel-row">
@@ -446,33 +496,33 @@
     </div>
   </section>
 
-  <section class="fixtures">
+  <section class="fixtures" id="fixtures">
     <div class="section-head">
       <h2>Today's Fixtures</h2>
       <div class="rule"></div>
     </div>
     <div class="grid">
       <article class="card">
-        <span class="card__ball">🏏</span>
-        <div class="card__league">Cricket / International / T20 Series</div>
+        <span class="card__sport card__sport--cri">CRICKET</span>
+        <div class="card__league">International / T20 Series</div>
         <div class="card__teams">England<br><span class="card__vs">VS</span> India</div>
         <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Today 22:00</div>
       </article>
       <article class="card">
-        <span class="card__ball">⚽</span>
-        <div class="card__league">Football / International / FIFA World Cup</div>
+        <span class="card__sport card__sport--fbl">FOOTBALL</span>
+        <div class="card__league">International / FIFA World Cup</div>
         <div class="card__teams">France<br><span class="card__vs">VS</span> Morocco</div>
         <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Tomorrow 01:30</div>
       </article>
       <article class="card">
-        <span class="card__ball">🏏</span>
-        <div class="card__league">Cricket / India / T20 Telangana League</div>
+        <span class="card__sport card__sport--cri">CRICKET</span>
+        <div class="card__league">India / T20 Telangana League</div>
         <div class="card__teams">Hyderabad E-Champions<br><span class="card__vs">VS</span> Avita Khammam Aces</div>
         <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Today 19:15</div>
       </article>
       <article class="card">
-        <span class="card__ball">🏏</span>
-        <div class="card__league">Cricket / India / T20 Telangana League</div>
+        <span class="card__sport card__sport--cri">CRICKET</span>
+        <div class="card__league">India / T20 Telangana League</div>
         <div class="card__teams">Karimnagar Diamonds<br><span class="card__vs">VS</span> Ranga Reddy Risers</div>
         <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Today 14:15</div>
       </article>
@@ -534,16 +584,48 @@
           <span>I agree to receive free live score alerts on the number above. Opt out anytime — reply STOP.</span>
         </label>
 
-        <button type="submit" class="btn-sub">Subscribe Now <span class="arrow">›</span></button>
-        <p class="form-note">🔔 Instant updates direct to your phone · No spam · Free forever</p>
+        <button type="submit" class="btn btn--sub">Subscribe Now ›</button>
+        <p class="form-note">Instant updates direct to your phone · No spam · Free forever</p>
       </form>
     </div>
   </section>
 </main>
 
 <footer>
-  <span>© 2026 LiveScore Alerts</span>
-  <span><a href="#">Terms</a> · <a href="#">Privacy</a> · <a href="#">Opt-out: reply STOP</a></span>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#">
+        <span class="crest">LS</span>
+        <span class="wordmark">
+          <b>Livescore Alerts</b>
+          <span>Free SMS &amp; WhatsApp</span>
+        </span>
+      </a>
+      <p>Ball-by-ball cricket and goal-by-goal football updates, sent straight to your phone the moment they happen. No app, no subscription fee — just the score, when it matters.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Coverage</h4>
+      <ul>
+        <li><a href="#fixtures">International Cricket</a></li>
+        <li><a href="#fixtures">T20 Telangana League</a></li>
+        <li><a href="#fixtures">FIFA World Cup</a></li>
+        <li><a href="#fixtures">Today's Fixtures</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#subscribe">Subscribe</a></li>
+        <li><a href="#">How it works</a></li>
+        <li><a href="#">Terms of use</a></li>
+        <li><a href="#">Privacy policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Livescore Alerts. All rights reserved.</span>
+    <span class="stop">To opt out at any time, reply STOP to any alert.</span>
+  </div>
 </footer>
 
 <script>
@@ -557,7 +639,7 @@
   }
   tickClock();setInterval(tickClock,15000);
 
-  // form validation + fake submit
+  // form validation
   var form=document.getElementById('subform');
   form.addEventListener('submit',function(e){
     e.preventDefault();
