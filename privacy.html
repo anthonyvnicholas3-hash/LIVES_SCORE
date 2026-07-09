@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy policy — Livescore Alerts</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{
+    --pitch:#040b1c;--panel-edge:#16336e;--volt:#2f7bff;--volt-hi:#6fb1ff;
+    --ice:#dbe9ff;--gold:#ffd21e;--ink:#0a1020;--wa:#25d366;--live:#ff3b3b;
+    --disp:'Big Shoulders Display','Teko',sans-serif;
+    --body:'Archivo','Mukta',sans-serif;
+    --mono:'IBM Plex Mono','Mukta',monospace;
+  }
+  html[lang=hi],html[lang=mr]{--disp:'Teko',sans-serif;--body:'Mukta',sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--pitch);color:var(--ice);font-family:var(--body);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+  ::selection{background:var(--gold);color:var(--ink)}
+  html[lang=hi] h1,html[lang=mr] h1{line-height:1.1;letter-spacing:0}
+  html[lang=hi] .page h2,html[lang=mr] .page h2{letter-spacing:.04em}
+  html[lang=hi] .meta,html[lang=mr] .meta,
+  html[lang=hi] .foot-bottom,html[lang=mr] .foot-bottom{letter-spacing:.04em}
+  .stadium{position:fixed;inset:0;z-index:-2;background:
+    radial-gradient(ellipse 60% 40% at 15% -5%, rgba(97,160,255,.22), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% -5%, rgba(97,160,255,.22), transparent 60%),
+    radial-gradient(ellipse 90% 60% at 50% 115%, rgba(20,60,160,.35), transparent 65%),
+    linear-gradient(180deg,#02060f 0%, #051130 45%, #040b1c 100%)}
+  header{display:flex;align-items:center;gap:1.6rem;padding:.85rem clamp(1rem,4vw,3.5rem);background:rgba(2,7,18,.9);border-bottom:1px solid #13244a}
+  .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+  .crest{width:2.7rem;height:2.9rem;flex-shrink:0;background:var(--gold);clip-path:polygon(0 0,100% 0,100% 74%,50% 100%,0 74%);display:flex;align-items:center;justify-content:center;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:1.35rem;color:var(--ink);letter-spacing:.02em;padding-bottom:.35rem}
+  .wordmark b{display:block;font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:.05em;text-transform:uppercase;color:#fff;line-height:1}
+  .wordmark span{display:block;font-family:var(--mono);font-size:.52rem;letter-spacing:.3em;color:#7d9dd0;text-transform:uppercase;margin-top:.25rem}
+  .lang{display:flex;border:1px solid #24406e;background:#01040c;margin-left:auto}
+  .lang button{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;color:#8fb4e8;background:none;border:none;cursor:pointer;padding:.45rem .7rem;border-right:1px solid #24406e;transition:background .15s,color .15s}
+  .lang button:last-child{border-right:none}
+  .lang button:hover{color:#fff}
+  .lang button.on{background:var(--gold);color:var(--ink);font-weight:600}
+  main{flex:1;padding:clamp(2rem,5vh,3.5rem) 1rem}
+  .page{max-width:820px;margin:0 auto;background:linear-gradient(160deg,rgba(16,38,88,.92),rgba(6,15,38,.96));border:1px solid var(--panel-edge);border-top:4px solid var(--gold);padding:clamp(1.8rem,5vw,3rem);box-shadow:0 40px 100px rgba(0,8,30,.7)}
+  .page h1{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(2.2rem,5.5vw,3.1rem);line-height:.95;letter-spacing:.01em;color:#fff}
+  .meta{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#7d9dd0;margin:.7rem 0 1.6rem}
+  .page h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:1.35rem;letter-spacing:.06em;color:var(--gold);margin:1.7rem 0 .5rem}
+  .page p{color:#a9c3ea;font-size:.97rem;line-height:1.75;margin-bottom:.6rem}
+  .page b{color:#fff;font-weight:600}
+  .page a{color:var(--volt-hi)}
+  .back{display:inline-flex;align-items:center;gap:.55rem;margin-top:2rem;text-decoration:none;font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:1.1rem;background:var(--gold);color:var(--ink);padding:.65rem 1.8rem;box-shadow:.28rem .28rem 0 rgba(9,20,48,.9);transition:transform .12s,box-shadow .12s}
+  .back:hover{transform:translate(-2px,-2px);box-shadow:.45rem .45rem 0 rgba(9,20,48,.9)}
+  footer{background:#01040c;border-top:4px solid var(--gold)}
+  .foot-bottom{padding:1.1rem clamp(1rem,4vw,3.5rem);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;max-width:1220px;margin:0 auto;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#54688c}
+  .foot-bottom .stop{color:#8fb4e8}
+</style>
+</head>
+<body>
+<div class="stadium" aria-hidden="true"></div>
+
+<header>
+  <a class="brand" href="index.html">
+    <span class="crest">LS</span>
+    <span class="wordmark">
+      <b>Livescore Alerts</b>
+      <span data-i18n="brandTag">Free SMS &amp; WhatsApp</span>
+    </span>
+  </a>
+  <div class="lang" id="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="hi">हिंदी</button>
+    <button type="button" data-lang="mr">मराठी</button>
+  </div>
+</header>
+
+<main>
+  <article class="page">
+    <h1 data-i18n="title">Privacy policy</h1>
+    <p class="meta" data-i18n="meta">Effective: 9 July 2026</p>
+    <div data-i18n="content"></div>
+    <a class="back" href="index.html" data-i18n="back">‹ Back to home</a>
+  </article>
+</main>
+
+<footer>
+  <div class="foot-bottom">
+    <span data-i18n="footCopy">© 2026 Livescore Alerts. All rights reserved.</span>
+    <span class="stop" data-i18n="footStop">Reply STOP to any alert to unsubscribe.</span>
+  </div>
+</footer>
+
+<script>
+  var I18N={
+    en:{
+      brandTag:'Free SMS &amp; WhatsApp',
+      title:'Privacy policy',
+      meta:'Effective: 9 July 2026',
+      content:
+        '<h2>1. What we collect</h2>'+
+        '<p>Your mobile number, and — if you provide it during sign-up — your name, your chosen alert channel (SMS or WhatsApp) and your match preferences. Your language choice on this site is stored only in your own browser and is not sent to us.</p>'+
+        '<h2>2. How we use it</h2>'+
+        '<p>Only to send the score alerts you asked for and service messages about your subscription (such as confirming an opt-out). <b>We do not use your number for marketing, and we do not sell or rent it to anyone.</b></p>'+
+        '<h2>3. Message delivery</h2>'+
+        '<p>Alerts are delivered through mobile network operators and, for WhatsApp alerts, through WhatsApp. Messages sent over WhatsApp are also subject to WhatsApp’s own terms and privacy policy (Meta Platforms).</p>'+
+        '<h2>4. Retention</h2>'+
+        '<p>We keep your number for as long as you are subscribed. When you reply <b>STOP</b>, your number is removed from the alert list.</p>'+
+        '<h2>5. Your rights</h2>'+
+        '<p>You can ask what information we hold about you, or ask for it to be deleted, at any time by writing to <a href="mailto:support@yourdomain.com">support@yourdomain.com</a>.</p>'+
+        '<h2>6. Children</h2>'+
+        '<p>The service is not directed at children under 13 and we do not knowingly collect their information.</p>'+
+        '<h2>7. Changes</h2>'+
+        '<p>If this policy changes, the current version will always be published on this page with an updated effective date.</p>',
+      back:'‹ Back to home',
+      footCopy:'© 2026 Livescore Alerts. All rights reserved.',
+      footStop:'Reply STOP to any alert to unsubscribe.'
+    },
+    hi:{
+      brandTag:'फ्री SMS और WhatsApp',
+      title:'प्राइवेसी पॉलिसी',
+      meta:'लागू: 9 जुलाई 2026',
+      content:
+        '<h2>1. हम क्या इकट्ठा करते हैं</h2>'+
+        '<p>आपका मोबाइल नंबर, और — अगर आप साइन-अप के समय देते हैं — आपका नाम, आपका चुना हुआ अलर्ट माध्यम (SMS या WhatsApp) और मैच की पसंद। इस साइट पर आपकी भाषा की पसंद सिर्फ आपके ब्राउज़र में सेव होती है और हम तक नहीं पहुंचती।</p>'+
+        '<h2>2. हम इसका क्या करते हैं</h2>'+
+        '<p>सिर्फ वे स्कोर अलर्ट भेजने के लिए जो आपने मांगे हैं, और आपके सब्सक्रिप्शन से जुड़े सेवा संदेश (जैसे ऑप्ट-आउट की पुष्टि)। <b>हम आपके नंबर का इस्तेमाल मार्केटिंग के लिए नहीं करते, और उसे किसी को बेचते या किराए पर नहीं देते।</b></p>'+
+        '<h2>3. मैसेज डिलीवरी</h2>'+
+        '<p>अलर्ट मोबाइल नेटवर्क ऑपरेटरों के जरिए, और WhatsApp अलर्ट WhatsApp के जरिए पहुंचते हैं। WhatsApp पर भेजे मैसेज WhatsApp की अपनी शर्तों और प्राइवेसी पॉलिसी (Meta Platforms) के अधीन भी होते हैं।</p>'+
+        '<h2>4. डेटा कब तक रहता है</h2>'+
+        '<p>जब तक आप सब्सक्राइब्ड हैं, हम आपका नंबर रखते हैं। आपके <b>STOP</b> भेजते ही आपका नंबर अलर्ट लिस्ट से हटा दिया जाता है।</p>'+
+        '<h2>5. आपके अधिकार</h2>'+
+        '<p>आप कभी भी पूछ सकते हैं कि हमारे पास आपकी क्या जानकारी है, या उसे मिटाने के लिए कह सकते हैं: <a href="mailto:support@yourdomain.com">support@yourdomain.com</a></p>'+
+        '<h2>6. बच्चे</h2>'+
+        '<p>यह सेवा 13 साल से कम उम्र के बच्चों के लिए नहीं है और हम जानबूझकर उनकी जानकारी इकट्ठा नहीं करते।</p>'+
+        '<h2>7. बदलाव</h2>'+
+        '<p>अगर यह पॉलिसी बदलती है, तो नई तारीख के साथ ताज़ा संस्करण हमेशा इसी पेज पर मिलेगा।</p>',
+      back:'‹ होम पर वापस',
+      footCopy:'© 2026 लाइवस्कोर अलर्ट्स। सर्वाधिकार सुरक्षित।',
+      footStop:'अनसब्सक्राइब करने के लिए किसी भी अलर्ट पर STOP भेजें।'
+    },
+    mr:{
+      brandTag:'मोफत SMS आणि WhatsApp',
+      title:'प्रायव्हसी पॉलिसी',
+      meta:'लागू: 9 जुलै 2026',
+      content:
+        '<h2>1. आम्ही काय गोळा करतो</h2>'+
+        '<p>तुमचा मोबाईल नंबर, आणि — साइन-अपच्या वेळी दिल्यास — तुमचे नाव, तुम्ही निवडलेले अलर्ट माध्यम (SMS किंवा WhatsApp) आणि सामन्यांची पसंती. या साइटवरील तुमची भाषेची निवड फक्त तुमच्या ब्राउझरमध्ये साठवली जाते आणि आमच्यापर्यंत पोहोचत नाही.</p>'+
+        '<h2>2. आम्ही त्याचे काय करतो</h2>'+
+        '<p>फक्त तुम्ही मागितलेले स्कोर अलर्ट पाठवण्यासाठी, आणि तुमच्या सबस्क्रिप्शनशी संबंधित सेवा संदेशांसाठी (उदा. ऑप्ट-आउटची पुष्टी). <b>आम्ही तुमचा नंबर मार्केटिंगसाठी वापरत नाही, आणि तो कोणालाही विकत किंवा भाड्याने देत नाही.</b></p>'+
+        '<h2>3. मेसेज डिलिव्हरी</h2>'+
+        '<p>अलर्ट मोबाईल नेटवर्क ऑपरेटरद्वारे, आणि WhatsApp अलर्ट WhatsApp द्वारे पोहोचतात. WhatsApp वरील मेसेज WhatsApp च्या स्वतःच्या अटी आणि प्रायव्हसी पॉलिसीच्या (Meta Platforms) अधीनही असतात.</p>'+
+        '<h2>4. डेटा किती काळ राहतो</h2>'+
+        '<p>तुम्ही सबस्क्राईब असेपर्यंत आम्ही तुमचा नंबर ठेवतो. तुम्ही <b>STOP</b> पाठवताच तुमचा नंबर अलर्ट यादीतून काढला जातो.</p>'+
+        '<h2>5. तुमचे अधिकार</h2>'+
+        '<p>आमच्याकडे तुमची कोणती माहिती आहे हे तुम्ही कधीही विचारू शकता, किंवा ती हटवण्यास सांगू शकता: <a href="mailto:support@yourdomain.com">support@yourdomain.com</a></p>'+
+        '<h2>6. मुले</h2>'+
+        '<p>ही सेवा 13 वर्षांखालील मुलांसाठी नाही आणि आम्ही जाणीवपूर्वक त्यांची माहिती गोळा करत नाही.</p>'+
+        '<h2>7. बदल</h2>'+
+        '<p>ही पॉलिसी बदलल्यास, नव्या तारखेसह ताजी आवृत्ती नेहमी याच पेजवर प्रकाशित केली जाईल.</p>',
+      back:'‹ होमवर परत',
+      footCopy:'© 2026 लाइव्हस्कोर अलर्ट्स. सर्व हक्क राखीव.',
+      footStop:'अनसबस्क्राईब करण्यासाठी कोणत्याही अलर्टला STOP पाठवा.'
+    }
+  };
+  function setLang(l){
+    if(!I18N[l])l='en';
+    var t=I18N[l];
+    document.documentElement.lang=l;
+    try{localStorage.setItem('lsa-lang',l);}catch(e){}
+    var els=document.querySelectorAll('[data-i18n]');
+    for(var i=0;i<els.length;i++){
+      var k=els[i].getAttribute('data-i18n');
+      if(t[k]!==undefined)els[i].innerHTML=t[k];
+    }
+    var btns=document.querySelectorAll('.lang button');
+    for(var b=0;b<btns.length;b++){
+      btns[b].classList.toggle('on',btns[b].getAttribute('data-lang')===l);
+    }
+  }
+  document.getElementById('lang-switch').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-lang]');
+    if(b)setLang(b.getAttribute('data-lang'));
+  });
+  var saved=null;
+  try{saved=localStorage.getItem('lsa-lang');}catch(e){}
+  setLang(saved||'en');
+</script>
+</body>
+</html>

@@ -20,7 +20,17 @@ open index.html          # macOS
 python3 -m http.server 8000
 ```
 
-To deploy, upload `index.html` and the `fonts/` folder to any static host.
+To deploy, upload the four HTML pages and the `fonts/` folder to any static
+host. Alongside `index.html` there are three info pages, all trilingual and
+linked from the footer (needed for Meta/WhatsApp Business review):
+
+- `how-it-works.html`
+- `terms.html`
+- `privacy.html`
+
+**Before going live**, replace the placeholder contact address
+`support@yourdomain.com` in `terms.html` and `privacy.html` (it appears in
+all three language versions in each file) with your real support email.
 
 ## How subscribing works
 

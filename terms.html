@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of use — Livescore Alerts</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{
+    --pitch:#040b1c;--panel-edge:#16336e;--volt:#2f7bff;--volt-hi:#6fb1ff;
+    --ice:#dbe9ff;--gold:#ffd21e;--ink:#0a1020;--wa:#25d366;--live:#ff3b3b;
+    --disp:'Big Shoulders Display','Teko',sans-serif;
+    --body:'Archivo','Mukta',sans-serif;
+    --mono:'IBM Plex Mono','Mukta',monospace;
+  }
+  html[lang=hi],html[lang=mr]{--disp:'Teko',sans-serif;--body:'Mukta',sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--pitch);color:var(--ice);font-family:var(--body);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+  ::selection{background:var(--gold);color:var(--ink)}
+  html[lang=hi] h1,html[lang=mr] h1{line-height:1.1;letter-spacing:0}
+  html[lang=hi] .page h2,html[lang=mr] .page h2{letter-spacing:.04em}
+  html[lang=hi] .meta,html[lang=mr] .meta,
+  html[lang=hi] .foot-bottom,html[lang=mr] .foot-bottom{letter-spacing:.04em}
+  .stadium{position:fixed;inset:0;z-index:-2;background:
+    radial-gradient(ellipse 60% 40% at 15% -5%, rgba(97,160,255,.22), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% -5%, rgba(97,160,255,.22), transparent 60%),
+    radial-gradient(ellipse 90% 60% at 50% 115%, rgba(20,60,160,.35), transparent 65%),
+    linear-gradient(180deg,#02060f 0%, #051130 45%, #040b1c 100%)}
+  header{display:flex;align-items:center;gap:1.6rem;padding:.85rem clamp(1rem,4vw,3.5rem);background:rgba(2,7,18,.9);border-bottom:1px solid #13244a}
+  .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+  .crest{width:2.7rem;height:2.9rem;flex-shrink:0;background:var(--gold);clip-path:polygon(0 0,100% 0,100% 74%,50% 100%,0 74%);display:flex;align-items:center;justify-content:center;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:1.35rem;color:var(--ink);letter-spacing:.02em;padding-bottom:.35rem}
+  .wordmark b{display:block;font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:.05em;text-transform:uppercase;color:#fff;line-height:1}
+  .wordmark span{display:block;font-family:var(--mono);font-size:.52rem;letter-spacing:.3em;color:#7d9dd0;text-transform:uppercase;margin-top:.25rem}
+  .lang{display:flex;border:1px solid #24406e;background:#01040c;margin-left:auto}
+  .lang button{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;color:#8fb4e8;background:none;border:none;cursor:pointer;padding:.45rem .7rem;border-right:1px solid #24406e;transition:background .15s,color .15s}
+  .lang button:last-child{border-right:none}
+  .lang button:hover{color:#fff}
+  .lang button.on{background:var(--gold);color:var(--ink);font-weight:600}
+  main{flex:1;padding:clamp(2rem,5vh,3.5rem) 1rem}
+  .page{max-width:820px;margin:0 auto;background:linear-gradient(160deg,rgba(16,38,88,.92),rgba(6,15,38,.96));border:1px solid var(--panel-edge);border-top:4px solid var(--gold);padding:clamp(1.8rem,5vw,3rem);box-shadow:0 40px 100px rgba(0,8,30,.7)}
+  .page h1{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(2.2rem,5.5vw,3.1rem);line-height:.95;letter-spacing:.01em;color:#fff}
+  .meta{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#7d9dd0;margin:.7rem 0 1.6rem}
+  .page h2{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:1.35rem;letter-spacing:.06em;color:var(--gold);margin:1.7rem 0 .5rem}
+  .page p{color:#a9c3ea;font-size:.97rem;line-height:1.75;margin-bottom:.6rem}
+  .page b{color:#fff;font-weight:600}
+  .page a{color:var(--volt-hi)}
+  .back{display:inline-flex;align-items:center;gap:.55rem;margin-top:2rem;text-decoration:none;font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:1.1rem;background:var(--gold);color:var(--ink);padding:.65rem 1.8rem;box-shadow:.28rem .28rem 0 rgba(9,20,48,.9);transition:transform .12s,box-shadow .12s}
+  .back:hover{transform:translate(-2px,-2px);box-shadow:.45rem .45rem 0 rgba(9,20,48,.9)}
+  footer{background:#01040c;border-top:4px solid var(--gold)}
+  .foot-bottom{padding:1.1rem clamp(1rem,4vw,3.5rem);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;max-width:1220px;margin:0 auto;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#54688c}
+  .foot-bottom .stop{color:#8fb4e8}
+</style>
+</head>
+<body>
+<div class="stadium" aria-hidden="true"></div>
+
+<header>
+  <a class="brand" href="index.html">
+    <span class="crest">LS</span>
+    <span class="wordmark">
+      <b>Livescore Alerts</b>
+      <span data-i18n="brandTag">Free SMS &amp; WhatsApp</span>
+    </span>
+  </a>
+  <div class="lang" id="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="hi">हिंदी</button>
+    <button type="button" data-lang="mr">मराठी</button>
+  </div>
+</header>
+
+<main>
+  <article class="page">
+    <h1 data-i18n="title">Terms of use</h1>
+    <p class="meta" data-i18n="meta">Effective: 9 July 2026</p>
+    <div data-i18n="content"></div>
+    <a class="back" href="index.html" data-i18n="back">‹ Back to home</a>
+  </article>
+</main>
+
+<footer>
+  <div class="foot-bottom">
+    <span data-i18n="footCopy">© 2026 Livescore Alerts. All rights reserved.</span>
+    <span class="stop" data-i18n="footStop">Reply STOP to any alert to unsubscribe.</span>
+  </div>
+</footer>
+
+<script>
+  var I18N={
+    en:{
+      brandTag:'Free SMS &amp; WhatsApp',
+      title:'Terms of use',
+      meta:'Effective: 9 July 2026',
+      content:
+        '<h2>1. The service</h2>'+
+        '<p>Livescore Alerts sends live cricket and football score messages by SMS and WhatsApp. Receiving alerts is free.</p>'+
+        '<h2>2. Subscribing</h2>'+
+        '<p>Sign-up is completed through the link on our home page. By subscribing you agree to receive score alerts on the mobile number you provide, and you confirm the number is yours.</p>'+
+        '<h2>3. Charges</h2>'+
+        '<p>We do not charge for alerts. Messages you send (for example a STOP reply) may be charged at your operator’s standard rate. WhatsApp messages use your data plan.</p>'+
+        '<h2>4. Accuracy and availability</h2>'+
+        '<p>Scores are provided on a best-effort basis and may occasionally be delayed, interrupted or incorrect. Do not rely on alerts where timing matters financially. We accept no liability for losses arising from delayed or incorrect scores. Livescore Alerts is an independent service and is not affiliated with any league, board, team or broadcaster.</p>'+
+        '<h2>5. Acceptable use</h2>'+
+        '<p>Do not use the service for anything unlawful, and do not resell or commercially redistribute alert content.</p>'+
+        '<h2>6. Opt-out</h2>'+
+        '<p>Reply <b>STOP</b> to any alert to end all messages immediately.</p>'+
+        '<h2>7. Changes</h2>'+
+        '<p>We may update these terms from time to time. The version published on this page is the one that applies. Continued use of the service after a change means you accept the updated terms.</p>'+
+        '<h2>8. Contact</h2>'+
+        '<p>Questions about these terms: <a href="mailto:support@yourdomain.com">support@yourdomain.com</a></p>',
+      back:'‹ Back to home',
+      footCopy:'© 2026 Livescore Alerts. All rights reserved.',
+      footStop:'Reply STOP to any alert to unsubscribe.'
+    },
+    hi:{
+      brandTag:'फ्री SMS और WhatsApp',
+      title:'नियम व शर्तें',
+      meta:'लागू: 9 जुलाई 2026',
+      content:
+        '<h2>1. सेवा</h2>'+
+        '<p>लाइवस्कोर अलर्ट्स SMS और WhatsApp पर लाइव क्रिकेट और फुटबॉल स्कोर भेजता है। अलर्ट पाना फ्री है।</p>'+
+        '<h2>2. सब्सक्रिप्शन</h2>'+
+        '<p>साइन-अप हमारे होम पेज पर दिए लिंक से पूरा होता है। सब्सक्राइब करके आप अपने दिए हुए मोबाइल नंबर पर स्कोर अलर्ट पाने के लिए सहमति देते हैं, और पुष्टि करते हैं कि वह नंबर आपका है।</p>'+
+        '<h2>3. शुल्क</h2>'+
+        '<p>हम अलर्ट के लिए कोई शुल्क नहीं लेते। आपके भेजे मैसेज (जैसे STOP) पर आपके ऑपरेटर का सामान्य शुल्क लग सकता है। WhatsApp मैसेज आपका डेटा इस्तेमाल करते हैं।</p>'+
+        '<h2>4. सटीकता और उपलब्धता</h2>'+
+        '<p>स्कोर पूरी कोशिश के साथ भेजे जाते हैं, फिर भी कभी-कभी देरी, रुकावट या गलती हो सकती है। जहां समय का आर्थिक महत्व हो वहां अलर्ट पर निर्भर न रहें। देर से या गलत स्कोर से हुए किसी नुकसान की जिम्मेदारी हम नहीं लेते। लाइवस्कोर अलर्ट्स एक स्वतंत्र सेवा है और किसी लीग, बोर्ड, टीम या ब्रॉडकास्टर से जुड़ी नहीं है।</p>'+
+        '<h2>5. उचित उपयोग</h2>'+
+        '<p>सेवा का इस्तेमाल किसी गैरकानूनी काम के लिए न करें, और अलर्ट की सामग्री को बेचें या व्यावसायिक रूप से आगे न बांटें।</p>'+
+        '<h2>6. ऑप्ट-आउट</h2>'+
+        '<p>सभी मैसेज तुरंत बंद करने के लिए किसी भी अलर्ट पर <b>STOP</b> भेजें।</p>'+
+        '<h2>7. बदलाव</h2>'+
+        '<p>हम समय-समय पर इन शर्तों को बदल सकते हैं। इस पेज पर प्रकाशित संस्करण ही लागू होता है। बदलाव के बाद सेवा का इस्तेमाल जारी रखने का मतलब है कि आप नई शर्तें स्वीकार करते हैं।</p>'+
+        '<h2>8. संपर्क</h2>'+
+        '<p>इन शर्तों के बारे में सवाल: <a href="mailto:support@yourdomain.com">support@yourdomain.com</a></p>',
+      back:'‹ होम पर वापस',
+      footCopy:'© 2026 लाइवस्कोर अलर्ट्स। सर्वाधिकार सुरक्षित।',
+      footStop:'अनसब्सक्राइब करने के लिए किसी भी अलर्ट पर STOP भेजें।'
+    },
+    mr:{
+      brandTag:'मोफत SMS आणि WhatsApp',
+      title:'नियम व अटी',
+      meta:'लागू: 9 जुलै 2026',
+      content:
+        '<h2>1. सेवा</h2>'+
+        '<p>लाइव्हस्कोर अलर्ट्स SMS आणि WhatsApp वर लाइव्ह क्रिकेट आणि फुटबॉल स्कोर पाठवते. अलर्ट मिळवणे मोफत आहे.</p>'+
+        '<h2>2. सबस्क्रिप्शन</h2>'+
+        '<p>साइन-अप आमच्या होम पेजवरील लिंकद्वारे पूर्ण होते. सबस्क्राईब करून तुम्ही दिलेल्या मोबाईल नंबरवर स्कोर अलर्ट घेण्यास संमती देता, आणि तो नंबर तुमचाच आहे याची पुष्टी करता.</p>'+
+        '<h2>3. शुल्क</h2>'+
+        '<p>अलर्टसाठी आम्ही कोणतेही शुल्क घेत नाही. तुम्ही पाठवलेल्या मेसेजवर (उदा. STOP) तुमच्या ऑपरेटरचे नेहमीचे शुल्क लागू शकते. WhatsApp मेसेज तुमचा डेटा वापरतात.</p>'+
+        '<h2>4. अचूकता आणि उपलब्धता</h2>'+
+        '<p>स्कोर पूर्ण प्रयत्नाने पाठवले जातात, तरीही कधीकधी उशीर, खंड किंवा चूक होऊ शकते. जिथे वेळेला आर्थिक महत्त्व आहे तिथे अलर्टवर अवलंबून राहू नका. उशिरा किंवा चुकीच्या स्कोरमुळे झालेल्या नुकसानाची जबाबदारी आम्ही घेत नाही. लाइव्हस्कोर अलर्ट्स ही स्वतंत्र सेवा आहे आणि कोणत्याही लीग, बोर्ड, संघ किंवा ब्रॉडकास्टरशी संलग्न नाही.</p>'+
+        '<h2>5. योग्य वापर</h2>'+
+        '<p>सेवेचा वापर कोणत्याही बेकायदेशीर कामासाठी करू नका, आणि अलर्टमधील मजकूर विकू नका किंवा व्यावसायिक कारणासाठी पुढे पाठवू नका.</p>'+
+        '<h2>6. ऑप्ट-आउट</h2>'+
+        '<p>सर्व मेसेज लगेच बंद करण्यासाठी कोणत्याही अलर्टला <b>STOP</b> पाठवा.</p>'+
+        '<h2>7. बदल</h2>'+
+        '<p>आम्ही वेळोवेळी या अटी बदलू शकतो. या पेजवर प्रकाशित आवृत्तीच लागू असते. बदलानंतर सेवेचा वापर सुरू ठेवणे म्हणजे तुम्ही नव्या अटी स्वीकारता.</p>'+
+        '<h2>8. संपर्क</h2>'+
+        '<p>या अटींबद्दल प्रश्न: <a href="mailto:support@yourdomain.com">support@yourdomain.com</a></p>',
+      back:'‹ होमवर परत',
+      footCopy:'© 2026 लाइव्हस्कोर अलर्ट्स. सर्व हक्क राखीव.',
+      footStop:'अनसबस्क्राईब करण्यासाठी कोणत्याही अलर्टला STOP पाठवा.'
+    }
+  };
+  function setLang(l){
+    if(!I18N[l])l='en';
+    var t=I18N[l];
+    document.documentElement.lang=l;
+    try{localStorage.setItem('lsa-lang',l);}catch(e){}
+    var els=document.querySelectorAll('[data-i18n]');
+    for(var i=0;i<els.length;i++){
+      var k=els[i].getAttribute('data-i18n');
+      if(t[k]!==undefined)els[i].innerHTML=t[k];
+    }
+    var btns=document.querySelectorAll('.lang button');
+    for(var b=0;b<btns.length;b++){
+      btns[b].classList.toggle('on',btns[b].getAttribute('data-lang')===l);
+    }
+  }
+  document.getElementById('lang-switch').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-lang]');
+    if(b)setLang(b.getAttribute('data-lang'));
+  });
+  var saved=null;
+  try{saved=localStorage.getItem('lsa-lang');}catch(e){}
+  setLang(saved||'en');
+</script>
+</body>
+</html>
