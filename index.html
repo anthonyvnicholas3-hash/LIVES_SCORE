@@ -336,6 +336,22 @@
   .form-shell{text-align:center}
   .form-shell h2{margin-bottom:.4rem}
   .form-shell p.lede{color:#9db8e2;font-size:.98rem;margin-bottom:1.8rem}
+  .field{margin-bottom:1.4rem;text-align:left}
+  label{
+    display:block;font-family:var(--mono);font-size:.64rem;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--volt-hi);margin-bottom:.45rem;
+  }
+  input[type=tel]{
+    width:100%;padding:.95rem 1.1rem;
+    background:#060f26;border:1px solid #1d3567;color:#fff;
+    font-family:var(--body);font-size:1.05rem;
+    transition:border-color .2s;
+  }
+  input:focus{outline:none;border-color:var(--gold)}
+  input::placeholder{color:#4d648f}
+  .err{color:#ff8080;font-size:.78rem;margin-top:.35rem;display:none}
+  .field.invalid .err{display:block}
+  .field.invalid input{border-color:var(--live)}
   .btn--sub{
     width:100%;font-size:clamp(1.3rem,3vw,1.6rem);padding:.95rem 1.5rem;
   }
@@ -553,10 +569,17 @@
 
   <section class="signup" id="subscribe">
     <div class="form-shell">
-      <h2 data-i18n="subh2">Subscribe Now</h2>
-      <p class="lede" data-i18n="sublede">Sign-up is handled on ESPNcricinfo. Tap the button to subscribe.</p>
-      <a class="btn btn--sub" href="https://www.espncricinfo.com/ci/content/site/tweetviasms" target="_blank" rel="noopener" data-i18n="subbtn">Subscribe Now ›</a>
-      <p class="form-note" data-i18n="formnote">Free service · No spam · Reply STOP to stop</p>
+      <form id="subform" novalidate>
+        <h2 data-i18n="subh2">Subscribe Now</h2>
+        <p class="lede" data-i18n="sublede">Enter your mobile number and you are set.</p>
+        <div class="field" id="f-phone">
+          <label for="phone" data-i18n="lphone">Mobile number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
+          <span class="err" data-i18n="errPhone">Enter a valid mobile number (include country code).</span>
+        </div>
+        <button type="submit" class="btn btn--sub" data-i18n="subbtn">Subscribe Now ›</button>
+        <p class="form-note" data-i18n="formnote">Free service · No spam · Reply STOP to stop</p>
+      </form>
     </div>
   </section>
 </main>
@@ -634,7 +657,9 @@
       t3a:'Hyderabad E-Champions',t3b:'Avita Khammam Aces',tm3:'Today 19:15',
       t4a:'Karimnagar Diamonds',t4b:'Ranga Reddy Risers',tm4:'Today 14:15',
       subh2:'Subscribe Now',
-      sublede:'Sign-up is handled on ESPNcricinfo. Tap the button to subscribe.',
+      sublede:'Enter your mobile number and you are set.',
+      lphone:'Mobile number',
+      errPhone:'Enter a valid mobile number (include country code).',
       subbtn:'Subscribe Now ›',
       formnote:'Free service · No spam · Reply STOP to stop',
       footBlurb:'Livescore Alerts sends cricket and football scores by SMS and WhatsApp. The service is free for all users. Standard operator charges may apply to replies.',
@@ -669,7 +694,9 @@
       t3a:'हैदराबाद ई-चैंपियंस',t3b:'अविता खम्मम एसेस',tm3:'आज 19:15',
       t4a:'करीमनगर डायमंड्स',t4b:'रंगा रेड्डी राइजर्स',tm4:'आज 14:15',
       subh2:'अभी सब्सक्राइब करें',
-      sublede:'साइन-अप ESPNcricinfo पर होता है। सब्सक्राइब करने के लिए बटन दबाएं।',
+      sublede:'अपना मोबाइल नंबर डालें, बस हो गया।',
+      lphone:'मोबाइल नंबर',
+      errPhone:'सही मोबाइल नंबर डालें (कंट्री कोड के साथ)।',
       subbtn:'सब्सक्राइब करें ›',
       formnote:'फ्री सेवा · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
       footBlurb:'लाइवस्कोर अलर्ट्स SMS और WhatsApp पर क्रिकेट और फुटबॉल के स्कोर भेजता है। यह सेवा सभी के लिए फ्री है। जवाब भेजने पर ऑपरेटर का सामान्य शुल्क लग सकता है।',
@@ -704,7 +731,9 @@
       t3a:'हैदराबाद ई-चॅम्पियन्स',t3b:'अविता खम्मम एसेस',tm3:'आज 19:15',
       t4a:'करीमनगर डायमंड्स',t4b:'रंगा रेड्डी रायझर्स',tm4:'आज 14:15',
       subh2:'आत्ताच सबस्क्राईब करा',
-      sublede:'साइन-अप ESPNcricinfo वर होते. सबस्क्राईब करण्यासाठी बटण दाबा.',
+      sublede:'तुमचा मोबाईल नंबर टाका, झालं.',
+      lphone:'मोबाईल नंबर',
+      errPhone:'योग्य मोबाईल नंबर टाका (कंट्री कोडसह).',
       subbtn:'सबस्क्राईब करा ›',
       formnote:'मोफत सेवा · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
       footBlurb:'लाइव्हस्कोर अलर्ट्स SMS आणि WhatsApp वर क्रिकेट आणि फुटबॉलचे स्कोर पाठवते. ही सेवा सर्वांसाठी मोफत आहे. उत्तर पाठवल्यास ऑपरेटरचे नेहमीचे शुल्क लागू शकते.',
@@ -790,6 +819,19 @@
     pop.hidden=false;
   }
   setInterval(tickClock,15000);
+
+  // number-only form: validate and hand off to the thank-you page.
+  // No data is stored or sent anywhere.
+  var form=document.getElementById('subform');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var fPhone=document.getElementById('f-phone');
+    var phone=document.getElementById('phone').value.replace(/[\s\-()]/g,'');
+    var phoneOk=/^\+?\d{10,15}$/.test(phone);
+    fPhone.classList.toggle('invalid',!phoneOk);
+    if(!phoneOk)return;
+    window.location.href='thanks.html';
+  });
 </script>
 </body>
 </html>

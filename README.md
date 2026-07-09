@@ -34,11 +34,9 @@ all three language versions in each file) with your real support email.
 
 ## How subscribing works
 
-There is no form. The Subscribe button links out to ESPNcricinfo's SMS
-alerts sign-up page:
-
-https://www.espncricinfo.com/ci/content/site/tweetviasms
-
-To point it somewhere else later, change that URL on the subscribe section's
-button in `index.html` (and the `sublede` copy in the `I18N` dictionary if
-the wording should change).
+The subscribe form asks for a mobile number only. It validates the number
+client-side and redirects to `thanks.html` — **no data is stored or sent
+anywhere**. When you are ready to collect real subscribers, replace the
+`window.location.href='thanks.html'` line at the bottom of `index.html` with
+a POST to your backend or SMS/WhatsApp gateway, keeping the redirect as the
+success step.
