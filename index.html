@@ -4,14 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LIVESCORE ALERTS — Free SMS &amp; WhatsApp Live Scores</title>
-<meta name="description" content="Free live cricket & football scores delivered straight to your phone by SMS and WhatsApp. Subscribe in 10 seconds.">
+<meta name="description" content="Free live cricket and football scores on your phone by SMS and WhatsApp. English, Hindi and Marathi.">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
-  @font-face{font-family:'Big Shoulders Display';src:url('fonts/big-shoulders-display-var.woff2') format('woff2');font-weight:100 900;font-display:swap}
-  @font-face{font-family:'Archivo';src:url('fonts/archivo-var.woff2') format('woff2');font-weight:100 900;font-display:swap}
-  @font-face{font-family:'IBM Plex Mono';src:url('fonts/ibm-plex-mono-400.woff2') format('woff2');font-weight:400;font-display:swap}
-  @font-face{font-family:'IBM Plex Mono';src:url('fonts/ibm-plex-mono-500.woff2') format('woff2');font-weight:500;font-display:swap}
-  @font-face{font-family:'IBM Plex Mono';src:url('fonts/ibm-plex-mono-600.woff2') format('woff2');font-weight:600;font-display:swap}
-
   :root{
     --pitch:#040b1c;
     --panel-edge:#16336e;
@@ -23,16 +18,37 @@
     --wa:#25d366;
     --sms:#3d9bff;
     --live:#ff3b3b;
+    --disp:'Big Shoulders Display','Teko',sans-serif;
+    --body:'Archivo','Mukta',sans-serif;
+    --mono:'IBM Plex Mono','Mukta',monospace;
+  }
+  html[lang=hi],html[lang=mr]{
+    --disp:'Teko',sans-serif;
+    --body:'Mukta',sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     background:var(--pitch);
     color:var(--ice);
-    font-family:'Archivo',sans-serif;
+    font-family:var(--body);
     overflow-x:hidden;
   }
   ::selection{background:var(--gold);color:var(--ink)}
+
+  /* Devanagari display faces need looser leading for matras */
+  html[lang=hi] h1,html[lang=mr] h1{line-height:1;letter-spacing:0}
+  html[lang=hi] h2,html[lang=mr] h2{line-height:1.15}
+  html[lang=hi] .card__teams,html[lang=mr] .card__teams{line-height:1.3}
+  html[lang=hi] nav a,html[lang=mr] nav a,
+  html[lang=hi] .btn,html[lang=mr] .btn{letter-spacing:.03em}
+  /* Devanagari conjuncts break apart under wide tracking */
+  html[lang=hi] .kicker,html[lang=mr] .kicker,
+  html[lang=hi] label,html[lang=mr] label,
+  html[lang=hi] .stat span,html[lang=mr] .stat span,
+  html[lang=hi] .card__league,html[lang=mr] .card__league,
+  html[lang=hi] .form-note,html[lang=mr] .form-note,
+  html[lang=hi] .foot-bottom,html[lang=mr] .foot-bottom{letter-spacing:.04em}
 
   /* ---------- stadium backdrop ---------- */
   .stadium{
@@ -61,20 +77,17 @@
     background:#01040c;
     border-bottom:1px solid #13244a;
     overflow:hidden;white-space:nowrap;
-    font-family:'IBM Plex Mono',monospace;
+    font-family:var(--mono);
     font-size:.76rem;letter-spacing:.03em;
     padding:.5rem 0;
     position:relative;z-index:6;
   }
   .ticker__track{display:inline-block;animation:tick 38s linear infinite}
   .ticker__track span{margin:0 1.7rem;color:#8fb4e8}
-  .ticker__track b{color:#fff;font-weight:500}
-  .ticker__track .up{color:var(--wa)}
-  .ticker__track .ht{color:var(--gold)}
   .tag{
     display:inline-block;padding:0 .35rem;margin-right:.5rem;
     font-size:.62rem;font-weight:600;letter-spacing:.08em;
-    color:var(--ink);vertical-align:1px;
+    color:var(--ink);vertical-align:1px;font-style:normal;
   }
   .tag--cri{background:var(--gold)}
   .tag--fbl{background:var(--wa)}
@@ -83,7 +96,7 @@
   /* ---------- header ---------- */
   header{
     position:relative;z-index:5;
-    display:flex;align-items:center;gap:2.2rem;
+    display:flex;align-items:center;gap:1.6rem;
     padding:.85rem clamp(1rem,4vw,3.5rem);
     background:rgba(2,7,18,.9);
     border-bottom:1px solid #13244a;
@@ -104,22 +117,32 @@
     text-transform:uppercase;color:#fff;line-height:1;
   }
   .wordmark span{
-    display:block;font-family:'IBM Plex Mono',monospace;
+    display:block;font-family:var(--mono);
     font-size:.52rem;letter-spacing:.3em;color:#7d9dd0;
     text-transform:uppercase;margin-top:.25rem;
   }
   nav{display:flex;gap:1.6rem;margin-left:auto}
   nav a{
-    font-family:'Big Shoulders Display',sans-serif;font-weight:700;
+    font-family:var(--disp);font-weight:700;
     font-size:1.02rem;letter-spacing:.12em;text-transform:uppercase;
     color:#9db8e2;text-decoration:none;padding:.3rem 0;
     border-bottom:2px solid transparent;
     transition:color .15s,border-color .15s;
   }
   nav a:hover{color:#fff;border-color:var(--gold)}
+  .lang{display:flex;border:1px solid #24406e;background:#01040c}
+  .lang button{
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;
+    color:#8fb4e8;background:none;border:none;cursor:pointer;
+    padding:.45rem .7rem;border-right:1px solid #24406e;
+    transition:background .15s,color .15s;
+  }
+  .lang button:last-child{border-right:none}
+  .lang button:hover{color:#fff}
+  .lang button.on{background:var(--gold);color:var(--ink);font-weight:600}
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
-    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    font-family:var(--disp);font-weight:800;
     text-transform:uppercase;letter-spacing:.1em;text-decoration:none;
     background:var(--gold);color:var(--ink);border:none;cursor:pointer;
     box-shadow:.28rem .28rem 0 rgba(9,20,48,.9);
@@ -127,8 +150,9 @@
   }
   .btn:hover{transform:translate(-2px,-2px);box-shadow:.45rem .45rem 0 rgba(9,20,48,.9);background:#ffdc4d}
   .btn:active{transform:translate(1px,1px);box-shadow:.15rem .15rem 0 rgba(9,20,48,.9)}
-  .btn--head{font-size:.98rem;padding:.55rem 1.2rem}
-  @media(max-width:760px){nav{display:none}.btn--head{margin-left:auto}}
+  .btn--head{font-size:.98rem;padding:.55rem 1.2rem;white-space:nowrap}
+  @media(max-width:900px){nav{display:none}.lang{margin-left:auto}}
+  @media(max-width:560px){.btn--head{display:none}.wordmark span{display:none}}
 
   /* ---------- hero ---------- */
   .hero{
@@ -141,16 +165,16 @@
   }
   .kicker{
     display:inline-flex;align-items:center;gap:.55rem;
-    font-family:'IBM Plex Mono',monospace;font-size:.68rem;
-    letter-spacing:.22em;text-transform:uppercase;
+    font-family:var(--mono);font-size:.68rem;
+    letter-spacing:.18em;text-transform:uppercase;
     color:var(--gold);background:#01040c;
     border:1px solid #24406e;border-left:3px solid var(--live);
     padding:.45rem .9rem;margin-bottom:1.5rem;
   }
-  .kicker::before{content:"";width:.45rem;height:.45rem;background:var(--live);border-radius:50%;box-shadow:0 0 8px var(--live);animation:pulse 1.6s infinite}
+  .kicker::before{content:"";width:.45rem;height:.45rem;background:var(--live);border-radius:50%;box-shadow:0 0 8px var(--live);animation:pulse 1.6s infinite;flex-shrink:0}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}
   h1{
-    font-family:'Big Shoulders Display',sans-serif;
+    font-family:var(--disp);
     font-weight:900;text-transform:uppercase;
     font-size:clamp(3.4rem,8.5vw,6.6rem);
     line-height:.88;letter-spacing:.005em;
@@ -172,7 +196,7 @@
   .channel-row{display:flex;gap:.8rem;margin-top:1.6rem;flex-wrap:wrap}
   .chip{
     display:inline-flex;align-items:center;gap:.5rem;
-    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    font-family:var(--disp);font-weight:800;
     text-transform:uppercase;letter-spacing:.1em;font-size:1rem;
     padding:.5rem 1rem;color:#fff;
     box-shadow:.22rem .22rem 0 rgba(1,6,18,.8);
@@ -184,10 +208,10 @@
   .stat{padding:.9rem 1.4rem;border-right:1px solid #1b345f;flex:1;min-width:8rem}
   .stat:last-child{border-right:none}
   .stat b{
-    display:block;font-family:'Big Shoulders Display',sans-serif;
+    display:block;font-family:var(--disp);
     font-weight:800;font-size:1.9rem;color:var(--gold);line-height:1;
   }
-  .stat span{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#7d9dd0}
+  .stat span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#7d9dd0}
 
   /* ---------- phone mock ---------- */
   .phone-wrap{position:relative;display:flex;justify-content:center}
@@ -205,7 +229,7 @@
     text-align:center;font-family:'Big Shoulders Display',sans-serif;
     font-size:3rem;font-weight:700;color:#fff;letter-spacing:.06em;
   }
-  .phone__date{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#7d9dd0;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.1rem}
+  .phone__date{text-align:center;font-family:var(--mono);font-size:.68rem;color:#7d9dd0;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.1rem}
   .notif{
     background:rgba(233,241,255,.96);color:#0d1526;
     border-radius:.9rem;padding:.7rem .8rem;
@@ -225,7 +249,7 @@
   .notif__icon svg{width:1.2rem;height:1.2rem;fill:#fff}
   .notif__body{font-size:.72rem;line-height:1.45;min-width:0}
   .notif__body b{display:block;font-size:.73rem;letter-spacing:.02em}
-  .notif__body .mono{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:#22314f}
+  .notif__body .mono{font-family:var(--mono);font-size:.66rem;color:#22314f}
   .notif__now{margin-left:auto;font-size:.62rem;color:#5c6b8a;flex-shrink:0}
   .phone-badge{
     position:absolute;z-index:2;
@@ -253,7 +277,7 @@
     display:flex;align-items:center;gap:1rem;margin-bottom:1.6rem;flex-wrap:wrap;
   }
   h2{
-    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    font-family:var(--disp);font-weight:800;
     text-transform:uppercase;font-size:clamp(1.8rem,3.5vw,2.5rem);
     color:#fff;letter-spacing:.04em;
   }
@@ -273,28 +297,28 @@
   }
   .card__sport{
     position:absolute;right:0;top:0;
-    font-family:'IBM Plex Mono',monospace;font-size:.56rem;font-weight:600;
+    font-family:var(--mono);font-size:.56rem;font-weight:600;
     letter-spacing:.14em;color:var(--ink);
     padding:.22rem .55rem;
   }
   .card__sport--cri{background:var(--gold)}
   .card__sport--fbl{background:var(--wa)}
   .card__league{
-    font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.14em;
+    font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
     text-transform:uppercase;color:var(--volt-hi);margin:.9rem 0 .7rem;
     max-width:85%;
   }
-  .card__teams{font-family:'Big Shoulders Display',sans-serif;font-weight:800;text-transform:uppercase;font-size:1.4rem;line-height:1.08;letter-spacing:.03em;color:#fff}
+  .card__teams{font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:1.4rem;line-height:1.08;letter-spacing:.03em;color:#fff}
   .card__vs{
     display:inline-block;background:var(--volt);color:#fff;font-size:.64rem;
-    font-family:'IBM Plex Mono',monospace;font-weight:600;
+    font-family:var(--mono);font-weight:600;
     padding:.12rem .4rem;margin:.3rem 0;vertical-align:.15em;
   }
   .card__time{
     margin-top:.85rem;display:flex;align-items:center;gap:.45rem;
-    font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#9db8e2;
+    font-family:var(--mono);font-size:.72rem;color:#9db8e2;
   }
-  .card__time svg{width:.85rem;height:.85rem;fill:none;stroke:#9db8e2;stroke-width:2}
+  .card__time svg{width:.85rem;height:.85rem;fill:none;stroke:#9db8e2;stroke-width:2;flex-shrink:0}
 
   /* ---------- form ---------- */
   .signup{
@@ -313,13 +337,13 @@
   .form-shell p.lede{color:#9db8e2;font-size:.98rem;margin-bottom:1.8rem}
   .field{margin-bottom:1.25rem}
   label{
-    display:block;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+    display:block;font-family:var(--mono);font-size:.64rem;
     letter-spacing:.18em;text-transform:uppercase;color:var(--volt-hi);margin-bottom:.45rem;
   }
   input[type=text],input[type=tel],select{
     width:100%;padding:.85rem 1rem;
     background:#060f26;border:1px solid #1d3567;color:#fff;
-    font-family:'Archivo',sans-serif;font-size:1rem;
+    font-family:var(--body);font-size:1rem;
     transition:border-color .2s;
   }
   input:focus,select:focus{outline:none;border-color:var(--gold)}
@@ -332,7 +356,7 @@
   .toggle span{
     display:flex;align-items:center;justify-content:center;gap:.55rem;
     padding:.85rem .5rem;border:1.5px solid #1d3567;color:#9db8e2;
-    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    font-family:var(--disp);font-weight:800;
     text-transform:uppercase;letter-spacing:.1em;font-size:1.05rem;
     transition:all .18s;cursor:pointer;
   }
@@ -345,7 +369,7 @@
     width:100%;font-size:clamp(1.3rem,3vw,1.6rem);padding:.95rem 1.5rem;
   }
   .form-note{
-    text-align:center;margin-top:1.2rem;font-family:'IBM Plex Mono',monospace;
+    text-align:center;margin-top:1.2rem;font-family:var(--mono);
     font-size:.66rem;letter-spacing:.1em;color:#6b87b6;text-transform:uppercase;
   }
   .err{color:#ff8080;font-size:.78rem;margin-top:.35rem;display:none}
@@ -366,7 +390,7 @@
   .foot-brand .brand{margin-bottom:1rem}
   .foot-brand p{font-size:.86rem;line-height:1.65;color:#7d94bd;max-width:26rem}
   .foot-col h4{
-    font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+    font-family:var(--disp);font-weight:800;
     font-size:1rem;letter-spacing:.16em;text-transform:uppercase;
     color:var(--gold);margin-bottom:.9rem;
   }
@@ -379,12 +403,48 @@
     padding:1.1rem clamp(1rem,4vw,3.5rem);
     display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
     max-width:1220px;margin:0 auto;
-    font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.1em;
+    font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;
     text-transform:uppercase;color:#54688c;
   }
   .foot-bottom .stop{color:#8fb4e8}
   @media(max-width:760px){
     .foot-grid{grid-template-columns:1fr;gap:1.8rem}
+  }
+
+  /* ---------- language popup ---------- */
+  .langpop{
+    position:fixed;inset:0;z-index:50;
+    background:rgba(1,4,12,.85);backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;padding:1rem;
+  }
+  .langpop[hidden]{display:none}
+  .langpop__card{
+    background:linear-gradient(160deg,rgba(16,38,88,.97),rgba(6,15,38,.99));
+    border:1px solid var(--panel-edge);border-top:4px solid var(--gold);
+    padding:clamp(1.8rem,5vw,2.6rem);max-width:420px;width:100%;
+    text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.85);
+    animation:rise .45s cubic-bezier(.2,.9,.3,1.2) both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .langpop .crest{margin:0 auto 1.1rem}
+  .langpop h3{
+    font-family:'Big Shoulders Display','Teko',sans-serif;font-weight:800;
+    text-transform:uppercase;font-size:1.7rem;color:#fff;letter-spacing:.05em;line-height:1.05;
+  }
+  .langpop h3 small{
+    display:block;font-family:var(--body);font-weight:500;font-size:.85rem;
+    letter-spacing:.02em;color:#9db8e2;margin-top:.55rem;text-transform:none;
+  }
+  .langpop__btns{display:grid;gap:.7rem;margin-top:1.6rem}
+  .langpop__btns button{
+    padding:.85rem;border:1.5px solid #1d3567;background:#060f26;color:#dbe9ff;
+    font-family:'Archivo','Mukta',sans-serif;font-weight:600;font-size:1.05rem;
+    cursor:pointer;transition:all .15s;
+  }
+  .langpop__btns button:hover{border-color:var(--gold);color:var(--gold)}
+  .langpop__note{
+    margin-top:1.2rem;font-family:var(--mono);font-size:.6rem;
+    letter-spacing:.14em;text-transform:uppercase;color:#54688c;
   }
 
   @media(max-width:860px){
@@ -400,20 +460,9 @@
 <body>
 <div class="stadium" aria-hidden="true"></div>
 
-<!-- live ticker -->
+<!-- live ticker (built by JS per language) -->
 <div class="ticker" aria-hidden="true">
-  <div class="ticker__track">
-    <span><i class="tag tag--cri">CRI</i><b>ENG vs IND</b> · IND <span class="up">128/4 (15.2)</span></span>
-    <span><i class="tag tag--fbl">FBL</i><b>FRA vs MAR</b> · FRA <span class="ht">1–0 (HT)</span></span>
-    <span><i class="tag tag--cri">CRI</i><b>HYD E-CHAMPIONS vs AVITA KHAMMAM ACES</b> · TODAY 19:15</span>
-    <span><i class="tag tag--cri">CRI</i><b>KARIMNAGAR DIAMONDS vs RANGA REDDY RISERS</b> · TODAY 14:15</span>
-    <span><i class="tag tag--fbl">FBL</i><b>FIFA WORLD CUP</b> · FRANCE vs MOROCCO · TOMORROW 01:30</span>
-    <span><i class="tag tag--cri">CRI</i><b>ENG vs IND</b> · IND <span class="up">128/4 (15.2)</span></span>
-    <span><i class="tag tag--fbl">FBL</i><b>FRA vs MAR</b> · FRA <span class="ht">1–0 (HT)</span></span>
-    <span><i class="tag tag--cri">CRI</i><b>HYD E-CHAMPIONS vs AVITA KHAMMAM ACES</b> · TODAY 19:15</span>
-    <span><i class="tag tag--cri">CRI</i><b>KARIMNAGAR DIAMONDS vs RANGA REDDY RISERS</b> · TODAY 14:15</span>
-    <span><i class="tag tag--fbl">FBL</i><b>FIFA WORLD CUP</b> · FRANCE vs MOROCCO · TOMORROW 01:30</span>
-  </div>
+  <div class="ticker__track" id="ticker-track"></div>
 </div>
 
 <header>
@@ -421,27 +470,32 @@
     <span class="crest">LS</span>
     <span class="wordmark">
       <b>Livescore Alerts</b>
-      <span>Free SMS &amp; WhatsApp</span>
+      <span data-i18n="brandTag">Free SMS &amp; WhatsApp</span>
     </span>
   </a>
   <nav>
-    <a href="#fixtures">Fixtures</a>
-    <a href="#subscribe">Coverage</a>
-    <a href="#subscribe">How it works</a>
+    <a href="#fixtures" data-i18n="navMatches">Matches</a>
+    <a href="#subscribe" data-i18n="navCoverage">Coverage</a>
+    <a href="#subscribe" data-i18n="navHow">How it works</a>
   </nav>
-  <a class="btn btn--head" href="#subscribe">Get Free Alerts</a>
+  <div class="lang" id="lang-switch" role="group" aria-label="Language">
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="hi">हिंदी</button>
+    <button type="button" data-lang="mr">मराठी</button>
+  </div>
+  <a class="btn btn--head" href="#subscribe" data-i18n="cta">Get Free Alerts</a>
 </header>
 
 <main>
   <section class="hero">
     <div>
-      <span class="kicker">Live now · Ball by ball · Goal by goal</span>
+      <span class="kicker" data-i18n="kicker">LIVE: ENG vs IND · FRA vs MAR</span>
       <h1>
-        Free
-        <span class="score">Live Score</span>
-        <span class="l3">SMS &amp; WhatsApp Alerts</span>
+        <span data-i18n="h1a">Free</span>
+        <span class="score" data-i18n="h1b">Live Score</span>
+        <span class="l3" data-i18n="h1c">SMS &amp; WhatsApp Alerts</span>
       </h1>
-      <p class="sub">Never miss a wicket, a goal or a final whistle again. Get <b>instant match updates</b> for cricket and football delivered straight to your phone — <b>no app, no data plan, no cost.</b></p>
+      <p class="sub" data-i18n="sub">Every wicket, goal and result on your phone as it happens. Works on any mobile. <b>SMS alerts need no internet.</b></p>
       <div class="channel-row">
         <span class="chip chip--wa">
           <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4-.1.6.5l.8 2c.1.2.1.4 0 .6l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.2.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4 0 .1 0 .7-.3 1.3z"/></svg>
@@ -453,9 +507,9 @@
         </span>
       </div>
       <div class="hero-stats">
-        <div class="stat"><b>&lt;30s</b><span>Alert Speed</span></div>
-        <div class="stat"><b>100%</b><span>Free Forever</span></div>
-        <div class="stat"><b>24/7</b><span>Match Coverage</span></div>
+        <div class="stat"><b>&lt;30s</b><span data-i18n="stat1">Alert speed</span></div>
+        <div class="stat"><b>100%</b><span data-i18n="stat2">Free</span></div>
+        <div class="stat"><b>24/7</b><span data-i18n="stat3">Coverage</span></div>
       </div>
     </div>
 
@@ -469,7 +523,7 @@
       <div class="phone" aria-hidden="true">
         <div class="phone__notch"></div>
         <div class="phone__time" id="clock">10:30</div>
-        <div class="phone__date" id="dateline">Tuesday, Today</div>
+        <div class="phone__date" id="dateline">Tuesday</div>
         <div class="notif">
           <div class="notif__icon notif__icon--wa">
             <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
@@ -477,7 +531,7 @@
           <div class="notif__body">
             <b>LIVE SCORE ALERT</b>
             <span class="mono">ENG vs IND: IND 128/4 (15.2)</span><br>
-            Live updates direct to your WhatsApp!
+            <span data-i18n="notifWa">Updates direct to your WhatsApp!</span>
           </div>
           <span class="notif__now">now</span>
         </div>
@@ -488,7 +542,7 @@
           <div class="notif__body">
             <b>LIVE SCORE ALERT</b>
             <span class="mono">FRA vs MAR: FRA 1-0 MAR (HT)</span><br>
-            Latest score via SMS!
+            <span data-i18n="notifSms">Latest score by SMS!</span>
           </div>
           <span class="notif__now">now</span>
         </div>
@@ -498,33 +552,33 @@
 
   <section class="fixtures" id="fixtures">
     <div class="section-head">
-      <h2>Today's Fixtures</h2>
+      <h2 data-i18n="fixh2">Today's Matches</h2>
       <div class="rule"></div>
     </div>
     <div class="grid">
       <article class="card">
-        <span class="card__sport card__sport--cri">CRICKET</span>
-        <div class="card__league">International / T20 Series</div>
-        <div class="card__teams">England<br><span class="card__vs">VS</span> India</div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Today 22:00</div>
+        <span class="card__sport card__sport--cri" data-i18n="sportCri">CRICKET</span>
+        <div class="card__league" data-i18n="lg1">International / T20 Series</div>
+        <div class="card__teams"><span data-i18n="t1a">England</span><br><span class="card__vs">VS</span> <span data-i18n="t1b">India</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tm1">Today 22:00</span></div>
       </article>
       <article class="card">
-        <span class="card__sport card__sport--fbl">FOOTBALL</span>
-        <div class="card__league">International / FIFA World Cup</div>
-        <div class="card__teams">France<br><span class="card__vs">VS</span> Morocco</div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Tomorrow 01:30</div>
+        <span class="card__sport card__sport--fbl" data-i18n="sportFbl">FOOTBALL</span>
+        <div class="card__league" data-i18n="lg2">International / FIFA World Cup</div>
+        <div class="card__teams"><span data-i18n="t2a">France</span><br><span class="card__vs">VS</span> <span data-i18n="t2b">Morocco</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tm2">Tomorrow 01:30</span></div>
       </article>
       <article class="card">
-        <span class="card__sport card__sport--cri">CRICKET</span>
-        <div class="card__league">India / T20 Telangana League</div>
-        <div class="card__teams">Hyderabad E-Champions<br><span class="card__vs">VS</span> Avita Khammam Aces</div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Today 19:15</div>
+        <span class="card__sport card__sport--cri" data-i18n="sportCri">CRICKET</span>
+        <div class="card__league" data-i18n="lg3">India / T20 Telangana League</div>
+        <div class="card__teams"><span data-i18n="t3a">Hyderabad E-Champions</span><br><span class="card__vs">VS</span> <span data-i18n="t3b">Avita Khammam Aces</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tm3">Today 19:15</span></div>
       </article>
       <article class="card">
-        <span class="card__sport card__sport--cri">CRICKET</span>
-        <div class="card__league">India / T20 Telangana League</div>
-        <div class="card__teams">Karimnagar Diamonds<br><span class="card__vs">VS</span> Ranga Reddy Risers</div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Today 14:15</div>
+        <span class="card__sport card__sport--cri" data-i18n="sportCri">CRICKET</span>
+        <div class="card__league" data-i18n="lg3b">India / T20 Telangana League</div>
+        <div class="card__teams"><span data-i18n="t4a">Karimnagar Diamonds</span><br><span class="card__vs">VS</span> <span data-i18n="t4b">Ranga Reddy Risers</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tm4">Today 14:15</span></div>
       </article>
     </div>
   </section>
@@ -532,24 +586,24 @@
   <section class="signup" id="subscribe">
     <div class="form-shell">
       <form id="subform" novalidate>
-        <h2>Subscribe Now</h2>
-        <p class="lede">Pick your matches, drop your number, done. First alert lands before the next over.</p>
+        <h2 data-i18n="subh2">Subscribe Now</h2>
+        <p class="lede" data-i18n="sublede">Enter your number, pick your matches and you are set.</p>
 
         <div class="row-2">
           <div class="field" id="f-name">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="e.g. Rahul Sharma" autocomplete="name">
-            <span class="err">Please enter your name.</span>
+            <label for="name" data-i18n="lname">Your name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Rahul Sharma" data-i18n-ph="phName" autocomplete="name">
+            <span class="err" data-i18n="errName">Please enter your name.</span>
           </div>
           <div class="field" id="f-phone">
-            <label for="phone">Mobile Number</label>
+            <label for="phone" data-i18n="lphone">Mobile number</label>
             <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
-            <span class="err">Enter a valid mobile number (include country code).</span>
+            <span class="err" data-i18n="errPhone">Enter a valid mobile number (include country code).</span>
           </div>
         </div>
 
         <div class="field">
-          <label>Get Alerts Via</label>
+          <label data-i18n="lvia">Get alerts via</label>
           <div class="toggle-row">
             <label class="toggle">
               <input type="checkbox" name="channel" value="whatsapp" checked>
@@ -566,26 +620,26 @@
               </span>
             </label>
           </div>
-          <span class="err" id="channel-err" style="display:none">Pick at least one channel.</span>
+          <span class="err" id="channel-err" style="display:none" data-i18n="errCh">Pick at least one channel.</span>
         </div>
 
         <div class="field">
-          <label for="sport">Which matches?</label>
+          <label for="sport" data-i18n="lwhich">Which matches?</label>
           <select id="sport" name="sport">
-            <option value="all">All cricket &amp; football</option>
-            <option value="cricket-intl">International cricket only</option>
-            <option value="t20-telangana">T20 Telangana League</option>
-            <option value="football">Football / FIFA World Cup</option>
+            <option value="all" data-i18n="opt1">All cricket &amp; football</option>
+            <option value="cricket-intl" data-i18n="opt2">International cricket only</option>
+            <option value="t20-telangana" data-i18n="opt3">T20 Telangana League</option>
+            <option value="football" data-i18n="opt4">Football / FIFA World Cup</option>
           </select>
         </div>
 
         <label class="consent">
           <input type="checkbox" id="consent">
-          <span>I agree to receive free live score alerts on the number above. Opt out anytime — reply STOP.</span>
+          <span data-i18n="consent">I agree to receive free score alerts on this number. Reply STOP to any alert to stop.</span>
         </label>
 
-        <button type="submit" class="btn btn--sub">Subscribe Now ›</button>
-        <p class="form-note">Instant updates direct to your phone · No spam · Free forever</p>
+        <button type="submit" class="btn btn--sub" data-i18n="subbtn">Subscribe Now ›</button>
+        <p class="form-note" data-i18n="formnote">Free service · No spam · Reply STOP to stop</p>
       </form>
     </div>
   </section>
@@ -598,46 +652,240 @@
         <span class="crest">LS</span>
         <span class="wordmark">
           <b>Livescore Alerts</b>
-          <span>Free SMS &amp; WhatsApp</span>
+          <span data-i18n="brandTag">Free SMS &amp; WhatsApp</span>
         </span>
       </a>
-      <p>Ball-by-ball cricket and goal-by-goal football updates, sent straight to your phone the moment they happen. No app, no subscription fee — just the score, when it matters.</p>
+      <p data-i18n="footBlurb">Livescore Alerts sends cricket and football scores by SMS and WhatsApp. The service is free for all users. Standard operator charges may apply to replies.</p>
     </div>
     <div class="foot-col">
-      <h4>Coverage</h4>
+      <h4 data-i18n="footCovH">Coverage</h4>
       <ul>
-        <li><a href="#fixtures">International Cricket</a></li>
-        <li><a href="#fixtures">T20 Telangana League</a></li>
-        <li><a href="#fixtures">FIFA World Cup</a></li>
-        <li><a href="#fixtures">Today's Fixtures</a></li>
+        <li><a href="#fixtures" data-i18n="footCov1">International cricket</a></li>
+        <li><a href="#fixtures" data-i18n="footCov2">T20 Telangana League</a></li>
+        <li><a href="#fixtures" data-i18n="footCov3">FIFA World Cup</a></li>
+        <li><a href="#fixtures" data-i18n="footCov4">Today's matches</a></li>
       </ul>
     </div>
     <div class="foot-col">
-      <h4>Help</h4>
+      <h4 data-i18n="footHelpH">Help</h4>
       <ul>
-        <li><a href="#subscribe">Subscribe</a></li>
-        <li><a href="#">How it works</a></li>
-        <li><a href="#">Terms of use</a></li>
-        <li><a href="#">Privacy policy</a></li>
+        <li><a href="#subscribe" data-i18n="footHelp1">Subscribe</a></li>
+        <li><a href="#" data-i18n="footHelp2">How it works</a></li>
+        <li><a href="#" data-i18n="footHelp3">Terms of use</a></li>
+        <li><a href="#" data-i18n="footHelp4">Privacy policy</a></li>
       </ul>
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2026 Livescore Alerts. All rights reserved.</span>
-    <span class="stop">To opt out at any time, reply STOP to any alert.</span>
+    <span data-i18n="footCopy">© 2026 Livescore Alerts. All rights reserved.</span>
+    <span class="stop" data-i18n="footStop">Reply STOP to any alert to unsubscribe.</span>
   </div>
 </footer>
 
+<!-- first-visit language popup -->
+<div class="langpop" id="langpop" hidden>
+  <div class="langpop__card">
+    <span class="crest">LS</span>
+    <h3>Choose your language
+      <small>अपनी भाषा चुनें · तुमची भाषा निवडा</small>
+    </h3>
+    <div class="langpop__btns">
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="hi">हिंदी</button>
+      <button type="button" data-lang="mr">मराठी</button>
+    </div>
+    <p class="langpop__note">Livescore Alerts</p>
+  </div>
+</div>
+
 <script>
-  // live clock in the phone mock
+  var I18N={
+    en:{
+      locale:'en-IN',
+      brandTag:'Free SMS &amp; WhatsApp',
+      navMatches:'Matches',navCoverage:'Coverage',navHow:'How it works',
+      cta:'Get Free Alerts',
+      kicker:'LIVE: ENG vs IND · FRA vs MAR',
+      h1a:'Free',h1b:'Live Score',h1c:'SMS &amp; WhatsApp Alerts',
+      sub:'Every wicket, goal and result on your phone as it happens. Works on any mobile. <b>SMS alerts need no internet.</b>',
+      stat1:'Alert speed',stat2:'Free',stat3:'Coverage',
+      notifWa:'Updates direct to your WhatsApp!',notifSms:'Latest score by SMS!',
+      fixh2:"Today's Matches",
+      sportCri:'CRICKET',sportFbl:'FOOTBALL',
+      lg1:'International / T20 Series',t1a:'England',t1b:'India',tm1:'Today 22:00',
+      lg2:'International / FIFA World Cup',t2a:'France',t2b:'Morocco',tm2:'Tomorrow 01:30',
+      lg3:'India / T20 Telangana League',lg3b:'India / T20 Telangana League',
+      t3a:'Hyderabad E-Champions',t3b:'Avita Khammam Aces',tm3:'Today 19:15',
+      t4a:'Karimnagar Diamonds',t4b:'Ranga Reddy Risers',tm4:'Today 14:15',
+      subh2:'Subscribe Now',sublede:'Enter your number, pick your matches and you are set.',
+      lname:'Your name',phName:'e.g. Rahul Sharma',lphone:'Mobile number',
+      lvia:'Get alerts via',lwhich:'Which matches?',
+      opt1:'All cricket &amp; football',opt2:'International cricket only',opt3:'T20 Telangana League',opt4:'Football / FIFA World Cup',
+      consent:'I agree to receive free score alerts on this number. Reply STOP to any alert to stop.',
+      subbtn:'Subscribe Now ›',
+      formnote:'Free service · No spam · Reply STOP to stop',
+      errName:'Please enter your name.',errPhone:'Enter a valid mobile number (include country code).',errCh:'Pick at least one channel.',
+      footBlurb:'Livescore Alerts sends cricket and football scores by SMS and WhatsApp. The service is free for all users. Standard operator charges may apply to replies.',
+      footCovH:'Coverage',footCov1:'International cricket',footCov2:'T20 Telangana League',footCov3:'FIFA World Cup',footCov4:"Today's matches",
+      footHelpH:'Help',footHelp1:'Subscribe',footHelp2:'How it works',footHelp3:'Terms of use',footHelp4:'Privacy policy',
+      footCopy:'© 2026 Livescore Alerts. All rights reserved.',
+      footStop:'Reply STOP to any alert to unsubscribe.',
+      today:'Today',
+      ticker:[
+        ['cri','2nd T20I: IND 128/4 (15.2) vs ENG · IND need 52 off 28 balls'],
+        ['fbl','World Cup SF: FRA 1-0 MAR (half-time)'],
+        ['cri','Telangana T20: Hyderabad E-Champions vs Avita Khammam Aces, 7:15 PM today'],
+        ['cri','Telangana T20: Karimnagar Diamonds vs Ranga Reddy Risers, 2:15 PM today'],
+        ['fbl','World Cup SF: France vs Morocco, 1:30 AM tomorrow']
+      ]
+    },
+    hi:{
+      locale:'hi-IN',
+      brandTag:'फ्री SMS और WhatsApp',
+      navMatches:'मैच',navCoverage:'कवरेज',navHow:'कैसे काम करता है',
+      cta:'फ्री अलर्ट पाएं',
+      kicker:'लाइव: ENG बनाम IND · FRA बनाम MAR',
+      h1a:'फ्री',h1b:'लाइव स्कोर',h1c:'SMS और WhatsApp अलर्ट',
+      sub:'हर विकेट, हर गोल और हर नतीजा, आपके फोन पर तुरंत। किसी भी मोबाइल पर चलता है। <b>SMS अलर्ट के लिए इंटरनेट की जरूरत नहीं।</b>',
+      stat1:'अलर्ट स्पीड',stat2:'बिल्कुल फ्री',stat3:'कवरेज',
+      notifWa:'अपडेट सीधे आपके WhatsApp पर!',notifSms:'ताज़ा स्कोर SMS से!',
+      fixh2:'आज के मैच',
+      sportCri:'क्रिकेट',sportFbl:'फुटबॉल',
+      lg1:'इंटरनेशनल / टी20 सीरीज',t1a:'इंग्लैंड',t1b:'भारत',tm1:'आज 22:00',
+      lg2:'इंटरनेशनल / फीफा वर्ल्ड कप',t2a:'फ्रांस',t2b:'मोरक्को',tm2:'कल 01:30',
+      lg3:'भारत / टी20 तेलंगाना लीग',lg3b:'भारत / टी20 तेलंगाना लीग',
+      t3a:'हैदराबाद ई-चैंपियंस',t3b:'अविता खम्मम एसेस',tm3:'आज 19:15',
+      t4a:'करीमनगर डायमंड्स',t4b:'रंगा रेड्डी राइजर्स',tm4:'आज 14:15',
+      subh2:'अभी सब्सक्राइब करें',sublede:'अपना नंबर डालें, अपने मैच चुनें, बस हो गया।',
+      lname:'आपका नाम',phName:'जैसे राहुल शर्मा',lphone:'मोबाइल नंबर',
+      lvia:'अलर्ट कैसे चाहिए?',lwhich:'कौन से मैच?',
+      opt1:'सारे क्रिकेट और फुटबॉल',opt2:'सिर्फ इंटरनेशनल क्रिकेट',opt3:'टी20 तेलंगाना लीग',opt4:'फुटबॉल / फीफा वर्ल्ड कप',
+      consent:'मैं इस नंबर पर फ्री स्कोर अलर्ट पाने के लिए सहमत हूं। बंद करने के लिए किसी भी अलर्ट पर STOP भेजें।',
+      subbtn:'सब्सक्राइब करें ›',
+      formnote:'फ्री सेवा · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
+      errName:'कृपया अपना नाम लिखें।',errPhone:'सही मोबाइल नंबर डालें (कंट्री कोड के साथ)।',errCh:'कम से कम एक विकल्प चुनें।',
+      footBlurb:'लाइवस्कोर अलर्ट्स SMS और WhatsApp पर क्रिकेट और फुटबॉल के स्कोर भेजता है। यह सेवा सभी के लिए फ्री है। जवाब भेजने पर ऑपरेटर का सामान्य शुल्क लग सकता है।',
+      footCovH:'कवरेज',footCov1:'इंटरनेशनल क्रिकेट',footCov2:'टी20 तेलंगाना लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आज के मैच',
+      footHelpH:'मदद',footHelp1:'सब्सक्राइब',footHelp2:'कैसे काम करता है',footHelp3:'नियम व शर्तें',footHelp4:'प्राइवेसी पॉलिसी',
+      footCopy:'© 2026 लाइवस्कोर अलर्ट्स। सर्वाधिकार सुरक्षित।',
+      footStop:'अनसब्सक्राइब करने के लिए किसी भी अलर्ट पर STOP भेजें।',
+      today:'आज',
+      ticker:[
+        ['cri','दूसरा टी20: IND 128/4 (15.2) बनाम ENG · भारत को 28 गेंदों में 52 रन चाहिए'],
+        ['fbl','वर्ल्ड कप सेमीफाइनल: FRA 1-0 MAR (हाफ टाइम)'],
+        ['cri','तेलंगाना टी20: हैदराबाद ई-चैंपियंस बनाम अविता खम्मम एसेस, आज शाम 7:15'],
+        ['cri','तेलंगाना टी20: करीमनगर डायमंड्स बनाम रंगा रेड्डी राइजर्स, आज दोपहर 2:15'],
+        ['fbl','वर्ल्ड कप सेमीफाइनल: फ्रांस बनाम मोरक्को, कल रात 1:30']
+      ]
+    },
+    mr:{
+      locale:'mr-IN',
+      brandTag:'मोफत SMS आणि WhatsApp',
+      navMatches:'सामने',navCoverage:'कव्हरेज',navHow:'कसे चालते',
+      cta:'मोफत अलर्ट मिळवा',
+      kicker:'लाइव्ह: ENG वि. IND · FRA वि. MAR',
+      h1a:'मोफत',h1b:'लाइव्ह स्कोर',h1c:'SMS आणि WhatsApp अलर्ट',
+      sub:'प्रत्येक विकेट, गोल आणि निकाल, तुमच्या फोनवर लगेच. कोणत्याही मोबाईलवर चालते. <b>SMS अलर्टसाठी इंटरनेटची गरज नाही.</b>',
+      stat1:'अलर्ट स्पीड',stat2:'पूर्ण मोफत',stat3:'कव्हरेज',
+      notifWa:'अपडेट थेट तुमच्या WhatsApp वर!',notifSms:'ताजा स्कोर SMS ने!',
+      fixh2:'आजचे सामने',
+      sportCri:'क्रिकेट',sportFbl:'फुटबॉल',
+      lg1:'इंटरनॅशनल / टी20 मालिका',t1a:'इंग्लंड',t1b:'भारत',tm1:'आज 22:00',
+      lg2:'इंटरनॅशनल / फीफा वर्ल्ड कप',t2a:'फ्रान्स',t2b:'मोरोक्को',tm2:'उद्या 01:30',
+      lg3:'भारत / टी20 तेलंगणा लीग',lg3b:'भारत / टी20 तेलंगणा लीग',
+      t3a:'हैदराबाद ई-चॅम्पियन्स',t3b:'अविता खम्मम एसेस',tm3:'आज 19:15',
+      t4a:'करीमनगर डायमंड्स',t4b:'रंगा रेड्डी रायझर्स',tm4:'आज 14:15',
+      subh2:'आत्ताच सबस्क्राईब करा',sublede:'तुमचा नंबर टाका, सामने निवडा, झालं.',
+      lname:'तुमचे नाव',phName:'उदा. राहुल शर्मा',lphone:'मोबाईल नंबर',
+      lvia:'अलर्ट कसे हवेत?',lwhich:'कोणते सामने?',
+      opt1:'सर्व क्रिकेट आणि फुटबॉल',opt2:'फक्त इंटरनॅशनल क्रिकेट',opt3:'टी20 तेलंगणा लीग',opt4:'फुटबॉल / फीफा वर्ल्ड कप',
+      consent:'या नंबरवर मोफत स्कोर अलर्ट घेण्यास माझी संमती आहे. बंद करण्यासाठी कोणत्याही अलर्टला STOP पाठवा.',
+      subbtn:'सबस्क्राईब करा ›',
+      formnote:'मोफत सेवा · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
+      errName:'कृपया तुमचे नाव लिहा.',errPhone:'योग्य मोबाईल नंबर टाका (कंट्री कोडसह).',errCh:'किमान एक पर्याय निवडा.',
+      footBlurb:'लाइव्हस्कोर अलर्ट्स SMS आणि WhatsApp वर क्रिकेट आणि फुटबॉलचे स्कोर पाठवते. ही सेवा सर्वांसाठी मोफत आहे. उत्तर पाठवल्यास ऑपरेटरचे नेहमीचे शुल्क लागू शकते.',
+      footCovH:'कव्हरेज',footCov1:'इंटरनॅशनल क्रिकेट',footCov2:'टी20 तेलंगणा लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आजचे सामने',
+      footHelpH:'मदत',footHelp1:'सबस्क्राईब',footHelp2:'कसे चालते',footHelp3:'नियम व अटी',footHelp4:'प्रायव्हसी पॉलिसी',
+      footCopy:'© 2026 लाइव्हस्कोर अलर्ट्स. सर्व हक्क राखीव.',
+      footStop:'अनसबस्क्राईब करण्यासाठी कोणत्याही अलर्टला STOP पाठवा.',
+      today:'आज',
+      ticker:[
+        ['cri','दुसरा टी20: IND 128/4 (15.2) वि. ENG · भारताला 28 चेंडूंत 52 धावा हव्यात'],
+        ['fbl','वर्ल्ड कप उपांत्य: FRA 1-0 MAR (हाफ टाइम)'],
+        ['cri','तेलंगणा टी20: हैदराबाद ई-चॅम्पियन्स वि. अविता खम्मम एसेस, आज सायं. 7:15'],
+        ['cri','तेलंगणा टी20: करीमनगर डायमंड्स वि. रंगा रेड्डी रायझर्स, आज दु. 2:15'],
+        ['fbl','वर्ल्ड कप उपांत्य: फ्रान्स वि. मोरोक्को, उद्या रात्री 1:30']
+      ]
+    }
+  };
+  var CUR='en';
+
+  function buildTicker(t){
+    var html='';
+    // items twice so the -50% scroll loops seamlessly
+    for(var pass=0;pass<2;pass++){
+      for(var i=0;i<t.ticker.length;i++){
+        var it=t.ticker[i];
+        html+='<span><i class="tag tag--'+it[0]+'">'+(it[0]==='cri'?'CRI':'FBL')+'</i>'+it[1]+'</span>';
+      }
+    }
+    document.getElementById('ticker-track').innerHTML=html;
+  }
+
   function tickClock(){
-    var d=new Date();
+    var d=new Date(),t=I18N[CUR];
     document.getElementById('clock').textContent=
       String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-    document.getElementById('dateline').textContent=
-      d.toLocaleDateString(undefined,{weekday:'long'})+', Today';
+    var wd;
+    try{wd=d.toLocaleDateString(t.locale,{weekday:'long'});}
+    catch(e){wd=d.toLocaleDateString(undefined,{weekday:'long'});}
+    document.getElementById('dateline').textContent=wd+', '+t.today;
   }
-  tickClock();setInterval(tickClock,15000);
+
+  function setLang(l){
+    if(!I18N[l])l='en';
+    CUR=l;
+    var t=I18N[l];
+    document.documentElement.lang=l;
+    try{localStorage.setItem('lsa-lang',l);}catch(e){}
+    var els=document.querySelectorAll('[data-i18n]');
+    for(var i=0;i<els.length;i++){
+      var k=els[i].getAttribute('data-i18n');
+      if(t[k]!==undefined)els[i].innerHTML=t[k];
+    }
+    var phs=document.querySelectorAll('[data-i18n-ph]');
+    for(var j=0;j<phs.length;j++){
+      var pk=phs[j].getAttribute('data-i18n-ph');
+      if(t[pk]!==undefined)phs[j].setAttribute('placeholder',t[pk]);
+    }
+    var btns=document.querySelectorAll('.lang button');
+    for(var b=0;b<btns.length;b++){
+      btns[b].classList.toggle('on',btns[b].getAttribute('data-lang')===l);
+    }
+    buildTicker(t);
+    tickClock();
+  }
+
+  // language switcher + popup
+  document.getElementById('lang-switch').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-lang]');
+    if(b)setLang(b.getAttribute('data-lang'));
+  });
+  var pop=document.getElementById('langpop');
+  pop.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-lang]');
+    if(b){setLang(b.getAttribute('data-lang'));pop.hidden=true;}
+  });
+
+  var saved=null;
+  try{saved=localStorage.getItem('lsa-lang');}catch(e){}
+  if(saved&&I18N[saved]){
+    setLang(saved);
+  }else{
+    setLang('en');
+    pop.hidden=false;
+  }
+  setInterval(tickClock,15000);
 
   // form validation
   var form=document.getElementById('subform');

@@ -2,6 +2,11 @@
 
 Landing page for free live cricket & football score alerts via SMS and WhatsApp.
 
+Available in **English, Hindi and Marathi** — visitors pick a language from a
+first-visit popup or the switcher in the header, and the choice is remembered
+(localStorage) across pages and visits. All copy lives in the `I18N`
+dictionaries at the bottom of `index.html` and `thanks.html`.
+
 ## Run it
 
 Static files only — no build step, no dependencies. Fonts (Big Shoulders
