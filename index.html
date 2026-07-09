@@ -338,17 +338,6 @@
   .err{color:#ff8080;font-size:.78rem;margin-top:.35rem;display:none}
   .field.invalid .err{display:block}
   .field.invalid input{border-color:var(--live)}
-  .success{
-    display:none;text-align:center;padding:2.5rem 1rem;
-  }
-  .success.show{display:block}
-  .success .big{font-size:3.2rem;margin-bottom:.6rem}
-  .success h3{
-    font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:900;
-    text-transform:uppercase;font-size:2rem;color:#5df09b;margin-bottom:.5rem;
-  }
-  .success p{color:#9db8e2;font-size:.95rem}
-
   footer{
     position:relative;z-index:4;
     border-top:1px solid rgba(80,140,255,.18);
@@ -548,12 +537,6 @@
         <button type="submit" class="btn-sub">Subscribe Now <span class="arrow">›</span></button>
         <p class="form-note">🔔 Instant updates direct to your phone · No spam · Free forever</p>
       </form>
-
-      <div class="success" id="success">
-        <div class="big">🏆</div>
-        <h3>You're on the team sheet!</h3>
-        <p>Your first live score alert will arrive shortly.<br>Reply STOP anytime to unsubscribe.</p>
-      </div>
     </div>
   </section>
 </main>
@@ -564,11 +547,6 @@
 </footer>
 
 <script>
-  // Where sign-ups are stored: paste your Google Apps Script "Web app" URL here.
-  // Setup steps are in README.md (google-apps-script/Code.gs is the script to deploy).
-  // While this is left as-is, the form runs in demo mode and submissions are not saved.
-  var SHEETS_WEBHOOK_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
-
   // live clock in the phone mock
   function tickClock(){
     var d=new Date();
@@ -606,41 +584,9 @@
 
     if(!ok)return;
 
-    var payload={
-      name:name,
-      phone:phone,
-      channels:[].map.call(channels,function(c){return c.value}),
-      sport:document.getElementById('sport').value
-    };
-
-    var btn=form.querySelector('.btn-sub');
-
-    function showSuccess(){
-      form.style.display='none';
-      document.getElementById('success').classList.add('show');
-    }
-    function showError(){
-      btn.disabled=false;
-      btn.innerHTML='Subscribe Now <span class="arrow">›</span>';
-      alert("Couldn't reach the server — please check your connection and try again.");
-    }
-
-    // Demo mode until a webhook URL is configured
-    if(SHEETS_WEBHOOK_URL.indexOf('https://')!==0){showSuccess();return;}
-
-    btn.disabled=true;
-    btn.textContent='Subscribing…';
-
-    // text/plain keeps this a "simple" request so the Apps Script
-    // redirect works without a CORS preflight
-    fetch(SHEETS_WEBHOOK_URL,{
-      method:'POST',
-      headers:{'Content-Type':'text/plain;charset=utf-8'},
-      body:JSON.stringify(payload)
-    })
-    .then(function(r){return r.json();})
-    .then(function(res){res&&res.ok?showSuccess():showError();})
-    .catch(showError);
+    // No data is stored or sent anywhere yet — the form just validates
+    // and hands off to the thank-you page.
+    window.location.href='thanks.html';
   });
 </script>
 </body>

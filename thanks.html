@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're In! — LiveScore Alerts</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Barlow:wght@400;500;600&family=Chivo+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pitch:#040b1c;
+    --panel-edge:#16336e;
+    --volt:#2f7bff;
+    --volt-hi:#6fb1ff;
+    --ice:#dbe9ff;
+    --wa:#25d366;
+    --live:#ff3b3b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--pitch);
+    color:var(--ice);
+    font-family:'Barlow',sans-serif;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--volt);color:#fff}
+  .stadium{
+    position:fixed;inset:0;z-index:-2;
+    background:
+      radial-gradient(ellipse 60% 40% at 15% -5%, rgba(97,160,255,.22), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 85% -5%, rgba(97,160,255,.22), transparent 60%),
+      radial-gradient(ellipse 90% 60% at 50% 115%, rgba(20,60,160,.35), transparent 65%),
+      linear-gradient(180deg,#02060f 0%, #051130 45%, #040b1c 100%);
+  }
+  .stadium::after{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 22%, rgba(160,200,255,.5), transparent 100%),
+      radial-gradient(1px 1px at 34% 12%, rgba(160,200,255,.4), transparent 100%),
+      radial-gradient(1.5px 1.5px at 58% 26%, rgba(160,200,255,.35), transparent 100%),
+      radial-gradient(1px 1px at 76% 14%, rgba(160,200,255,.45), transparent 100%),
+      radial-gradient(1.5px 1.5px at 90% 30%, rgba(160,200,255,.3), transparent 100%);
+    pointer-events:none;
+  }
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem clamp(1rem,5vw,4rem);
+  }
+  .logo{
+    font-family:'Barlow Condensed',sans-serif;
+    font-style:italic;font-weight:900;
+    font-size:1.5rem;letter-spacing:.02em;
+    text-transform:uppercase;color:#fff;text-decoration:none;
+    display:flex;align-items:center;gap:.55rem;
+  }
+  .logo__dot{
+    width:.85rem;height:.85rem;border-radius:50%;
+    background:var(--live);
+    box-shadow:0 0 12px var(--live);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}
+  .logo em{color:var(--volt-hi);font-style:italic}
+
+  main{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    padding:clamp(2rem,6vh,4rem) 1rem;
+  }
+  .card{
+    max-width:620px;width:100%;
+    background:linear-gradient(160deg,rgba(16,38,88,.92),rgba(6,15,38,.96));
+    border:1px solid var(--panel-edge);
+    clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,26px 100%,0 calc(100% - 26px));
+    padding:clamp(2rem,6vw,3.5rem);
+    text-align:center;
+    box-shadow:0 40px 100px rgba(0,8,30,.7);
+    animation:rise .6s cubic-bezier(.2,.9,.3,1.2) both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .trophy{font-size:4rem;line-height:1;filter:drop-shadow(0 8px 30px rgba(255,201,61,.4))}
+  h1{
+    font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:900;
+    text-transform:uppercase;font-size:clamp(2.2rem,6vw,3.2rem);
+    line-height:1;color:#fff;margin:.9rem 0 .3rem;
+  }
+  h1 span{
+    background:linear-gradient(92deg,#9cc6ff 0%,var(--volt) 55%,#1b56c9 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .tag{
+    font-family:'Chivo Mono',monospace;font-size:.7rem;letter-spacing:.2em;
+    text-transform:uppercase;color:#5df09b;
+  }
+  .lede{color:#a9c3ea;font-size:1.05rem;line-height:1.65;margin:1.3rem auto 0;max-width:28rem}
+  .lede b{color:#fff;font-weight:600}
+  .steps{
+    margin:1.8rem auto 0;max-width:26rem;text-align:left;
+    border-top:1px solid rgba(80,140,255,.2);padding-top:1.4rem;
+    display:grid;gap:.85rem;
+  }
+  .step{display:flex;gap:.8rem;align-items:flex-start;font-size:.92rem;color:#9db8e2;line-height:1.5}
+  .step b{color:#fff;font-weight:600}
+  .step__n{
+    flex-shrink:0;width:1.5rem;height:1.5rem;margin-top:.05rem;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Chivo Mono',monospace;font-size:.72rem;color:#fff;
+    background:var(--volt);
+    clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);
+  }
+  .back{
+    display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+    margin-top:2rem;text-decoration:none;
+    font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:900;
+    text-transform:uppercase;letter-spacing:.08em;font-size:1.25rem;color:#fff;
+    padding:.8rem 2.2rem;
+    background:linear-gradient(92deg,#6fb1ff 0%,var(--volt) 45%,#1b56c9 100%);
+    clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);
+    box-shadow:0 10px 40px rgba(47,123,255,.5),inset 0 1px 0 rgba(255,255,255,.35);
+    transition:transform .15s,box-shadow .15s;
+  }
+  .back:hover{transform:translateY(-2px);box-shadow:0 16px 50px rgba(47,123,255,.65),inset 0 1px 0 rgba(255,255,255,.35)}
+  footer{
+    border-top:1px solid rgba(80,140,255,.18);
+    padding:1.4rem clamp(1rem,5vw,4rem);
+    display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+    font-family:'Chivo Mono',monospace;font-size:.68rem;letter-spacing:.1em;
+    text-transform:uppercase;color:#5c749e;background:rgba(2,8,20,.75);
+  }
+  footer a{color:#8fb4e8;text-decoration:none}
+  footer a:hover{color:#fff}
+</style>
+</head>
+<body>
+<div class="stadium" aria-hidden="true"></div>
+
+<header>
+  <a class="logo" href="index.html"><span class="logo__dot"></span>Live<em>Score</em>&nbsp;Alerts</a>
+</header>
+
+<main>
+  <div class="card">
+    <div class="trophy">🏆</div>
+    <div class="tag">Subscription received</div>
+    <h1>You're on <span>the team sheet!</span></h1>
+    <p class="lede">Thanks for signing up. Your number is being added to the alert list — <b>your first live score lands before the next big moment.</b></p>
+    <div class="steps">
+      <div class="step"><span class="step__n">1</span><span><b>Watch your phone.</b> Alerts arrive by WhatsApp or SMS — no app to install.</span></div>
+      <div class="step"><span class="step__n">2</span><span><b>Ball by ball, goal by goal.</b> Wickets, goals, half-time and full-time — as they happen.</span></div>
+      <div class="step"><span class="step__n">3</span><span><b>Changed your mind?</b> Reply <b>STOP</b> to any alert and you're out — no questions asked.</span></div>
+    </div>
+    <a class="back" href="index.html">‹ Back to fixtures</a>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 LiveScore Alerts</span>
+  <span><a href="#">Terms</a> · <a href="#">Privacy</a> · <a href="#">Opt-out: reply STOP</a></span>
+</footer>
+</body>
+</html>
