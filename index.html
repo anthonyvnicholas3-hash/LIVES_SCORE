@@ -564,6 +564,11 @@
 </footer>
 
 <script>
+  // Where sign-ups are stored: paste your Google Apps Script "Web app" URL here.
+  // Setup steps are in README.md (google-apps-script/Code.gs is the script to deploy).
+  // While this is left as-is, the form runs in demo mode and submissions are not saved.
+  var SHEETS_WEBHOOK_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+
   // live clock in the phone mock
   function tickClock(){
     var d=new Date();
@@ -601,14 +606,41 @@
 
     if(!ok)return;
 
-    // TODO: POST to your backend / SMS gateway here, e.g.:
-    // fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
-    //   body:JSON.stringify({name:name,phone:phone,
-    //     channels:[].map.call(channels,function(c){return c.value}),
-    //     sport:document.getElementById('sport').value})});
+    var payload={
+      name:name,
+      phone:phone,
+      channels:[].map.call(channels,function(c){return c.value}),
+      sport:document.getElementById('sport').value
+    };
 
-    form.style.display='none';
-    document.getElementById('success').classList.add('show');
+    var btn=form.querySelector('.btn-sub');
+
+    function showSuccess(){
+      form.style.display='none';
+      document.getElementById('success').classList.add('show');
+    }
+    function showError(){
+      btn.disabled=false;
+      btn.innerHTML='Subscribe Now <span class="arrow">›</span>';
+      alert("Couldn't reach the server — please check your connection and try again.");
+    }
+
+    // Demo mode until a webhook URL is configured
+    if(SHEETS_WEBHOOK_URL.indexOf('https://')!==0){showSuccess();return;}
+
+    btn.disabled=true;
+    btn.textContent='Subscribing…';
+
+    // text/plain keeps this a "simple" request so the Apps Script
+    // redirect works without a CORS preflight
+    fetch(SHEETS_WEBHOOK_URL,{
+      method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(payload)
+    })
+    .then(function(r){return r.json();})
+    .then(function(res){res&&res.ok?showSuccess():showError();})
+    .catch(showError);
   });
 </script>
 </body>
