@@ -17,12 +17,12 @@
     --ink:#0a1020;
     --wa:#25d366;
     --live:#ff3b3b;
-    --disp:'Big Shoulders Display','Teko',sans-serif;
-    --body:'Archivo','Mukta',sans-serif;
+    --disp:'Syne','Baloo 2',sans-serif;
+    --body:'Epilogue','Mukta',sans-serif;
     --mono:'IBM Plex Mono','Mukta',monospace;
   }
   html[lang=hi],html[lang=mr]{
-    --disp:'Teko',sans-serif;
+    --disp:'Baloo 2',sans-serif;
     --body:'Mukta',sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -35,7 +35,7 @@
     overflow-x:hidden;
   }
   ::selection{background:var(--gold);color:var(--ink)}
-  html[lang=hi] h1,html[lang=mr] h1{line-height:1.1;letter-spacing:0}
+  html[lang=hi] h1,html[lang=mr] h1{line-height:1.2;letter-spacing:0}
   /* Devanagari conjuncts break apart under wide tracking */
   html[lang=hi] .tagline,html[lang=mr] .tagline,
   html[lang=hi] .foot-bottom,html[lang=mr] .foot-bottom{letter-spacing:.04em}
@@ -69,13 +69,13 @@
     background:var(--gold);
     clip-path:polygon(0 0,100% 0,100% 74%,50% 100%,0 74%);
     display:flex;align-items:center;justify-content:center;
-    font-family:'Big Shoulders Display',sans-serif;font-weight:900;
-    font-size:1.35rem;color:var(--ink);letter-spacing:.02em;
+    font-family:'Syne',sans-serif;font-weight:800;
+    font-size:1.1rem;color:var(--ink);letter-spacing:.02em;
     padding-bottom:.35rem;
   }
   .wordmark b{
-    display:block;font-family:'Big Shoulders Display',sans-serif;
-    font-weight:800;font-size:1.35rem;letter-spacing:.05em;
+    display:block;font-family:'Syne',sans-serif;
+    font-weight:800;font-size:1.02rem;letter-spacing:.02em;
     text-transform:uppercase;color:#fff;line-height:1;
   }
   .wordmark span{
@@ -119,9 +119,9 @@
     text-transform:uppercase;color:#5df09b;margin-top:1rem;
   }
   h1{
-    font-family:var(--disp);font-weight:900;
-    text-transform:uppercase;font-size:clamp(2.4rem,6vw,3.4rem);
-    line-height:.95;letter-spacing:.01em;color:#fff;margin:.6rem 0 .3rem;
+    font-family:var(--disp);font-weight:800;
+    text-transform:uppercase;font-size:clamp(1.9rem,4.8vw,2.6rem);
+    line-height:1.12;letter-spacing:0;color:#fff;margin:.6rem 0 .3rem;
   }
   h1 span{color:var(--volt-hi);text-shadow:.045em .045em 0 #0c2a66}
   .lede{color:#a9c3ea;font-size:1.02rem;line-height:1.7;margin:1.2rem auto 0;max-width:28rem}
@@ -143,7 +143,7 @@
     display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
     margin-top:2rem;text-decoration:none;
     font-family:var(--disp);font-weight:800;
-    text-transform:uppercase;letter-spacing:.1em;font-size:1.2rem;
+    text-transform:uppercase;letter-spacing:.03em;font-size:1rem;
     background:var(--gold);color:var(--ink);
     padding:.75rem 2.2rem;
     box-shadow:.28rem .28rem 0 rgba(9,20,48,.9);

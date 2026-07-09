@@ -9,10 +9,11 @@ bottom of `index.html`.
 
 ## Run it
 
-A single static page — no build step, no dependencies. Fonts (Big Shoulders
-Display, Archivo, IBM Plex Mono, plus Teko and Mukta for Devanagari) are
-self-hosted in `fonts/`, so the page renders identically offline and without
-any third-party requests:
+A single static page — no build step, no dependencies. Fonts are self-hosted
+in `fonts/`, so the page renders identically offline and without any
+third-party requests. Typography: **Syne** (display, from the Awwwards free
+fonts collection, SIL OFL) with **Epilogue** for body text and IBM Plex Mono
+for scores/labels; Hindi and Marathi render in **Baloo 2** and **Mukta**.
 
 ```sh
 open index.html          # macOS
