@@ -4,14 +4,15 @@ Landing page for free live cricket & football score alerts via SMS and WhatsApp.
 
 Available in **English, Hindi and Marathi** — visitors pick a language from a
 first-visit popup or the switcher in the header, and the choice is remembered
-(localStorage) across pages and visits. All copy lives in the `I18N`
-dictionaries at the bottom of `index.html` and `thanks.html`.
+(localStorage) across visits. All copy lives in the `I18N` dictionary at the
+bottom of `index.html`.
 
 ## Run it
 
-Static files only — no build step, no dependencies. Fonts (Big Shoulders
-Display, Archivo, IBM Plex Mono) are self-hosted in `fonts/`, so the pages
-render identically offline and without any third-party requests:
+A single static page — no build step, no dependencies. Fonts (Big Shoulders
+Display, Archivo, IBM Plex Mono, plus Teko and Mukta for Devanagari) are
+self-hosted in `fonts/`, so the page renders identically offline and without
+any third-party requests:
 
 ```sh
 open index.html          # macOS
@@ -19,14 +20,15 @@ open index.html          # macOS
 python3 -m http.server 8000
 ```
 
-## Where sign-ups go
+To deploy, upload `index.html` and the `fonts/` folder to any static host.
 
-Nowhere, by design (for now). The form validates the visitor's input
-client-side and then redirects to `thanks.html` — a styled thank-you page.
-No data is stored or sent to any server.
+## How subscribing works
 
-When you're ready to actually collect subscribers, replace the
-`window.location.href='thanks.html'` line at the bottom of `index.html`
-with a POST to your backend or form service (Google Sheets via Apps
-Script, Formspree, or your own API + SMS/WhatsApp gateway like Twilio or
-Gupshup), keeping the redirect as the success step.
+There is no form. The Subscribe button links out to ESPNcricinfo's SMS
+alerts sign-up page:
+
+https://www.espncricinfo.com/ci/content/site/tweetviasms
+
+To point it somewhere else later, change that URL on the subscribe section's
+button in `index.html` (and the `sublede` copy in the `I18N` dictionary if
+the wording should change).

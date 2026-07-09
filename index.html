@@ -333,38 +333,9 @@
     padding:clamp(1.6rem,4vw,2.8rem);
     box-shadow:0 40px 100px rgba(0,8,30,.7);
   }
+  .form-shell{text-align:center}
   .form-shell h2{margin-bottom:.4rem}
   .form-shell p.lede{color:#9db8e2;font-size:.98rem;margin-bottom:1.8rem}
-  .field{margin-bottom:1.25rem}
-  label{
-    display:block;font-family:var(--mono);font-size:.64rem;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--volt-hi);margin-bottom:.45rem;
-  }
-  input[type=text],input[type=tel],select{
-    width:100%;padding:.85rem 1rem;
-    background:#060f26;border:1px solid #1d3567;color:#fff;
-    font-family:var(--body);font-size:1rem;
-    transition:border-color .2s;
-  }
-  input:focus,select:focus{outline:none;border-color:var(--gold)}
-  input::placeholder{color:#4d648f}
-  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236fb1ff' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
-  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  .toggle-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-  .toggle{position:relative}
-  .toggle input{position:absolute;opacity:0;inset:0;cursor:pointer}
-  .toggle span{
-    display:flex;align-items:center;justify-content:center;gap:.55rem;
-    padding:.85rem .5rem;border:1.5px solid #1d3567;color:#9db8e2;
-    font-family:var(--disp);font-weight:800;
-    text-transform:uppercase;letter-spacing:.1em;font-size:1.05rem;
-    transition:all .18s;cursor:pointer;
-  }
-  .toggle svg{width:1.1rem;height:1.1rem;fill:currentColor}
-  .toggle input:checked + span.wa{background:rgba(37,211,102,.16);border-color:var(--wa);color:#5df09b}
-  .toggle input:checked + span.sms{background:rgba(61,155,255,.16);border-color:var(--sms);color:#7cc0ff}
-  .consent{display:flex;gap:.7rem;align-items:flex-start;margin:1.4rem 0 1.6rem;font-size:.8rem;color:#8aa5cf;line-height:1.5}
-  .consent input{margin-top:.2rem;accent-color:var(--gold);width:1rem;height:1rem;flex-shrink:0}
   .btn--sub{
     width:100%;font-size:clamp(1.3rem,3vw,1.6rem);padding:.95rem 1.5rem;
   }
@@ -372,9 +343,6 @@
     text-align:center;margin-top:1.2rem;font-family:var(--mono);
     font-size:.66rem;letter-spacing:.1em;color:#6b87b6;text-transform:uppercase;
   }
-  .err{color:#ff8080;font-size:.78rem;margin-top:.35rem;display:none}
-  .field.invalid .err{display:block}
-  .field.invalid input{border-color:var(--live)}
 
   /* ---------- footer ---------- */
   footer{
@@ -585,62 +553,10 @@
 
   <section class="signup" id="subscribe">
     <div class="form-shell">
-      <form id="subform" novalidate>
-        <h2 data-i18n="subh2">Subscribe Now</h2>
-        <p class="lede" data-i18n="sublede">Enter your number, pick your matches and you are set.</p>
-
-        <div class="row-2">
-          <div class="field" id="f-name">
-            <label for="name" data-i18n="lname">Your name</label>
-            <input type="text" id="name" name="name" placeholder="e.g. Rahul Sharma" data-i18n-ph="phName" autocomplete="name">
-            <span class="err" data-i18n="errName">Please enter your name.</span>
-          </div>
-          <div class="field" id="f-phone">
-            <label for="phone" data-i18n="lphone">Mobile number</label>
-            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
-            <span class="err" data-i18n="errPhone">Enter a valid mobile number (include country code).</span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label data-i18n="lvia">Get alerts via</label>
-          <div class="toggle-row">
-            <label class="toggle">
-              <input type="checkbox" name="channel" value="whatsapp" checked>
-              <span class="wa">
-                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
-                WhatsApp
-              </span>
-            </label>
-            <label class="toggle">
-              <input type="checkbox" name="channel" value="sms">
-              <span class="sms">
-                <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-                SMS
-              </span>
-            </label>
-          </div>
-          <span class="err" id="channel-err" style="display:none" data-i18n="errCh">Pick at least one channel.</span>
-        </div>
-
-        <div class="field">
-          <label for="sport" data-i18n="lwhich">Which matches?</label>
-          <select id="sport" name="sport">
-            <option value="all" data-i18n="opt1">All cricket &amp; football</option>
-            <option value="cricket-intl" data-i18n="opt2">International cricket only</option>
-            <option value="t20-telangana" data-i18n="opt3">T20 Telangana League</option>
-            <option value="football" data-i18n="opt4">Football / FIFA World Cup</option>
-          </select>
-        </div>
-
-        <label class="consent">
-          <input type="checkbox" id="consent">
-          <span data-i18n="consent">I agree to receive free score alerts on this number. Reply STOP to any alert to stop.</span>
-        </label>
-
-        <button type="submit" class="btn btn--sub" data-i18n="subbtn">Subscribe Now ›</button>
-        <p class="form-note" data-i18n="formnote">Free service · No spam · Reply STOP to stop</p>
-      </form>
+      <h2 data-i18n="subh2">Subscribe Now</h2>
+      <p class="lede" data-i18n="sublede">Sign-up is handled on ESPNcricinfo. Tap the button to subscribe.</p>
+      <a class="btn btn--sub" href="https://www.espncricinfo.com/ci/content/site/tweetviasms" target="_blank" rel="noopener" data-i18n="subbtn">Subscribe Now ›</a>
+      <p class="form-note" data-i18n="formnote">Free service · No spam · Reply STOP to stop</p>
     </div>
   </section>
 </main>
@@ -717,14 +633,10 @@
       lg3:'India / T20 Telangana League',lg3b:'India / T20 Telangana League',
       t3a:'Hyderabad E-Champions',t3b:'Avita Khammam Aces',tm3:'Today 19:15',
       t4a:'Karimnagar Diamonds',t4b:'Ranga Reddy Risers',tm4:'Today 14:15',
-      subh2:'Subscribe Now',sublede:'Enter your number, pick your matches and you are set.',
-      lname:'Your name',phName:'e.g. Rahul Sharma',lphone:'Mobile number',
-      lvia:'Get alerts via',lwhich:'Which matches?',
-      opt1:'All cricket &amp; football',opt2:'International cricket only',opt3:'T20 Telangana League',opt4:'Football / FIFA World Cup',
-      consent:'I agree to receive free score alerts on this number. Reply STOP to any alert to stop.',
+      subh2:'Subscribe Now',
+      sublede:'Sign-up is handled on ESPNcricinfo. Tap the button to subscribe.',
       subbtn:'Subscribe Now ›',
       formnote:'Free service · No spam · Reply STOP to stop',
-      errName:'Please enter your name.',errPhone:'Enter a valid mobile number (include country code).',errCh:'Pick at least one channel.',
       footBlurb:'Livescore Alerts sends cricket and football scores by SMS and WhatsApp. The service is free for all users. Standard operator charges may apply to replies.',
       footCovH:'Coverage',footCov1:'International cricket',footCov2:'T20 Telangana League',footCov3:'FIFA World Cup',footCov4:"Today's matches",
       footHelpH:'Help',footHelp1:'Subscribe',footHelp2:'How it works',footHelp3:'Terms of use',footHelp4:'Privacy policy',
@@ -756,14 +668,10 @@
       lg3:'भारत / टी20 तेलंगाना लीग',lg3b:'भारत / टी20 तेलंगाना लीग',
       t3a:'हैदराबाद ई-चैंपियंस',t3b:'अविता खम्मम एसेस',tm3:'आज 19:15',
       t4a:'करीमनगर डायमंड्स',t4b:'रंगा रेड्डी राइजर्स',tm4:'आज 14:15',
-      subh2:'अभी सब्सक्राइब करें',sublede:'अपना नंबर डालें, अपने मैच चुनें, बस हो गया।',
-      lname:'आपका नाम',phName:'जैसे राहुल शर्मा',lphone:'मोबाइल नंबर',
-      lvia:'अलर्ट कैसे चाहिए?',lwhich:'कौन से मैच?',
-      opt1:'सारे क्रिकेट और फुटबॉल',opt2:'सिर्फ इंटरनेशनल क्रिकेट',opt3:'टी20 तेलंगाना लीग',opt4:'फुटबॉल / फीफा वर्ल्ड कप',
-      consent:'मैं इस नंबर पर फ्री स्कोर अलर्ट पाने के लिए सहमत हूं। बंद करने के लिए किसी भी अलर्ट पर STOP भेजें।',
+      subh2:'अभी सब्सक्राइब करें',
+      sublede:'साइन-अप ESPNcricinfo पर होता है। सब्सक्राइब करने के लिए बटन दबाएं।',
       subbtn:'सब्सक्राइब करें ›',
       formnote:'फ्री सेवा · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
-      errName:'कृपया अपना नाम लिखें।',errPhone:'सही मोबाइल नंबर डालें (कंट्री कोड के साथ)।',errCh:'कम से कम एक विकल्प चुनें।',
       footBlurb:'लाइवस्कोर अलर्ट्स SMS और WhatsApp पर क्रिकेट और फुटबॉल के स्कोर भेजता है। यह सेवा सभी के लिए फ्री है। जवाब भेजने पर ऑपरेटर का सामान्य शुल्क लग सकता है।',
       footCovH:'कवरेज',footCov1:'इंटरनेशनल क्रिकेट',footCov2:'टी20 तेलंगाना लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आज के मैच',
       footHelpH:'मदद',footHelp1:'सब्सक्राइब',footHelp2:'कैसे काम करता है',footHelp3:'नियम व शर्तें',footHelp4:'प्राइवेसी पॉलिसी',
@@ -795,14 +703,10 @@
       lg3:'भारत / टी20 तेलंगणा लीग',lg3b:'भारत / टी20 तेलंगणा लीग',
       t3a:'हैदराबाद ई-चॅम्पियन्स',t3b:'अविता खम्मम एसेस',tm3:'आज 19:15',
       t4a:'करीमनगर डायमंड्स',t4b:'रंगा रेड्डी रायझर्स',tm4:'आज 14:15',
-      subh2:'आत्ताच सबस्क्राईब करा',sublede:'तुमचा नंबर टाका, सामने निवडा, झालं.',
-      lname:'तुमचे नाव',phName:'उदा. राहुल शर्मा',lphone:'मोबाईल नंबर',
-      lvia:'अलर्ट कसे हवेत?',lwhich:'कोणते सामने?',
-      opt1:'सर्व क्रिकेट आणि फुटबॉल',opt2:'फक्त इंटरनॅशनल क्रिकेट',opt3:'टी20 तेलंगणा लीग',opt4:'फुटबॉल / फीफा वर्ल्ड कप',
-      consent:'या नंबरवर मोफत स्कोर अलर्ट घेण्यास माझी संमती आहे. बंद करण्यासाठी कोणत्याही अलर्टला STOP पाठवा.',
+      subh2:'आत्ताच सबस्क्राईब करा',
+      sublede:'साइन-अप ESPNcricinfo वर होते. सबस्क्राईब करण्यासाठी बटण दाबा.',
       subbtn:'सबस्क्राईब करा ›',
       formnote:'मोफत सेवा · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
-      errName:'कृपया तुमचे नाव लिहा.',errPhone:'योग्य मोबाईल नंबर टाका (कंट्री कोडसह).',errCh:'किमान एक पर्याय निवडा.',
       footBlurb:'लाइव्हस्कोर अलर्ट्स SMS आणि WhatsApp वर क्रिकेट आणि फुटबॉलचे स्कोर पाठवते. ही सेवा सर्वांसाठी मोफत आहे. उत्तर पाठवल्यास ऑपरेटरचे नेहमीचे शुल्क लागू शकते.',
       footCovH:'कव्हरेज',footCov1:'इंटरनॅशनल क्रिकेट',footCov2:'टी20 तेलंगणा लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आजचे सामने',
       footHelpH:'मदत',footHelp1:'सबस्क्राईब',footHelp2:'कसे चालते',footHelp3:'नियम व अटी',footHelp4:'प्रायव्हसी पॉलिसी',
@@ -886,38 +790,6 @@
     pop.hidden=false;
   }
   setInterval(tickClock,15000);
-
-  // form validation
-  var form=document.getElementById('subform');
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var ok=true;
-
-    var fName=document.getElementById('f-name');
-    var name=document.getElementById('name').value.trim();
-    fName.classList.toggle('invalid',!name);
-    if(!name)ok=false;
-
-    var fPhone=document.getElementById('f-phone');
-    var phone=document.getElementById('phone').value.replace(/[\s\-()]/g,'');
-    var phoneOk=/^\+?\d{10,15}$/.test(phone);
-    fPhone.classList.toggle('invalid',!phoneOk);
-    if(!phoneOk)ok=false;
-
-    var channels=form.querySelectorAll('input[name=channel]:checked');
-    var chErr=document.getElementById('channel-err');
-    chErr.style.display=channels.length?'none':'block';
-    if(!channels.length)ok=false;
-
-    var consent=document.getElementById('consent');
-    if(!consent.checked){consent.focus();ok=false;}
-
-    if(!ok)return;
-
-    // No data is stored or sent anywhere yet — the form just validates
-    // and hands off to the thank-you page.
-    window.location.href='thanks.html';
-  });
 </script>
 </body>
 </html>
