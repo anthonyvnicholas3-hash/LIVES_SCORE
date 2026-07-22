@@ -1,0 +1,11 @@
+node_modules/
+npm-debug.log
+*.log
+leads.db
+leads.db-shm
+leads.db-wal
+.DS_Store
+.env
+.env.local
+dist/
+build/

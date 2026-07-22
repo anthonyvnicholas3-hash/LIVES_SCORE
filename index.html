@@ -325,6 +325,42 @@
   }
   .card__time svg{width:.85rem;height:.85rem;fill:none;stroke:#fff;stroke-width:2;flex-shrink:0}
 
+  /* ---------- sticky header form ---------- */
+  .sticky-form{
+    position:fixed;top:3.7rem;left:0;right:0;z-index:40;
+    background:rgba(7,13,38,.95);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--edge);
+    padding:.8rem clamp(1rem,4vw,3.5rem);
+    max-height:0;overflow:hidden;transition:max-height .3s ease-out;
+  }
+  .sticky-form.open{max-height:100px}
+  .sticky-form__wrap{max-width:1220px;margin:0 auto;display:flex;gap:1rem;align-items:flex-end}
+  .sticky-form__field{flex:1;min-width:0}
+  .sticky-form__label{
+    display:block;font-family:var(--mono);font-size:.58rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:.3rem;
+  }
+  .sticky-form__input{
+    width:100%;padding:.7rem 1rem;
+    background:#0a1233;border:1.5px solid var(--edge);color:#fff;
+    font-family:var(--body);font-size:.95rem;border-radius:999px;
+    transition:border-color .2s;
+  }
+  .sticky-form__input:focus{outline:none;border-color:var(--blue)}
+  .sticky-form__input::placeholder{color:#5b6b9d}
+  .sticky-form__btn{
+    flex-shrink:0;font-size:.9rem;padding:.7rem 1.5rem;white-space:nowrap;
+  }
+  .sticky-form__err{color:#ff8080;font-size:.68rem;margin-top:.2rem;display:none}
+  .sticky-form__field.invalid .sticky-form__err{display:block}
+  .sticky-form__field.invalid .sticky-form__input{border-color:var(--live)}
+  @media(max-width:768px){
+    .sticky-form{top:3.4rem}
+    .sticky-form.open{max-height:120px}
+    .sticky-form__wrap{flex-direction:column;gap:.6rem}
+    .sticky-form__input{font-size:1rem}
+  }
+
   /* ---------- form ---------- */
   .signup{
     position:relative;z-index:4;
@@ -364,6 +400,39 @@
     text-align:center;margin-top:1.2rem;font-family:var(--mono);
     font-size:.66rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;
   }
+
+  /* ---------- exit-intent popup ---------- */
+  .modal{
+    position:fixed;inset:0;z-index:60;
+    background:rgba(2,5,18,.85);backdrop-filter:blur(5px);
+    display:flex;align-items:center;justify-content:center;padding:1rem;
+    opacity:0;pointer-events:none;transition:opacity .3s ease-out;
+  }
+  .modal.show{opacity:1;pointer-events:auto}
+  .modal__content{
+    background:var(--card);
+    border:1.5px solid var(--edge);border-radius:22px;
+    padding:clamp(2rem,5vw,3rem);max-width:520px;width:100%;
+    text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.8);
+    animation:slideup .4s cubic-bezier(.2,.9,.3,1.2) both;
+  }
+  @keyframes slideup{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+  .modal__close{
+    position:absolute;top:1rem;right:1rem;
+    width:2rem;height:2rem;border:none;background:none;
+    font-size:1.4rem;color:var(--muted);cursor:pointer;
+    transition:color .15s;
+  }
+  .modal__close:hover{color:var(--head)}
+  .modal h3{
+    font-family:var(--disp);font-weight:800;
+    text-transform:uppercase;font-size:1.4rem;color:var(--head);
+    margin-bottom:.8rem;letter-spacing:.01em;
+  }
+  .modal p{color:var(--text);font-size:.98rem;line-height:1.6;margin-bottom:1.6rem}
+  .modal .field{margin-bottom:1.2rem}
+  .modal input[type=tel]{padding:.85rem 1rem;font-size:1rem}
+  .modal .btn--sub{font-size:1rem;padding:.85rem 1.5rem;margin-top:.5rem}
 
   /* ---------- footer ---------- */
   footer{
@@ -472,8 +541,19 @@
     <button type="button" data-lang="hi">हिंदी</button>
     <button type="button" data-lang="mr">मराठी</button>
   </div>
-  <a class="btn btn--head" href="#subscribe" data-i18n="cta">Get Free Alerts</a>
+  <a class="btn btn--head" href="#" onclick="document.getElementById('sticky-form').classList.add('open');document.getElementById('sticky-phone').focus();return false;" data-i18n="cta">Get Free Alerts</a>
 </header>
+
+<div class="sticky-form" id="sticky-form">
+  <div class="sticky-form__wrap">
+    <div class="sticky-form__field" id="sticky-field">
+      <label for="sticky-phone" class="sticky-form__label" data-i18n="lphone">Phone</label>
+      <input type="tel" id="sticky-phone" class="sticky-form__input" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
+      <span class="sticky-form__err" data-i18n="errPhone">Enter a valid number</span>
+    </div>
+    <button type="button" class="btn btn--sub sticky-form__btn" id="sticky-btn" data-i18n="subbtn">Subscribe ›</button>
+  </div>
+</div>
 
 <main>
   <section class="hero">
@@ -587,7 +667,40 @@
       </form>
     </div>
   </section>
+
+  <section class="signup" id="subscribe-bottom">
+    <div class="form-shell">
+      <form id="subform-bottom" novalidate>
+        <h2 data-i18n="subh2">Don't Miss a Goal</h2>
+        <p class="lede" data-i18n="sublede">Join thousands getting instant cricket and football alerts</p>
+        <div class="field" id="f-phone-bottom">
+          <label for="phone-bottom" data-i18n="lphone">Mobile number</label>
+          <input type="tel" id="phone-bottom" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
+          <span class="err" data-i18n="errPhone">Enter a valid mobile number (include country code).</span>
+        </div>
+        <button type="submit" class="btn btn--sub" data-i18n="subbtn">Subscribe Now ›</button>
+        <p class="form-note" data-i18n="formnote">Free service · No spam · Reply STOP to stop</p>
+      </form>
+    </div>
+  </section>
 </main>
+
+<!-- exit-intent popup -->
+<div class="modal" id="exit-modal">
+  <div class="modal__content">
+    <button type="button" class="modal__close" id="modal-close">✕</button>
+    <h3 data-i18n="modalh">Wait, get alerts first</h3>
+    <p data-i18n="modalp">Join before you go. Free cricket and football alerts direct to your phone.</p>
+    <form id="exitform" novalidate>
+      <div class="field" id="f-phone-exit">
+        <label for="phone-exit" style="display:none"></label>
+        <input type="tel" id="phone-exit" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
+        <span class="err" data-i18n="errPhone">Enter a valid mobile number.</span>
+      </div>
+      <button type="submit" class="btn btn--sub" data-i18n="subbtn">Subscribe Now ›</button>
+    </form>
+  </div>
+</div>
 
 <footer>
   <div class="foot-grid">
@@ -673,6 +786,8 @@
       footCopy:'© 2026 Livescore Alerts. All rights reserved.',
       footStop:'Reply STOP to any alert to unsubscribe.',
       today:'Today',
+      modalh:'Wait, get alerts first',
+      modalp:'Join before you go. Free cricket and football alerts direct to your phone.',
       ticker:[
         ['cri','2nd T20I: IND 128/4 (15.2) vs ENG · IND need 52 off 28 balls'],
         ['fbl','World Cup SF: FRA 1-0 MAR (half-time)'],
@@ -709,6 +824,8 @@
       footHelpH:'मदद',footHelp1:'सब्सक्राइब',footHelp2:'कैसे काम करता है',footHelp3:'नियम व शर्तें',footHelp4:'प्राइवेसी पॉलिसी',
       footCopy:'© 2026 लाइवस्कोर अलर्ट्स। सर्वाधिकार सुरक्षित।',
       footStop:'अनसब्सक्राइब करने के लिए किसी भी अलर्ट पर STOP भेजें।',
+      modalh:'पहले अलर्ट ले लीजिए',
+      modalp:'जाने से पहले जुड़ जाइए। सीधे अपने फोन पर क्रिकेट और फुटबॉल के तुरंत अलर्ट।',
       today:'आज',
       ticker:[
         ['cri','दूसरा टी20: IND 128/4 (15.2) बनाम ENG · भारत को 28 गेंदों में 52 रन चाहिए'],
@@ -746,6 +863,8 @@
       footHelpH:'मदत',footHelp1:'सबस्क्राईब',footHelp2:'कसे चालते',footHelp3:'नियम व अटी',footHelp4:'प्रायव्हसी पॉलिसी',
       footCopy:'© 2026 लाइव्हस्कोर अलर्ट्स. सर्व हक्क राखीव.',
       footStop:'अनसबस्क्राईब करण्यासाठी कोणत्याही अलर्टला STOP पाठवा.',
+      modalh:'पहिले अलर्ट मिळवा',
+      modalp:'जाण्यापूर्वी सुदिप्त व्हा. तुमच्या फोनवर तुरंत क्रिकेट आणि फुटबॉल अलर्ट.',
       today:'आज',
       ticker:[
         ['cri','दुसरा टी20: IND 128/4 (15.2) वि. ENG · भारताला 28 चेंडूंत 52 धावा हव्यात'],
@@ -825,18 +944,132 @@
   }
   setInterval(tickClock,15000);
 
-  // number-only form: validate and hand off to the thank-you page.
-  // No data is stored or sent anywhere.
-  var form=document.getElementById('subform');
-  form.addEventListener('submit',function(e){
+  // form submission handler with backend API
+  var API_URL='/api/subscribe';
+  var exitPopupShown=false;
+
+  function validatePhone(phone){
+    return /^\+?\d{10,15}$/.test(phone.replace(/[\s\-()]/g,''));
+  }
+
+  function handleFormSubmit(e){
     e.preventDefault();
-    var fPhone=document.getElementById('f-phone');
-    var phone=document.getElementById('phone').value.replace(/[\s\-()]/g,'');
-    var phoneOk=/^\+?\d{10,15}$/.test(phone);
-    fPhone.classList.toggle('invalid',!phoneOk);
+    var form=e.target;
+    var phoneId=form.querySelector('input[type=tel]').id;
+    var fieldId=form.querySelector('.field').id;
+    var phone=document.getElementById(phoneId).value.replace(/[\s\-()]/g,'');
+    var phoneOk=validatePhone(phone);
+
+    var field=document.getElementById(fieldId);
+    field.classList.toggle('invalid',!phoneOk);
     if(!phoneOk)return;
-    window.location.href='thanks.html';
+
+    var btn=form.querySelector('[type=submit]');
+    btn.disabled=true;
+    btn.textContent='Subscribing...';
+
+    fetch(API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({phone:phone})
+    })
+    .then(function(res){return res.json()})
+    .then(function(data){
+      if(data.success){
+        window.location.href='thanks.html';
+      }else{
+        field.classList.add('invalid');
+        btn.disabled=false;
+        btn.textContent='Subscribe Now ›';
+      }
+    })
+    .catch(function(err){
+      console.error(err);
+      btn.disabled=false;
+      btn.textContent='Subscribe Now ›';
+    });
+  }
+
+  // attach handlers to all forms
+  document.getElementById('subform').addEventListener('submit',handleFormSubmit);
+  document.getElementById('subform-bottom').addEventListener('submit',handleFormSubmit);
+  document.getElementById('exitform').addEventListener('submit',handleFormSubmit);
+
+  // sticky form toggle
+  document.getElementById('sticky-btn').addEventListener('click',function(){
+    var phoneId='sticky-phone';
+    var fieldId='sticky-field';
+    var phone=document.getElementById(phoneId).value.replace(/[\s\-()]/g,'');
+    var phoneOk=validatePhone(phone);
+
+    var field=document.getElementById(fieldId);
+    field.classList.toggle('invalid',!phoneOk);
+    if(!phoneOk)return;
+
+    var btn=this;
+    btn.disabled=true;
+    btn.textContent='Subscribing...';
+
+    fetch(API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({phone:phone})
+    })
+    .then(function(res){return res.json()})
+    .then(function(data){
+      if(data.success){
+        window.location.href='thanks.html';
+      }else{
+        field.classList.add('invalid');
+        btn.disabled=false;
+        btn.textContent='Subscribe ›';
+      }
+    })
+    .catch(function(err){
+      console.error(err);
+      btn.disabled=false;
+      btn.textContent='Subscribe ›';
+    });
   });
+
+  // exit-intent popup
+  var exitModal=document.getElementById('exit-modal');
+  var modalClose=document.getElementById('modal-close');
+  var hasExited=false;
+
+  function showExitModal(){
+    if(!exitPopupShown){
+      exitPopupShown=true;
+      exitModal.classList.add('show');
+    }
+  }
+
+  modalClose.addEventListener('click',function(){
+    exitModal.classList.remove('show');
+  });
+
+  exitModal.addEventListener('click',function(e){
+    if(e.target===exitModal){
+      exitModal.classList.remove('show');
+    }
+  });
+
+  // desktop: mouse leaves to top of page
+  document.addEventListener('mouseleave',function(e){
+    if(e.clientY<=0&&!hasExited){
+      hasExited=true;
+      showExitModal();
+    }
+  });
+
+  // mobile: scroll near bottom
+  window.addEventListener('scroll',function(){
+    var scrollPercent=(window.scrollY+window.innerHeight)/document.documentElement.scrollHeight;
+    if(scrollPercent>0.75&&!hasExited){
+      hasExited=true;
+      showExitModal();
+    }
+  },false);
 </script>
 </body>
 </html>
