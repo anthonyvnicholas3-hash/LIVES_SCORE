@@ -971,6 +971,41 @@
       }
     });
   }
+
+  // Fetch and display live matches dynamically
+  function loadLiveMatches(){
+    fetch('/api/live-matches')
+      .then(r=>r.json())
+      .then(data=>{
+        var grid=document.querySelector('.grid');
+        if(!grid)return;
+        grid.innerHTML='';
+        if(!data.matches||data.matches.length===0){
+          grid.innerHTML='<p style="text-align:center;color:var(--text)">No live matches right now. Check back soon!</p>';
+          return;
+        }
+        data.matches.forEach(match=>{
+          var badge='';
+          var badgeBg='#1DB854';
+          if(match.sport==='CRICKET')badgeBg='#1DB854';
+          else if(match.sport==='FOOTBALL')badgeBg='#1DB854';
+          var card=document.createElement('article');
+          card.className='card';
+          card.innerHTML='<span class="card__sport" style="background:'+badgeBg+'">'+match.sport+'</span>'+
+            '<div class="card__league">'+match.league+'</div>'+
+            '<div class="card__teams"><span>'+match.team1+'</span><br><span class="card__vs">vs</span> <span>'+match.team2+'</span></div>'+
+            '<div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>'+match.status+'</span></div>';
+          grid.appendChild(card);
+        });
+      })
+      .catch(err=>{
+        console.error('Error loading live matches:',err);
+      });
+  }
+
+  // Load matches on page load and refresh every 30 seconds
+  loadLiveMatches();
+  setInterval(loadLiveMatches,30000);
 </script>
 </body>
 </html>
