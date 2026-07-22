@@ -9,3 +9,4 @@ leads.db-wal
 .env.local
 dist/
 build/
+*.zip
