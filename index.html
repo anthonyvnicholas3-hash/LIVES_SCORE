@@ -815,13 +815,13 @@
       tns1:'ATP & WTA',tns2:'Scores',tns3:'Set alerts',
       bdm1:'India\'s Best',bdm2:'Scores',bdm3:'Point alerts',
       notifSms:'Latest score by SMS!',
-      fixh2:'Live Sports Coverage',
+      fixh2:'Football Coverage',
       sportCri:'CRICKET',sportFbl:'FOOTBALL',sportKbd:'KABADDI',sportHky:'HOCKEY',sportTns:'TENNIS',sportBdm:'BADMINTON',
       lg1:'International & Domestic',lg2:'Premier League, LaLiga, ISL',lg3:'Pro Kabaddi League',lg4:'International Matches',lg5:'Grand Slams & Masters',lg6:'BWF & National',
       subbtn:'Get FREE SMS Alerts ›',
       errPhone:'Enter a valid mobile number.',
       formnote:'100% FREE · No spam · Reply STOP to stop',
-      footFormTitle:'Still Thinking?',
+      footFormTitle:'Never Miss a Match',
       footFormDesc:'Get FREE alerts for all 6 sports. One SMS, one tap. That\'s it.',
       formnote:'Free service · No spam · Reply STOP to stop',
       footBlurb:'Livescore Alerts sends live sports scores by SMS. Free for all users. Standard operator charges may apply to replies.',
@@ -852,13 +852,13 @@
       sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस और बैडमिंटन। <b>किसी भी फोन पर FREE तुरंत SMS। कोई ऐप नहीं।</b>',
       stat1:'अलर्ट स्पीड',stat2:'100% FREE',stat3:'कवरेज',
       notifSms:'ताज़ा स्कोर SMS से!',
-      fixh2:'लाइव स्पोर्ट्स कवरेज',
+      fixh2:'फुटबॉल कवरेज',
       sportCri:'क्रिकेट',sportFbl:'फुटबॉल',sportKbd:'कबड्डी',sportHky:'हॉकी',sportTns:'टेनिस',sportBdm:'बैडमिंटन',
       lg1:'इंटरनेशनल और देशीय',lg2:'प्रीमियर लीग, लालीगा, आईएसएल',lg3:'प्रो कबड्डी लीग',lg4:'इंटरनेशनल मैच',lg5:'ग्रैंड स्लैम और मास्टर्स',lg6:'बीडब्ल्यूएफ और नेशनल',
       subbtn:'FREE SMS अलर्ट पाएं ›',
       errPhone:'सही मोबाइल नंबर डालें।',
       formnote:'फ्री · स्पैम नहीं · बंद करने के लिए STOP भेजें',
-      footFormTitle:'अभी भी सोच रहे हैं?',
+      footFormTitle:'कभी मैच मत मिस करें',
       footFormDesc:'6 स्पोर्ट्स के लिए FREE अलर्ट पाएं। एक SMS, एक टैप। बस।',
       formnote:'100% FREE सेवा · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
       footBlurb:'लाइवस्कोर अलर्ट्स SMS पर लाइव स्पोर्ट्स स्कोर भेजता है। सभी के लिए फ्री। जवाब भेजने पर ऑपरेटर का सामान्य शुल्क लग सकता है।',
@@ -889,13 +889,13 @@
       sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस आणि बॅडमिंटन. <b>कोणत्याही फोनवर FREE तात्काल SMS. कोणतेही ऍप नाही.</b>',
       stat1:'अलर्ट स्पीड',stat2:'100% FREE',stat3:'कव्हरेज',
       notifSms:'ताजा स्कोर SMS ने!',
-      fixh2:'लाइव्ह स्पोर्ट्स कव्हरेज',
+      fixh2:'फुटबॉल कव्हरेज',
       sportCri:'क्रिकेट',sportFbl:'फुटबॉल',sportKbd:'कबड्डी',sportHky:'हॉकी',sportTns:'टेनिस',sportBdm:'बॅडमिंटन',
       lg1:'इंटरनॅशनल आणि देशीय',lg2:'प्रीमियर लीग, लालीगा, आयएसएल',lg3:'प्रो कबड्डी लीग',lg4:'इंटरनॅशनल सामने',lg5:'ग्रँड स्लॅम आणि मास्टर्स',lg6:'बीडब्ल्यूएफ आणि नेशनल',
       subbtn:'FREE SMS अलर्ट मिळवा ›',
       errPhone:'योग्य मोबाईल नंबर टाका.',
       formnote:'मोफत · स्पॅम नाही · बंद करण्यासाठी STOP पाठवा',
-      footFormTitle:'अजूनही विचार करत आहात?',
+      footFormTitle:'कधीही सामना मिस करू नका',
       footFormDesc:'६ स्पोर्ट्सचे FREE अलर्ट मिळवा. एक SMS, एक टॅप. बस.',
       formnote:'100% FREE सेवा · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
       footBlurb:'लाइव्हस्कोर अलर्ट्स SMS वर लाइव्ह स्पोर्ट्स स्कोर पाठवते. सर्वांसाठी मोफत. उत्तर पाठवल्यास ऑपरेटरचे शुल्क लागू शकते.',
@@ -993,8 +993,13 @@
   });
 
   var saved=null;
-  try{saved=localStorage.getItem('lsa-lang');}catch(e){}
-  if(saved&&I18N[saved]){
+  var migrated=false;
+  try{saved=localStorage.getItem('lsa-lang');migrated=localStorage.getItem('lsa-lang-mr-migrated');}catch(e){}
+  if(!migrated&&saved==='en'){
+    try{localStorage.setItem('lsa-lang-mr-migrated','true');}catch(e){}
+    setLang('mr');
+    pop.hidden=false;
+  }else if(saved&&I18N[saved]){
     setLang(saved);
   }else{
     setLang('mr');
