@@ -325,41 +325,26 @@
   }
   .card__time svg{width:.85rem;height:.85rem;fill:none;stroke:#fff;stroke-width:2;flex-shrink:0}
 
-  /* ---------- sticky header form ---------- */
-  .sticky-form{
-    position:fixed;top:3.7rem;left:0;right:0;z-index:40;
-    background:rgba(7,13,38,.95);backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--edge);
-    padding:.8rem clamp(1rem,4vw,3.5rem);
-    max-height:0;overflow:hidden;transition:max-height .3s ease-out;
+  /* ---------- top-of-fold form ---------- */
+  .hero-form{
+    position:relative;z-index:4;
+    max-width:760px;margin:0 auto;
+    padding:clamp(2rem,6vh,3.5rem) clamp(1rem,4vw,2rem) clamp(3rem,8vh,5rem);
   }
-  .sticky-form.open{max-height:100px}
-  .sticky-form__wrap{max-width:1220px;margin:0 auto;display:flex;gap:1rem;align-items:flex-end}
-  .sticky-form__field{flex:1;min-width:0}
-  .sticky-form__label{
-    display:block;font-family:var(--mono);font-size:.58rem;
-    letter-spacing:.16em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:.3rem;
+  .hero-form-shell{
+    background:var(--card);
+    border:1.5px solid var(--edge);
+    border-radius:22px;
+    padding:clamp(2rem,5vw,3rem);
+    box-shadow:0 30px 80px rgba(0,6,30,.6);
+    text-align:center;
   }
-  .sticky-form__input{
-    width:100%;padding:.7rem 1rem;
-    background:#0a1233;border:1.5px solid var(--edge);color:#fff;
-    font-family:var(--body);font-size:.95rem;border-radius:999px;
-    transition:border-color .2s;
+  .hero-form-shell h2{
+    font-family:var(--disp);font-weight:800;
+    text-transform:uppercase;font-size:clamp(1.5rem,3vw,2rem);
+    color:var(--head);margin-bottom:.5rem;letter-spacing:.01em;
   }
-  .sticky-form__input:focus{outline:none;border-color:var(--blue)}
-  .sticky-form__input::placeholder{color:#5b6b9d}
-  .sticky-form__btn{
-    flex-shrink:0;font-size:.9rem;padding:.7rem 1.5rem;white-space:nowrap;
-  }
-  .sticky-form__err{color:#ff8080;font-size:.68rem;margin-top:.2rem;display:none}
-  .sticky-form__field.invalid .sticky-form__err{display:block}
-  .sticky-form__field.invalid .sticky-form__input{border-color:var(--live)}
-  @media(max-width:768px){
-    .sticky-form{top:3.4rem}
-    .sticky-form.open{max-height:120px}
-    .sticky-form__wrap{flex-direction:column;gap:.6rem}
-    .sticky-form__input{font-size:1rem}
-  }
+  .hero-form-shell p{color:var(--text);font-size:.95rem;margin-bottom:1.6rem;line-height:1.5}
 
   /* ---------- form ---------- */
   .signup{
@@ -528,12 +513,11 @@
     <span class="crest">LS</span>
     <span class="wordmark">
       <b>Livescore Alerts</b>
-      <span data-i18n="brandTag">Free SMS &amp; WhatsApp</span>
+      <span data-i18n="brandTag">Free Live Scores by SMS</span>
     </span>
   </a>
   <nav>
-    <a href="#fixtures" data-i18n="navMatches">Matches</a>
-    <a href="#fixtures" data-i18n="navCoverage">Coverage</a>
+    <a href="#matches" data-i18n="navMatches">Live Matches</a>
     <a href="how-it-works.html" data-i18n="navHow">How it works</a>
   </nav>
   <div class="lang" id="lang-switch" role="group" aria-label="Language">
@@ -541,44 +525,45 @@
     <button type="button" data-lang="hi">हिंदी</button>
     <button type="button" data-lang="mr">मराठी</button>
   </div>
-  <a class="btn btn--head" href="#" onclick="document.getElementById('sticky-form').classList.add('open');document.getElementById('sticky-phone').focus();return false;" data-i18n="cta">Get Free Alerts</a>
 </header>
 
-<div class="sticky-form" id="sticky-form">
-  <div class="sticky-form__wrap">
-    <div class="sticky-form__field" id="sticky-field">
-      <label for="sticky-phone" class="sticky-form__label" data-i18n="lphone">Phone</label>
-      <input type="tel" id="sticky-phone" class="sticky-form__input" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
-      <span class="sticky-form__err" data-i18n="errPhone">Enter a valid number</span>
-    </div>
-    <button type="button" class="btn btn--sub sticky-form__btn" id="sticky-btn" data-i18n="subbtn">Subscribe ›</button>
-  </div>
-</div>
-
 <main>
+  <!-- TOP OF FOLD: Subscribe Form -->
+  <section class="hero-form">
+    <div class="hero-form-shell">
+      <h2 data-i18n="topFormTitle">Get Live Score Alerts</h2>
+      <p data-i18n="topFormDesc">Cricket, Kabaddi, Hockey, Football & Tennis. Instant SMS alerts as it happens.</p>
+      <form id="topform" novalidate>
+        <div class="field" id="f-phone-top">
+          <label for="phone-top" data-i18n="lphone" style="display:none">Mobile number</label>
+          <input type="tel" id="phone-top" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" value="+91">
+          <span class="err" data-i18n="errPhone">Enter a valid mobile number.</span>
+        </div>
+        <button type="submit" class="btn btn--sub" data-i18n="subbtn" style="width:100%;margin-top:1rem">Get SMS Alerts ›</button>
+        <p class="form-note" data-i18n="formnote">Free · No spam · Reply STOP to stop</p>
+      </form>
+    </div>
+  </section>
+
   <section class="hero">
     <div>
       <span class="kicker" data-i18n="kicker">LIVE: ENG vs IND · FRA vs MAR</span>
       <h1>
-        <span data-i18n="h1a">Free</span>
-        <span class="score" data-i18n="h1b">Live Score</span>
-        <span class="l3" data-i18n="h1c">SMS &amp; WhatsApp Alerts</span>
+        <span data-i18n="h1a">Free Live</span>
+        <span class="score" data-i18n="h1b">Score Alerts</span>
+        <span class="l3" data-i18n="h1c">Instant SMS</span>
       </h1>
-      <p class="sub" data-i18n="sub">Every wicket, goal and result on your phone as it happens. Works on any mobile. <b>SMS alerts need no internet.</b></p>
+      <p class="sub" data-i18n="sub">Cricket, Kabaddi, Hockey, Football, Tennis & Badminton. <b>Instant SMS on any phone. No app needed.</b></p>
       <div class="channel-row">
-        <span class="chip chip--wa">
-          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4-.1.6.5l.8 2c.1.2.1.4 0 .6l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.5.3.2.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 .9c.3.2.5.2.6.4 0 .1 0 .7-.3 1.3z"/></svg>
-          WhatsApp
-        </span>
         <span class="chip chip--sms">
           <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM8 11H6V9h2v2zm5 0h-2V9h2v2zm5 0h-2V9h2v2z"/></svg>
-          SMS
+          SMS Alerts
         </span>
       </div>
       <div class="hero-stats">
-        <div class="stat"><b>&lt;30s</b><span data-i18n="stat1">Alert speed</span></div>
+        <div class="stat"><b>&lt;10s</b><span data-i18n="stat1">Alert speed</span></div>
         <div class="stat"><b>100%</b><span data-i18n="stat2">Free</span></div>
-        <div class="stat"><b>24/7</b><span data-i18n="stat3">Coverage</span></div>
+        <div class="stat"><b>6 Sports</b><span data-i18n="stat3">Coverage</span></div>
       </div>
     </div>
 
@@ -619,88 +604,67 @@
     </div>
   </section>
 
-  <section class="fixtures" id="fixtures">
+  <section class="fixtures" id="matches">
     <div class="section-head">
-      <h2 data-i18n="fixh2">Today's Matches</h2>
+      <h2 data-i18n="fixh2">Live Sports Coverage</h2>
       <div class="rule"></div>
     </div>
     <div class="grid">
       <article class="card">
         <span class="card__sport card__sport--cri" data-i18n="sportCri">CRICKET</span>
-        <div class="card__league" data-i18n="lg1">International / T20 Series</div>
-        <div class="card__teams"><span data-i18n="t1a">England</span><br><span class="card__vs">VS</span> <span data-i18n="t1b">India</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tm1">Today 22:00</span></div>
+        <div class="card__league" data-i18n="lg1">International & Domestic</div>
+        <div class="card__teams"><span data-i18n="cri1">Test, ODI, T20</span><br><span class="card__vs">Live</span> <span data-i18n="cri2">Scores</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="cri3">Updates every ball</span></div>
       </article>
       <article class="card">
         <span class="card__sport card__sport--fbl" data-i18n="sportFbl">FOOTBALL</span>
-        <div class="card__league" data-i18n="lg2">International / FIFA World Cup</div>
-        <div class="card__teams"><span data-i18n="t2a">France</span><br><span class="card__vs">VS</span> <span data-i18n="t2b">Morocco</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tm2">Tomorrow 01:30</span></div>
+        <div class="card__league" data-i18n="lg2">Premier League, LaLiga, ISL</div>
+        <div class="card__teams"><span data-i18n="fbl1">Club & International</span><br><span class="card__vs">Live</span> <span data-i18n="fbl2">Goals</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="fbl3">Goal alerts instant</span></div>
       </article>
       <article class="card">
-        <span class="card__sport card__sport--cri" data-i18n="sportCri">CRICKET</span>
-        <div class="card__league" data-i18n="lg3">India / T20 Telangana League</div>
-        <div class="card__teams"><span data-i18n="t3a">Hyderabad E-Champions</span><br><span class="card__vs">VS</span> <span data-i18n="t3b">Avita Khammam Aces</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tm3">Today 19:15</span></div>
+        <span class="card__sport card__sport--kbd" style="background:#ff9800" data-i18n="sportKbd">KABADDI</span>
+        <div class="card__league" data-i18n="lg3">Pro Kabaddi League</div>
+        <div class="card__teams"><span data-i18n="kbd1">Indian Teams</span><br><span class="card__vs">Live</span> <span data-i18n="kbd2">Points</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="kbd3">Raid alerts</span></div>
       </article>
       <article class="card">
-        <span class="card__sport card__sport--cri" data-i18n="sportCri">CRICKET</span>
-        <div class="card__league" data-i18n="lg3b">India / T20 Telangana League</div>
-        <div class="card__teams"><span data-i18n="t4a">Karimnagar Diamonds</span><br><span class="card__vs">VS</span> <span data-i18n="t4b">Ranga Reddy Risers</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tm4">Today 14:15</span></div>
+        <span class="card__sport card__sport--hky" style="background:#9c27b0" data-i18n="sportHky">HOCKEY</span>
+        <div class="card__league" data-i18n="lg4">International Matches</div>
+        <div class="card__teams"><span data-i18n="hky1">India Champions</span><br><span class="card__vs">Live</span> <span data-i18n="hky2">Goals</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="hky3">Match alerts</span></div>
+      </article>
+      <article class="card">
+        <span class="card__sport card__sport--tns" style="background:#4caf50" data-i18n="sportTns">TENNIS</span>
+        <div class="card__league" data-i18n="lg5">Grand Slams & Masters</div>
+        <div class="card__teams"><span data-i18n="tns1">ATP & WTA</span><br><span class="card__vs">Live</span> <span data-i18n="tns2">Scores</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tns3">Set alerts</span></div>
+      </article>
+      <article class="card">
+        <span class="card__sport card__sport--bdm" style="background:#e91e63" data-i18n="sportBdm">BADMINTON</span>
+        <div class="card__league" data-i18n="lg6">BWF & National</div>
+        <div class="card__teams"><span data-i18n="bdm1">India's Best</span><br><span class="card__vs">Live</span> <span data-i18n="bdm2">Scores</span></div>
+        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="bdm3">Point alerts</span></div>
       </article>
     </div>
   </section>
 
-  <section class="signup" id="subscribe">
-    <div class="form-shell">
-      <form id="subform" novalidate>
-        <h2 data-i18n="subh2">Subscribe Now</h2>
-        <p class="lede" data-i18n="sublede">Enter your mobile number and you are set.</p>
-        <div class="field" id="f-phone">
-          <label for="phone" data-i18n="lphone">Mobile number</label>
-          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
-          <span class="err" data-i18n="errPhone">Enter a valid mobile number (include country code).</span>
-        </div>
-        <button type="submit" class="btn btn--sub" data-i18n="subbtn">Subscribe Now ›</button>
-        <p class="form-note" data-i18n="formnote">Free service · No spam · Reply STOP to stop</p>
-      </form>
-    </div>
-  </section>
-
-  <section class="signup" id="subscribe-bottom">
-    <div class="form-shell">
-      <form id="subform-bottom" novalidate>
-        <h2 data-i18n="subh2">Don't Miss a Goal</h2>
-        <p class="lede" data-i18n="sublede">Join thousands getting instant cricket and football alerts</p>
-        <div class="field" id="f-phone-bottom">
-          <label for="phone-bottom" data-i18n="lphone">Mobile number</label>
-          <input type="tel" id="phone-bottom" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
-          <span class="err" data-i18n="errPhone">Enter a valid mobile number (include country code).</span>
-        </div>
-        <button type="submit" class="btn btn--sub" data-i18n="subbtn">Subscribe Now ›</button>
-        <p class="form-note" data-i18n="formnote">Free service · No spam · Reply STOP to stop</p>
-      </form>
-    </div>
-  </section>
 </main>
 
-<!-- exit-intent popup -->
-<div class="modal" id="exit-modal">
-  <div class="modal__content">
-    <button type="button" class="modal__close" id="modal-close">✕</button>
-    <h3 data-i18n="modalh">Wait, get alerts first</h3>
-    <p data-i18n="modalp">Join before you go. Free cricket and football alerts direct to your phone.</p>
-    <form id="exitform" novalidate>
-      <div class="field" id="f-phone-exit">
-        <label for="phone-exit" style="display:none"></label>
-        <input type="tel" id="phone-exit" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel">
-        <span class="err" data-i18n="errPhone">Enter a valid mobile number.</span>
+<!-- Footer CTA Form -->
+<section style="background:var(--card);border-top:1.5px solid var(--edge);padding:clamp(2rem,5vh,3.5rem) clamp(1rem,4vw,3.5rem);position:relative;z-index:4">
+  <div style="max-width:760px;margin:0 auto;text-align:center">
+    <h2 style="font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--head);margin-bottom:.8rem;letter-spacing:.01em" data-i18n="footFormTitle">Still Thinking?</h2>
+    <p style="color:var(--text);font-size:.95rem;margin-bottom:1.5rem;max-width:28rem;margin-left:auto;margin-right:auto" data-i18n="footFormDesc">Get alerts for all 6 sports. One SMS, one tap. That's it.</p>
+    <form id="footform" novalidate style="max-width:400px;margin:0 auto">
+      <div class="field" id="f-phone-foot">
+        <input type="tel" id="phone-foot" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" value="+91" style="width:100%;padding:.85rem 1rem;background:#0a1233;border:1.5px solid var(--edge);color:#fff;font-family:var(--body);font-size:1rem;border-radius:999px;transition:border-color .2s">
+        <span class="err" data-i18n="errPhone" style="color:#ff8080;font-size:.75rem;margin-top:.3rem;display:none">Enter a valid number</span>
       </div>
-      <button type="submit" class="btn btn--sub" data-i18n="subbtn">Subscribe Now ›</button>
+      <button type="submit" class="btn" style="width:100%;margin-top:.8rem;font-size:.95rem;padding:.75rem 1.5rem" data-i18n="subbtn">Get Alerts Now ›</button>
     </form>
   </div>
-</div>
+</section>
 
 <footer>
   <div class="foot-grid">
@@ -759,26 +723,30 @@
   var I18N={
     en:{
       locale:'en-IN',
-      brandTag:'Free SMS &amp; WhatsApp',
-      navMatches:'Matches',navCoverage:'Coverage',navHow:'How it works',
-      cta:'Get Free Alerts',
-      kicker:'LIVE: ENG vs IND · FRA vs MAR',
-      h1a:'Free',h1b:'Live Score',h1c:'SMS &amp; WhatsApp Alerts',
-      sub:'Every wicket, goal and result on your phone as it happens. Works on any mobile. <b>SMS alerts need no internet.</b>',
-      stat1:'Alert speed',stat2:'Free',stat3:'Coverage',
-      notifWa:'Updates direct to your WhatsApp!',notifSms:'Latest score by SMS!',
-      fixh2:"Today's Matches",
-      sportCri:'CRICKET',sportFbl:'FOOTBALL',
-      lg1:'International / T20 Series',t1a:'England',t1b:'India',tm1:'Today 22:00',
-      lg2:'International / FIFA World Cup',t2a:'France',t2b:'Morocco',tm2:'Tomorrow 01:30',
-      lg3:'India / T20 Telangana League',lg3b:'India / T20 Telangana League',
-      t3a:'Hyderabad E-Champions',t3b:'Avita Khammam Aces',tm3:'Today 19:15',
-      t4a:'Karimnagar Diamonds',t4b:'Ranga Reddy Risers',tm4:'Today 14:15',
-      subh2:'Subscribe Now',
-      sublede:'Enter your mobile number and you are set.',
+      brandTag:'Free Live Scores by SMS',
+      navMatches:'Live Matches',navHow:'How it works',
+      topFormTitle:'Get Live Score Alerts',
+      topFormDesc:'Cricket, Kabaddi, Hockey, Football & Tennis. Instant SMS alerts as it happens.',
       lphone:'Mobile number',
-      errPhone:'Enter a valid mobile number (include country code).',
-      subbtn:'Subscribe Now ›',
+      kicker:'LIVE: Cricket, Kabaddi, Hockey, Football, Tennis, Badminton',
+      h1a:'Free Live',h1b:'Score Alerts',h1c:'Instant SMS',
+      sub:'Cricket, Kabaddi, Hockey, Football, Tennis & Badminton. <b>Instant SMS on any phone. No app needed.</b>',
+      stat1:'Alert speed',stat2:'Free',stat3:'Coverage',
+      cri1:'Test, ODI, T20',cri2:'Scores',cri3:'Updates every ball',
+      fbl1:'Club & International',fbl2:'Goals',fbl3:'Goal alerts instant',
+      kbd1:'Indian Teams',kbd2:'Points',kbd3:'Raid alerts',
+      hky1:'India Champions',hky2:'Goals',hky3:'Match alerts',
+      tns1:'ATP & WTA',tns2:'Scores',tns3:'Set alerts',
+      bdm1:'India\'s Best',bdm2:'Scores',bdm3:'Point alerts',
+      notifWa:'Updates direct to your WhatsApp!',notifSms:'Latest score by SMS!',
+      fixh2:'Live Sports Coverage',
+      sportCri:'CRICKET',sportFbl:'FOOTBALL',sportKbd:'KABADDI',sportHky:'HOCKEY',sportTns:'TENNIS',sportBdm:'BADMINTON',
+      lg1:'International & Domestic',lg2:'Premier League, LaLiga, ISL',lg3:'Pro Kabaddi League',lg4:'International Matches',lg5:'Grand Slams & Masters',lg6:'BWF & National',
+      subbtn:'Get SMS Alerts ›',
+      errPhone:'Enter a valid mobile number.',
+      formnote:'Free · No spam · Reply STOP to stop',
+      footFormTitle:'Still Thinking?',
+      footFormDesc:'Get alerts for all 6 sports. One SMS, one tap. That\'s it.',
       formnote:'Free service · No spam · Reply STOP to stop',
       footBlurb:'Livescore Alerts sends cricket and football scores by SMS and WhatsApp. The service is free for all users. Standard operator charges may apply to replies.',
       footCovH:'Coverage',footCov1:'International cricket',footCov2:'T20 Telangana League',footCov3:'FIFA World Cup',footCov4:"Today's matches",
@@ -798,26 +766,24 @@
     },
     hi:{
       locale:'hi-IN',
-      brandTag:'फ्री SMS और WhatsApp',
-      navMatches:'मैच',navCoverage:'कवरेज',navHow:'कैसे काम करता है',
-      cta:'फ्री अलर्ट पाएं',
-      kicker:'लाइव: ENG बनाम IND · FRA बनाम MAR',
-      h1a:'फ्री',h1b:'लाइव स्कोर',h1c:'SMS और WhatsApp अलर्ट',
-      sub:'हर विकेट, हर गोल और हर नतीजा, आपके फोन पर तुरंत। किसी भी मोबाइल पर चलता है। <b>SMS अलर्ट के लिए इंटरनेट की जरूरत नहीं।</b>',
+      brandTag:'फ्री SMS से लाइव स्कोर',
+      navMatches:'लाइव मैच',navHow:'कैसे काम करता है',
+      topFormTitle:'लाइव स्कोर अलर्ट पाएं',
+      topFormDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल और टेनिस। तुरंत SMS अलर्ट।',
+      lphone:'मोबाइल नंबर',
+      kicker:'लाइव: क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस, बैडमिंटन',
+      h1a:'फ्री लाइव',h1b:'स्कोर अलर्ट',h1c:'तुरंत SMS',
+      sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस और बैडमिंटन। <b>किसी भी फोन पर तुरंत SMS। कोई ऐप नहीं।</b>',
       stat1:'अलर्ट स्पीड',stat2:'बिल्कुल फ्री',stat3:'कवरेज',
       notifWa:'अपडेट सीधे आपके WhatsApp पर!',notifSms:'ताज़ा स्कोर SMS से!',
-      fixh2:'आज के मैच',
-      sportCri:'क्रिकेट',sportFbl:'फुटबॉल',
-      lg1:'इंटरनेशनल / टी20 सीरीज',t1a:'इंग्लैंड',t1b:'भारत',tm1:'आज 22:00',
-      lg2:'इंटरनेशनल / फीफा वर्ल्ड कप',t2a:'फ्रांस',t2b:'मोरक्को',tm2:'कल 01:30',
-      lg3:'भारत / टी20 तेलंगाना लीग',lg3b:'भारत / टी20 तेलंगाना लीग',
-      t3a:'हैदराबाद ई-चैंपियंस',t3b:'अविता खम्मम एसेस',tm3:'आज 19:15',
-      t4a:'करीमनगर डायमंड्स',t4b:'रंगा रेड्डी राइजर्स',tm4:'आज 14:15',
-      subh2:'अभी सब्सक्राइब करें',
-      sublede:'अपना मोबाइल नंबर डालें, बस हो गया।',
-      lphone:'मोबाइल नंबर',
-      errPhone:'सही मोबाइल नंबर डालें (कंट्री कोड के साथ)।',
-      subbtn:'सब्सक्राइब करें ›',
+      fixh2:'लाइव स्पोर्ट्स कवरेज',
+      sportCri:'क्रिकेट',sportFbl:'फुटबॉल',sportKbd:'कबड्डी',sportHky:'हॉकी',sportTns:'टेनिस',sportBdm:'बैडमिंटन',
+      lg1:'इंटरनेशनल और देशीय',lg2:'प्रीमियर लीग, लालीगा, आईएसएल',lg3:'प्रो कबड्डी लीग',lg4:'इंटरनेशनल मैच',lg5:'ग्रैंड स्लैम और मास्टर्स',lg6:'बीडब्ल्यूएफ और नेशनल',
+      subbtn:'SMS अलर्ट पाएं ›',
+      errPhone:'सही मोबाइल नंबर डालें।',
+      formnote:'फ्री · स्पैम नहीं · बंद करने के लिए STOP भेजें',
+      footFormTitle:'अभी भी सोच रहे हैं?',
+      footFormDesc:'6 स्पोर्ट्स के लिए अलर्ट पाएं। एक SMS, एक टैप। बस।',
       formnote:'फ्री सेवा · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
       footBlurb:'लाइवस्कोर अलर्ट्स SMS और WhatsApp पर क्रिकेट और फुटबॉल के स्कोर भेजता है। यह सेवा सभी के लिए फ्री है। जवाब भेजने पर ऑपरेटर का सामान्य शुल्क लग सकता है।',
       footCovH:'कवरेज',footCov1:'इंटरनेशनल क्रिकेट',footCov2:'टी20 तेलंगाना लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आज के मैच',
@@ -837,26 +803,24 @@
     },
     mr:{
       locale:'mr-IN',
-      brandTag:'मोफत SMS आणि WhatsApp',
-      navMatches:'सामने',navCoverage:'कव्हरेज',navHow:'कसे चालते',
-      cta:'मोफत अलर्ट मिळवा',
-      kicker:'लाइव्ह: ENG वि. IND · FRA वि. MAR',
-      h1a:'मोफत',h1b:'लाइव्ह स्कोर',h1c:'SMS आणि WhatsApp अलर्ट',
-      sub:'प्रत्येक विकेट, गोल आणि निकाल, तुमच्या फोनवर लगेच. कोणत्याही मोबाईलवर चालते. <b>SMS अलर्टसाठी इंटरनेटची गरज नाही.</b>',
+      brandTag:'मोफत लाइव स्कोर SMS ने',
+      navMatches:'लाइव सामने',navHow:'कसे चालते',
+      topFormTitle:'लाइव स्कोर अलर्ट मिळवा',
+      topFormDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल आणि टेनिस। तात्काल SMS अलर्ट।',
+      lphone:'मोबाईल नंबर',
+      kicker:'लाइव्ह: क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस, बॅडमिंटन',
+      h1a:'मोफत लाइव्ह',h1b:'स्कोर अलर्ट',h1c:'तात्काल SMS',
+      sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस आणि बॅडमिंटन. <b>कोणत्याही फोनवर तात्काल SMS. कोणतेही ऍप नाही.</b>',
       stat1:'अलर्ट स्पीड',stat2:'पूर्ण मोफत',stat3:'कव्हरेज',
       notifWa:'अपडेट थेट तुमच्या WhatsApp वर!',notifSms:'ताजा स्कोर SMS ने!',
-      fixh2:'आजचे सामने',
-      sportCri:'क्रिकेट',sportFbl:'फुटबॉल',
-      lg1:'इंटरनॅशनल / टी20 मालिका',t1a:'इंग्लंड',t1b:'भारत',tm1:'आज 22:00',
-      lg2:'इंटरनॅशनल / फीफा वर्ल्ड कप',t2a:'फ्रान्स',t2b:'मोरोक्को',tm2:'उद्या 01:30',
-      lg3:'भारत / टी20 तेलंगणा लीग',lg3b:'भारत / टी20 तेलंगणा लीग',
-      t3a:'हैदराबाद ई-चॅम्पियन्स',t3b:'अविता खम्मम एसेस',tm3:'आज 19:15',
-      t4a:'करीमनगर डायमंड्स',t4b:'रंगा रेड्डी रायझर्स',tm4:'आज 14:15',
-      subh2:'आत्ताच सबस्क्राईब करा',
-      sublede:'तुमचा मोबाईल नंबर टाका, झालं.',
-      lphone:'मोबाईल नंबर',
-      errPhone:'योग्य मोबाईल नंबर टाका (कंट्री कोडसह).',
-      subbtn:'सबस्क्राईब करा ›',
+      fixh2:'लाइव्ह स्पोर्ट्स कव्हरेज',
+      sportCri:'क्रिकेट',sportFbl:'फुटबॉल',sportKbd:'कबड्डी',sportHky:'हॉकी',sportTns:'टेनिस',sportBdm:'बॅडमिंटन',
+      lg1:'इंटरनॅशनल आणि देशीय',lg2:'प्रीमियर लीग, लालीगा, आयएसएल',lg3:'प्रो कबड्डी लीग',lg4:'इंटरनॅशनल सामने',lg5:'ग्रँड स्लॅम आणि मास्टर्स',lg6:'बीडब्ल्यूएफ आणि नेशनल',
+      subbtn:'SMS अलर्ट मिळवा ›',
+      errPhone:'योग्य मोबाईल नंबर टाका.',
+      formnote:'मोफत · स्पॅम नाही · बंद करण्यासाठी STOP पाठवा',
+      footFormTitle:'अजूनही विचार करत आहात?',
+      footFormDesc:'६ स्पोर्ट्सचे अलर्ट मिळवा. एक SMS, एक टॅप. बस.',
       formnote:'मोफत सेवा · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
       footBlurb:'लाइव्हस्कोर अलर्ट्स SMS आणि WhatsApp वर क्रिकेट आणि फुटबॉलचे स्कोर पाठवते. ही सेवा सर्वांसाठी मोफत आहे. उत्तर पाठवल्यास ऑपरेटरचे नेहमीचे शुल्क लागू शकते.',
       footCovH:'कव्हरेज',footCov1:'इंटरनॅशनल क्रिकेट',footCov2:'टी20 तेलंगणा लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आजचे सामने',
@@ -946,18 +910,19 @@
 
   // form submission handler with backend API
   var API_URL='/api/subscribe';
-  var exitPopupShown=false;
 
   function validatePhone(phone){
-    return /^\+?\d{10,15}$/.test(phone.replace(/[\s\-()]/g,''));
+    var cleaned=phone.replace(/[\s\-()]/g,'');
+    return /^\+?\d{10,15}$/.test(cleaned);
   }
 
   function handleFormSubmit(e){
     e.preventDefault();
     var form=e.target;
-    var phoneId=form.querySelector('input[type=tel]').id;
+    var phoneInput=form.querySelector('input[type=tel]');
+    var phoneId=phoneInput.id;
     var fieldId=form.querySelector('.field').id;
-    var phone=document.getElementById(phoneId).value.replace(/[\s\-()]/g,'');
+    var phone=phoneInput.value.replace(/[\s\-()]/g,'');
     var phoneOk=validatePhone(phone);
 
     var field=document.getElementById(fieldId);
@@ -966,7 +931,8 @@
 
     var btn=form.querySelector('[type=submit]');
     btn.disabled=true;
-    btn.textContent='Subscribing...';
+    var originalText=btn.textContent;
+    btn.textContent='Sending SMS...';
 
     fetch(API_URL,{
       method:'POST',
@@ -980,96 +946,34 @@
       }else{
         field.classList.add('invalid');
         btn.disabled=false;
-        btn.textContent='Subscribe Now ›';
+        btn.textContent=originalText;
       }
     })
     .catch(function(err){
       console.error(err);
       btn.disabled=false;
-      btn.textContent='Subscribe Now ›';
+      btn.textContent=originalText;
     });
   }
 
   // attach handlers to all forms
-  document.getElementById('subform').addEventListener('submit',handleFormSubmit);
-  document.getElementById('subform-bottom').addEventListener('submit',handleFormSubmit);
-  document.getElementById('exitform').addEventListener('submit',handleFormSubmit);
+  document.getElementById('topform').addEventListener('submit',handleFormSubmit);
+  document.getElementById('footform').addEventListener('submit',handleFormSubmit);
 
-  // sticky form toggle
-  document.getElementById('sticky-btn').addEventListener('click',function(){
-    var phoneId='sticky-phone';
-    var fieldId='sticky-field';
-    var phone=document.getElementById(phoneId).value.replace(/[\s\-()]/g,'');
-    var phoneOk=validatePhone(phone);
-
-    var field=document.getElementById(fieldId);
-    field.classList.toggle('invalid',!phoneOk);
-    if(!phoneOk)return;
-
-    var btn=this;
-    btn.disabled=true;
-    btn.textContent='Subscribing...';
-
-    fetch(API_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({phone:phone})
-    })
-    .then(function(res){return res.json()})
-    .then(function(data){
-      if(data.success){
-        window.location.href='thanks.html';
-      }else{
-        field.classList.add('invalid');
-        btn.disabled=false;
-        btn.textContent='Subscribe ›';
+  // pre-fill +91 on input focus if empty
+  var phoneInputs=document.querySelectorAll('input[type=tel]');
+  for(var i=0;i<phoneInputs.length;i++){
+    phoneInputs[i].addEventListener('focus',function(){
+      if(this.value===''){
+        this.value='+91';
       }
-    })
-    .catch(function(err){
-      console.error(err);
-      btn.disabled=false;
-      btn.textContent='Subscribe ›';
     });
-  });
-
-  // exit-intent popup
-  var exitModal=document.getElementById('exit-modal');
-  var modalClose=document.getElementById('modal-close');
-  var hasExited=false;
-
-  function showExitModal(){
-    if(!exitPopupShown){
-      exitPopupShown=true;
-      exitModal.classList.add('show');
-    }
+    phoneInputs[i].addEventListener('blur',function(){
+      if(this.value==='+91'||this.value===''){
+        this.value='+91';
+      }
+    });
   }
-
-  modalClose.addEventListener('click',function(){
-    exitModal.classList.remove('show');
-  });
-
-  exitModal.addEventListener('click',function(e){
-    if(e.target===exitModal){
-      exitModal.classList.remove('show');
-    }
-  });
-
-  // desktop: mouse leaves to top of page
-  document.addEventListener('mouseleave',function(e){
-    if(e.clientY<=0&&!hasExited){
-      hasExited=true;
-      showExitModal();
-    }
-  });
-
-  // mobile: scroll near bottom
-  window.addEventListener('scroll',function(){
-    var scrollPercent=(window.scrollY+window.innerHeight)/document.documentElement.scrollHeight;
-    if(scrollPercent>0.75&&!hasExited){
-      hasExited=true;
-      showExitModal();
-    }
-  },false);
 </script>
 </body>
 </html>
