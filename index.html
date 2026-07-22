@@ -96,7 +96,7 @@
   }
   .tag--cri{background:var(--blue)}
   .tag--fbl{background:var(--wa)}
-  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(0)}}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* ---------- header ---------- */
   header{
@@ -534,6 +534,35 @@
       <h2 data-i18n="topFormTitle">Get Live Score Alerts</h2>
       <p data-i18n="topFormDesc">Cricket, Kabaddi, Hockey, Football & Tennis. Instant SMS alerts as it happens.</p>
       <form id="topform" novalidate>
+        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--edge)">
+          <label style="display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:.8rem">Which sports?</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
+              <input type="checkbox" name="sport" value="cricket" checked style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
+              <span>Cricket</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
+              <input type="checkbox" name="sport" value="football" checked style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
+              <span>Football</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
+              <input type="checkbox" name="sport" value="kabaddi" checked style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
+              <span>Kabaddi</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
+              <input type="checkbox" name="sport" value="hockey" style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
+              <span>Hockey</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
+              <input type="checkbox" name="sport" value="tennis" style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
+              <span>Tennis</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
+              <input type="checkbox" name="sport" value="badminton" style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
+              <span>Badminton</span>
+            </label>
+          </div>
+        </div>
         <div class="field" id="f-phone-top">
           <label for="phone-top" data-i18n="lphone" style="display:none">Mobile number</label>
           <div style="display:flex;align-items:center;gap:0;background:#0a1233;border:1.5px solid var(--edge);border-radius:999px;padding:0;overflow:hidden">
@@ -657,6 +686,35 @@
     <h2 style="font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--head);margin-bottom:.8rem;letter-spacing:.01em" data-i18n="footFormTitle">Still Thinking?</h2>
     <p style="color:var(--text);font-size:.95rem;margin-bottom:1.5rem;max-width:28rem;margin-left:auto;margin-right:auto" data-i18n="footFormDesc">Get alerts for all 6 sports. One SMS, one tap. That's it.</p>
     <form id="footform" novalidate style="max-width:400px;margin:0 auto">
+      <div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--edge)">
+        <label style="display:block;font-family:var(--mono);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:.6rem">Which sports?</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
+            <input type="checkbox" name="sport" value="cricket" checked style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
+            <span>Cricket</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
+            <input type="checkbox" name="sport" value="football" checked style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
+            <span>Football</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
+            <input type="checkbox" name="sport" value="kabaddi" checked style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
+            <span>Kabaddi</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
+            <input type="checkbox" name="sport" value="hockey" style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
+            <span>Hockey</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
+            <input type="checkbox" name="sport" value="tennis" style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
+            <span>Tennis</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
+            <input type="checkbox" name="sport" value="badminton" style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
+            <span>Badminton</span>
+          </label>
+        </div>
+      </div>
       <div class="field" id="f-phone-foot">
         <div style="display:flex;align-items:center;gap:0;background:#0a1233;border:1.5px solid var(--edge);border-radius:999px;padding:0;overflow:hidden">
           <span style="padding:.85rem 1rem;background:#1a0f2e;color:var(--text);font-weight:600;flex-shrink:0;border-right:1px solid var(--edge)">+91</span>
@@ -847,12 +905,14 @@
   function buildTicker(matches){
     var html='';
     if(!matches||matches.length===0)return;
-    // Build ticker from live matches (only once, not scrolling)
-    for(var i=0;i<matches.length;i++){
-      var m=matches[i];
-      var tag=m.sport==='CRICKET'?'cri':'fbl';
-      var label=tag==='cri'?'CRI':'FBL';
-      html+='<span><i class="tag tag--'+tag+'">'+label+'</i>'+m.team1+' vs '+m.team2+' · '+m.status+'</span>';
+    // Build ticker from live matches, duplicated for seamless scrolling loop
+    for(var pass=0;pass<2;pass++){
+      for(var i=0;i<matches.length;i++){
+        var m=matches[i];
+        var tag=m.sport==='CRICKET'?'cri':'fbl';
+        var label=tag==='cri'?'CRI':'FBL';
+        html+='<span><i class="tag tag--'+tag+'">'+label+'</i>'+m.team1+' vs '+m.team2+' · '+m.status+'</span>';
+      }
     }
     document.getElementById('ticker-track').innerHTML=html;
   }
@@ -929,6 +989,11 @@
     var phone=country+digits;
     var phoneOk=validatePhone(phone);
 
+    // Get selected sports
+    var sportCheckboxes=form.querySelectorAll('input[name="sport"]:checked');
+    var sports=Array.from(sportCheckboxes).map(cb=>cb.value);
+    if(sports.length===0)sports=['cricket','football'];
+
     var field=document.getElementById(fieldId);
     field.classList.toggle('invalid',!phoneOk);
     if(!phoneOk)return;
@@ -941,7 +1006,7 @@
     fetch(API_URL,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({phone:phone})
+      body:JSON.stringify({phone:phone,sports:sports})
     })
     .then(function(res){return res.json()})
     .then(function(data){

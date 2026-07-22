@@ -29,7 +29,8 @@ function initializeDB() {
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     language TEXT DEFAULT 'en',
     source TEXT DEFAULT 'web',
-    status TEXT DEFAULT 'pending'
+    status TEXT DEFAULT 'pending',
+    sports TEXT DEFAULT 'cricket,football'
   )`, (err) => {
     if (err) {
       console.error('Table creation error:', err);
@@ -47,7 +48,7 @@ function isValidPhone(phone) {
 
 // API endpoint for subscribe
 app.post('/api/subscribe', (req, res) => {
-  const { phone } = req.body;
+  const { phone, sports } = req.body;
 
   if (!phone || !isValidPhone(phone)) {
     return res.status(400).json({ success: false, error: 'Invalid phone number' });
@@ -55,15 +56,27 @@ app.post('/api/subscribe', (req, res) => {
 
   const cleanPhone = phone.replace(/[\s\-()]/g, '');
   const language = req.headers['accept-language']?.split('-')[0] || 'en';
+  const sportsStr = sports && Array.isArray(sports) ? sports.join(',') : 'cricket,football';
 
   db.run(
-    `INSERT INTO leads (phone, language, source) VALUES (?, ?, 'web')`,
-    [cleanPhone, language],
+    `INSERT INTO leads (phone, language, source, sports) VALUES (?, ?, 'web', ?)`,
+    [cleanPhone, language, sportsStr],
     function(err) {
       if (err) {
         if (err.message.includes('UNIQUE constraint failed')) {
-          // Phone already exists - this is fine, mark as success
-          return res.json({ success: true, message: 'Already subscribed' });
+          // Phone already exists - update sports preferences
+          db.run(
+            `UPDATE leads SET sports = ? WHERE phone = ?`,
+            [sportsStr, cleanPhone],
+            function(err) {
+              if (err) {
+                console.error('Update error:', err);
+                return res.status(500).json({ success: false, error: 'Database error' });
+              }
+              return res.json({ success: true, message: 'Updated sports preferences' });
+            }
+          );
+          return;
         }
         console.error('Insert error:', err);
         return res.status(500).json({ success: false, error: 'Database error' });
