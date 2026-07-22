@@ -30,7 +30,7 @@ function initializeDB() {
     language TEXT DEFAULT 'en',
     source TEXT DEFAULT 'web',
     status TEXT DEFAULT 'pending',
-    sports TEXT DEFAULT 'cricket,football'
+    sports TEXT DEFAULT 'cricket'
   )`, (err) => {
     if (err) {
       console.error('Table creation error:', err);
@@ -56,7 +56,7 @@ app.post('/api/subscribe', (req, res) => {
 
   const cleanPhone = phone.replace(/[\s\-()]/g, '');
   const language = req.headers['accept-language']?.split('-')[0] || 'en';
-  const sportsStr = sports && Array.isArray(sports) ? sports.join(',') : 'cricket,football';
+  const sportsStr = sports && Array.isArray(sports) ? sports.join(',') : 'cricket';
 
   db.run(
     `INSERT INTO leads (phone, language, source, sports) VALUES (?, ?, 'web', ?)`,
