@@ -764,15 +764,6 @@
       <p data-i18n="footBlurb">Livescore Alerts sends live sports scores by SMS. Free for all users. Standard operator charges may apply to replies.</p>
     </div>
     <div class="foot-col">
-      <h4 data-i18n="footCovH">Coverage</h4>
-      <ul>
-        <li><a href="#fixtures" data-i18n="footCov1">International cricket</a></li>
-        <li><a href="#fixtures" data-i18n="footCov2">T20 Telangana League</a></li>
-        <li><a href="#fixtures" data-i18n="footCov3">FIFA World Cup</a></li>
-        <li><a href="#fixtures" data-i18n="footCov4">Today's matches</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
       <h4 data-i18n="footHelpH">Help</h4>
       <ul>
         <li><a href="#subscribe" data-i18n="footHelp1">Subscribe</a></li>
@@ -941,6 +932,21 @@
     document.getElementById('ticker-track').innerHTML=html;
   }
 
+  function buildTickerFromI18N(lang){
+    var t=I18N[lang];
+    if(!t||!t.ticker)return;
+    var html='';
+    for(var pass=0;pass<2;pass++){
+      for(var i=0;i<t.ticker.length;i++){
+        var item=t.ticker[i];
+        var tag=item[0];
+        var label=tag==='cri'?'CRI':'FBL';
+        html+='<span><i class="tag tag--'+tag+'">'+label+'</i>'+item[1]+'</span>';
+      }
+    }
+    document.getElementById('ticker-track').innerHTML=html;
+  }
+
   function tickClock(){
     var d=new Date(),t=I18N[CUR];
     document.getElementById('clock').textContent=
@@ -971,6 +977,7 @@
     for(var b=0;b<btns.length;b++){
       btns[b].classList.toggle('on',btns[b].getAttribute('data-lang')===l);
     }
+    buildTickerFromI18N(l);
     tickClock();
   }
 
@@ -990,7 +997,7 @@
   if(saved&&I18N[saved]){
     setLang(saved);
   }else{
-    setLang('en');
+    setLang('mr');
     pop.hidden=false;
   }
   setInterval(tickClock,15000);
