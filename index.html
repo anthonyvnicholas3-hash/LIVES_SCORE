@@ -638,43 +638,67 @@
       <h2 data-i18n="fixh2">Live Sports Coverage</h2>
       <div class="rule"></div>
     </div>
-    <div class="grid">
-      <article class="card">
-        <span class="card__sport card__sport--cri" data-i18n="sportCri">CRICKET</span>
-        <div class="card__league" data-i18n="lg1">International & Domestic</div>
-        <div class="card__teams"><span data-i18n="cri1">Test, ODI, T20</span><br><span class="card__vs">Live</span> <span data-i18n="cri2">Scores</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="cri3">Updates every ball</span></div>
-      </article>
-      <article class="card">
-        <span class="card__sport card__sport--fbl" data-i18n="sportFbl">FOOTBALL</span>
-        <div class="card__league" data-i18n="lg2">Premier League, LaLiga, ISL</div>
-        <div class="card__teams"><span data-i18n="fbl1">Club & International</span><br><span class="card__vs">Live</span> <span data-i18n="fbl2">Goals</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="fbl3">Goal alerts instant</span></div>
-      </article>
-      <article class="card">
-        <span class="card__sport card__sport--kbd" style="background:#ff9800" data-i18n="sportKbd">KABADDI</span>
-        <div class="card__league" data-i18n="lg3">Pro Kabaddi League</div>
-        <div class="card__teams"><span data-i18n="kbd1">Indian Teams</span><br><span class="card__vs">Live</span> <span data-i18n="kbd2">Points</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="kbd3">Raid alerts</span></div>
-      </article>
-      <article class="card">
-        <span class="card__sport card__sport--hky" style="background:#9c27b0" data-i18n="sportHky">HOCKEY</span>
-        <div class="card__league" data-i18n="lg4">International Matches</div>
-        <div class="card__teams"><span data-i18n="hky1">India Champions</span><br><span class="card__vs">Live</span> <span data-i18n="hky2">Goals</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="hky3">Match alerts</span></div>
-      </article>
-      <article class="card">
-        <span class="card__sport card__sport--tns" style="background:#4caf50" data-i18n="sportTns">TENNIS</span>
-        <div class="card__league" data-i18n="lg5">Grand Slams & Masters</div>
-        <div class="card__teams"><span data-i18n="tns1">ATP & WTA</span><br><span class="card__vs">Live</span> <span data-i18n="tns2">Scores</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="tns3">Set alerts</span></div>
-      </article>
-      <article class="card">
-        <span class="card__sport card__sport--bdm" style="background:#e91e63" data-i18n="sportBdm">BADMINTON</span>
-        <div class="card__league" data-i18n="lg6">BWF & National</div>
-        <div class="card__teams"><span data-i18n="bdm1">India's Best</span><br><span class="card__vs">Live</span> <span data-i18n="bdm2">Scores</span></div>
-        <div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-i18n="bdm3">Point alerts</span></div>
-      </article>
+
+    <!-- League Selector -->
+    <div style="display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;justify-content:center">
+      <button onclick="switchLeague('PL')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="PL">⚽ Premier League</button>
+      <button onclick="switchLeague('LA')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="LA">⚽ La Liga</button>
+      <button onclick="switchLeague('SA')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="SA">⚽ Serie A</button>
+      <button onclick="switchLeague('BL1')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="BL1">⚽ Bundesliga</button>
+      <button onclick="switchLeague('CL')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="CL">🏆 Champions League</button>
+    </div>
+
+    <!-- Live Matches Grid -->
+    <div style="margin-bottom:3rem">
+      <h3 style="font-family:var(--disp);font-weight:700;font-size:1.2rem;color:var(--head);margin-bottom:1rem;text-transform:uppercase">LIVE NOW</h3>
+      <div class="grid" id="live-matches-grid">
+        <p style="text-align:center;color:var(--muted);grid-column:1/-1">Loading matches...</p>
+      </div>
+    </div>
+
+    <!-- League Standings -->
+    <div style="margin-bottom:3rem">
+      <h3 style="font-family:var(--disp);font-weight:700;font-size:1.2rem;color:var(--head);margin-bottom:1rem;text-transform:uppercase">Standings</h3>
+      <div style="background:var(--card);border:1.5px solid var(--edge);border-radius:12px;overflow-x:auto">
+        <table id="standings-table" style="width:100%;font-size:.9rem;text-align:left;border-collapse:collapse">
+          <thead>
+            <tr style="border-bottom:1px solid var(--edge);background:#0a1233">
+              <th style="padding:.8rem;color:var(--blue-hi);font-weight:600">Pos</th>
+              <th style="padding:.8rem;color:var(--blue-hi);font-weight:600">Team</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">P</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">W</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">D</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">L</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">GF</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">GA</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">Pts</th>
+            </tr>
+          </thead>
+          <tbody id="standings-body">
+            <tr><td colspan="9" style="padding:1rem;text-align:center;color:var(--muted)">Loading standings...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Top Scorers -->
+    <div style="margin-bottom:3rem">
+      <h3 style="font-family:var(--disp);font-weight:700;font-size:1.2rem;color:var(--head);margin-bottom:1rem;text-transform:uppercase">Top Scorers</h3>
+      <div style="background:var(--card);border:1.5px solid var(--edge);border-radius:12px;overflow-x:auto">
+        <table id="scorers-table" style="width:100%;font-size:.9rem;text-align:left;border-collapse:collapse">
+          <thead>
+            <tr style="border-bottom:1px solid var(--edge);background:#0a1233">
+              <th style="padding:.8rem;color:var(--blue-hi);font-weight:600">Player</th>
+              <th style="padding:.8rem;color:var(--blue-hi);font-weight:600">Team</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">Goals</th>
+              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">Assists</th>
+            </tr>
+          </thead>
+          <tbody id="scorers-body">
+            <tr><td colspan="4" style="padding:1rem;text-align:center;color:var(--muted)">Loading scorers...</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -1037,40 +1061,112 @@
     });
   }
 
-  // Fetch and display live matches + update ticker dynamically
-  function loadLiveMatches(){
-    fetch('/api/live-matches')
+  var currentLeague='PL';
+
+  // Switch league and reload data
+  function switchLeague(league){
+    currentLeague=league;
+    document.querySelectorAll('.league-btn').forEach(btn=>{
+      btn.style.borderColor=btn.getAttribute('data-league')===league?'#1DB854':'var(--edge)';
+      btn.style.background=btn.getAttribute('data-league')===league?'#1DB854':'var(--card)';
+      btn.style.color=btn.getAttribute('data-league')===league?'#000':'var(--text)';
+    });
+    loadLiveData();
+  }
+
+  // Load comprehensive live data (matches, standings, scorers)
+  function loadLiveData(){
+    fetch('/api/live-matches?league='+currentLeague)
       .then(r=>r.json())
       .then(data=>{
-        var grid=document.querySelector('.grid');
+        // LIVE MATCHES GRID
+        var grid=document.getElementById('live-matches-grid');
         if(!grid)return;
         grid.innerHTML='';
-        if(!data.matches||data.matches.length===0){
-          grid.innerHTML='<p style="text-align:center;color:var(--text)">No live matches right now. Check back soon!</p>';
-          return;
+
+        if(!data.liveMatches||data.liveMatches.length===0){
+          var upcoming=fetch('/api/live-matches?league='+currentLeague)
+            .then(r=>r.json())
+            .then(d=>d.liveMatches);
+          grid.innerHTML='<p style="text-align:center;color:var(--muted);grid-column:1/-1;padding:2rem">No live matches right now. Check standings below!</p>';
+        }else{
+          data.liveMatches.forEach(match=>{
+            var card=document.createElement('article');
+            card.className='card';
+            var isLive=match.status.includes('LIVE');
+            card.style.borderColor=isLive?'#1DB854':'var(--edge)';
+            card.innerHTML='<span class="card__sport" style="background:#1DB854">'+match.sport+'</span>'+
+              '<div class="card__league">'+data.competition.name+'</div>'+
+              '<div class="card__teams">'+
+                '<span style="font-size:.9rem">'+match.team1+'</span><br>'+
+                '<span style="font-size:1.3rem;color:#1DB854;font-weight:700">'+
+                  (match.score1!==null?match.score1:'-')+' - '+(match.score2!==null?match.score2:'-')+
+                '</span><br>'+
+                '<span style="font-size:.9rem">'+match.team2+'</span>'+
+              '</div>'+
+              '<div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span style="color:'+(isLive?'#ff1493':'var(--text)')+'">'+match.status+'</span></div>';
+            grid.appendChild(card);
+          });
         }
-        data.matches.forEach(match=>{
-          var badgeBg='#1DB854';
-          var card=document.createElement('article');
-          card.className='card';
-          card.innerHTML='<span class="card__sport" style="background:'+badgeBg+'">'+match.sport+'</span>'+
-            '<div class="card__league">'+match.league+'</div>'+
-            '<div class="card__teams"><span>'+match.team1+'</span><br><span class="card__vs">vs</span> <span>'+match.team2+'</span></div>'+
-            '<div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>'+match.status+'</span></div>';
-          grid.appendChild(card);
-        });
+
+        // STANDINGS TABLE
+        var standingsBody=document.getElementById('standings-body');
+        if(standingsBody){
+          standingsBody.innerHTML='';
+          if(data.standings.length>0){
+            data.standings.slice(0,10).forEach(team=>{
+              var row=document.createElement('tr');
+              row.style.borderBottom='1px solid var(--edge)';
+              row.innerHTML='<td style="padding:.8rem;color:var(--blue-hi);font-weight:700">'+team.pos+'</td>'+
+                '<td style="padding:.8rem">'+team.team+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:var(--text)">'+team.played+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:#1DB854;font-weight:600">'+team.wins+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:var(--text)">'+team.draws+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:#ff6b6b">'+team.losses+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:var(--text)">'+team.goalsFor+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:var(--muted)">'+team.goalsAgainst+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:700;font-size:1.1rem">'+team.points+'</td>';
+              standingsBody.appendChild(row);
+            });
+          }
+        }
+
+        // TOP SCORERS TABLE
+        var scorersBody=document.getElementById('scorers-body');
+        if(scorersBody){
+          scorersBody.innerHTML='';
+          if(data.topScorers.length>0){
+            data.topScorers.slice(0,10).forEach((scorer,idx)=>{
+              var row=document.createElement('tr');
+              row.style.borderBottom='1px solid var(--edge)';
+              row.innerHTML='<td style="padding:.8rem"><strong>'+(idx+1)+'.</strong> '+scorer.name+'</td>'+
+                '<td style="padding:.8rem;color:var(--muted)">'+scorer.team+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:#1DB854;font-weight:700;font-size:1.1rem">'+scorer.goals+'</td>'+
+                '<td style="padding:.8rem;text-align:center;color:var(--text)">'+(scorer.assists||0)+'</td>';
+              scorersBody.appendChild(row);
+            });
+          }
+        }
 
         // Update ticker with live match data
-        buildTicker(data.matches);
+        if(data.liveMatches.length>0){
+          buildTicker(data.liveMatches);
+        }
       })
       .catch(err=>{
-        console.error('Error loading live matches:',err);
+        console.error('Error loading live data:',err);
       });
   }
 
-  // Load matches on page load and refresh every 30 seconds
-  loadLiveMatches();
-  setInterval(loadLiveMatches,30000);
+  // Load on page load
+  loadLiveData();
+  // Refresh every 15 seconds for real-time updates
+  setInterval(loadLiveData,15000);
+
+  // Set initial league button style
+  document.querySelector('[data-league="PL"]').style.borderColor='#1DB854';
+  document.querySelector('[data-league="PL"]').style.background='#1DB854';
+  document.querySelector('[data-league="PL"]').style.color='#000';
 </script>
 </body>
 </html>

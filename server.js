@@ -86,55 +86,117 @@ app.post('/api/subscribe', (req, res) => {
   );
 });
 
-// API endpoint to get live matches from Football-Data.org
+// Comprehensive live sports dashboard from FREE APIs
 app.get('/api/live-matches', async (req, res) => {
   try {
-    // Fetch live football matches from Football-Data.org (no key required for 10 req/min)
-    const response = await axios.get('https://api.football-data.org/v4/competitions/PL/matches?status=LIVE', {
-      timeout: 5000
+    const league = req.query.league || 'PL'; // Default: Premier League
+    const competitionMap = {
+      'PL': { id: 'PL', name: 'Premier League' },
+      'LA': { id: 'LA', name: 'La Liga' },
+      'SA': { id: 'SA', name: 'Serie A' },
+      'BL1': { id: 'BL1', name: 'Bundesliga' },
+      'CL': { id: 'CL', name: 'Champions League' }
+    };
+
+    const comp = competitionMap[league] || competitionMap['PL'];
+
+    // Fetch LIVE + SCHEDULED matches
+    const [liveRes, standingsRes, scoresRes] = await Promise.all([
+      axios.get(`https://api.football-data.org/v4/competitions/${comp.id}/matches?status=LIVE`, { timeout: 5000 }),
+      axios.get(`https://api.football-data.org/v4/competitions/${comp.id}/standings`, { timeout: 5000 }),
+      axios.get(`https://api.football-data.org/v4/competitions/${comp.id}/scorers?limit=5`, { timeout: 5000 })
+    ]).catch(err => {
+      console.error('API Error:', err.message);
+      return [{ data: { matches: [] } }, { data: { standings: [] } }, { data: { scorers: [] } }];
     });
 
-    const liveMatches = response.data.matches.map(match => ({
+    // Format live matches
+    const liveMatches = (liveRes.data.matches || []).map(m => ({
+      id: m.id,
       sport: 'FOOTBALL',
-      league: 'Premier League',
-      team1: match.homeTeam.name,
-      team2: match.awayTeam.name,
-      status: match.status === 'LIVE' ? `${match.score.fullTime.home ?? '-'} - ${match.score.fullTime.away ?? '-'}` : 'Today',
-      timestamp: match.utcDate
+      league: comp.name,
+      team1: m.homeTeam.name,
+      team1Logo: m.homeTeam.crest,
+      team2: m.awayTeam.name,
+      team2Logo: m.awayTeam.crest,
+      score1: m.score.fullTime.home,
+      score2: m.score.fullTime.away,
+      status: m.status === 'LIVE' ? `${m.minute || '0'}' LIVE` : 'SCHEDULED',
+      matchday: m.season?.currentMatchday,
+      utcDate: m.utcDate,
+      stage: m.stage
     }));
 
-    // Manual cricket data (update this as matches happen)
+    // Format standings (league table)
+    const standings = (standingsRes.data.standings?.[0]?.table || []).map(t => ({
+      pos: t.position,
+      team: t.team.name,
+      logo: t.team.crest,
+      played: t.playedGames,
+      wins: t.won,
+      draws: t.draw,
+      losses: t.lost,
+      goalsFor: t.goalsFor,
+      goalsAgainst: t.goalsAgainst,
+      goalDiff: t.goalDifference,
+      points: t.points
+    }));
+
+    // Format top scorers
+    const scorers = (scoresRes.data.scorers || []).map(s => ({
+      name: s.player.name,
+      goals: s.goals,
+      team: s.team.name,
+      assists: s.assists || 0
+    }));
+
+    // Cricket fallback
     const cricketMatches = [
       {
+        id: 'cri-1',
         sport: 'CRICKET',
         league: 'Test Match',
         team1: 'India',
         team2: 'England',
+        score1: 245,
+        score2: null,
         status: 'IND 245/3 (52 overs)',
-        timestamp: new Date()
+        utcDate: new Date()
       }
     ];
 
-    // Combine football + cricket, limit to 6 sports shown
-    const allMatches = [...cricketMatches, ...liveMatches].slice(0, 6);
-
-    res.json({ matches: allMatches });
-  } catch (error) {
-    console.error('Error fetching live matches:', error.message);
-    // Return empty matches if API fails (graceful degradation)
     res.json({
-      matches: [
-        {
-          sport: 'CRICKET',
-          league: 'Test Match',
-          team1: 'India',
-          team2: 'England',
-          status: 'IND 245/3 (52 overs)',
-          timestamp: new Date()
-        }
-      ]
+      competition: comp,
+      liveMatches,
+      standings,
+      topScorers: scorers,
+      cricket: cricketMatches,
+      timestamp: new Date()
+    });
+  } catch (error) {
+    console.error('Dashboard error:', error.message);
+    res.json({
+      competition: { id: 'PL', name: 'Premier League' },
+      liveMatches: [],
+      standings: [],
+      topScorers: [],
+      cricket: [],
+      timestamp: new Date()
     });
   }
+});
+
+// Get available competitions
+app.get('/api/competitions', (req, res) => {
+  res.json({
+    competitions: [
+      { id: 'PL', name: '⚽ Premier League', flag: '🇬🇧' },
+      { id: 'LA', name: '⚽ La Liga', flag: '🇪🇸' },
+      { id: 'SA', name: '⚽ Serie A', flag: '🇮🇹' },
+      { id: 'BL1', name: '⚽ Bundesliga', flag: '🇩🇪' },
+      { id: 'CL', name: '🏆 Champions League', flag: '🌍' }
+    ]
+  });
 });
 
 // API endpoint to get stats (for monitoring)
