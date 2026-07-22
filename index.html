@@ -8,18 +8,18 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
-    --bg:#070d26;
-    --card:#0e1740;
-    --edge:#26356e;
-    --blue:#2e63ff;
-    --blue-hi:#7fa4ff;
-    --blue-dk:#1e4ce0;
+    --bg:#1a0f2e;
+    --card:#2d1b4e;
+    --edge:#4a2d7f;
+    --blue:#00ff88;
+    --blue-hi:#33ffaa;
+    --blue-dk:#00dd77;
     --head:#ffffff;
-    --text:#a9b8e6;
-    --muted:#6f7fae;
-    --wa:#25c05f;
-    --sms:#3d8bff;
-    --live:#ff4747;
+    --text:#e0d5ff;
+    --muted:#b8a8d8;
+    --wa:#00ff88;
+    --sms:#00ff88;
+    --live:#ff1493;
     --disp:'Syne','Baloo 2',sans-serif;
     --body:'Epilogue','Mukta',sans-serif;
     --mono:'IBM Plex Mono','Mukta',monospace;
@@ -56,13 +56,13 @@
   .stadium{
     position:fixed;inset:0;z-index:-2;
     background:
-      radial-gradient(ellipse 55% 40% at 88% 0%, rgba(46,99,255,.16), transparent 65%),
-      radial-gradient(ellipse 45% 35% at 5% 45%, rgba(46,99,255,.10), transparent 65%),
-      linear-gradient(180deg,#0a1233 0%, #060b22 55%, #070d26 100%);
+      radial-gradient(ellipse 55% 40% at 88% 0%, rgba(255,20,147,.2), transparent 65%),
+      radial-gradient(ellipse 45% 35% at 5% 45%, rgba(128,0,255,.15), transparent 65%),
+      linear-gradient(180deg,#2d1b4e 0%, #1f1240 55%, #1a0f2e 100%);
   }
   .stadium::before{
     content:"";position:absolute;inset:0;
-    background-image:radial-gradient(rgba(110,150,255,.22) 1.3px, transparent 1.3px);
+    background-image:radial-gradient(rgba(0,255,136,.18) 1.3px, transparent 1.3px);
     background-size:17px 17px;
     -webkit-mask-image:radial-gradient(ellipse 42% 34% at 92% 6%, #000, transparent 72%);
     mask-image:radial-gradient(ellipse 42% 34% at 92% 6%, #000, transparent 72%);
@@ -70,7 +70,7 @@
   }
   .stadium::after{
     content:"";position:absolute;inset:0;
-    background-image:radial-gradient(rgba(110,150,255,.16) 1.3px, transparent 1.3px);
+    background-image:radial-gradient(rgba(0,255,136,.12) 1.3px, transparent 1.3px);
     background-size:17px 17px;
     -webkit-mask-image:radial-gradient(ellipse 34% 26% at 4% 62%, #000, transparent 72%);
     mask-image:radial-gradient(ellipse 34% 26% at 4% 62%, #000, transparent 72%);
@@ -722,13 +722,13 @@
       locale:'en-IN',
       brandTag:'Free Live Scores by SMS',
       navMatches:'Live Matches',navHow:'How it works',
-      topFormTitle:'Get Live Score Alerts',
-      topFormDesc:'Cricket, Kabaddi, Hockey, Football & Tennis. Instant SMS alerts as it happens.',
+      topFormTitle:'Get FREE Live Score Alerts',
+      topFormDesc:'Cricket, Kabaddi, Hockey, Football & Tennis. FREE instant SMS alerts as it happens.',
       lphone:'Mobile number',
       kicker:'LIVE: Cricket, Kabaddi, Hockey, Football, Tennis, Badminton',
-      h1a:'Free Live',h1b:'Score Alerts',h1c:'Instant SMS',
-      sub:'Cricket, Kabaddi, Hockey, Football, Tennis & Badminton. <b>Instant SMS on any phone. No app needed.</b>',
-      stat1:'Alert speed',stat2:'Free',stat3:'Coverage',
+      h1a:'FREE Live',h1b:'Score Alerts',h1c:'Instant SMS',
+      sub:'Cricket, Kabaddi, Hockey, Football, Tennis & Badminton. <b>FREE instant SMS on any phone. No app needed.</b>',
+      stat1:'Alert speed',stat2:'100% FREE',stat3:'Coverage',
       cri1:'Test, ODI, T20',cri2:'Scores',cri3:'Updates every ball',
       fbl1:'Club & International',fbl2:'Goals',fbl3:'Goal alerts instant',
       kbd1:'Indian Teams',kbd2:'Points',kbd3:'Raid alerts',
@@ -739,11 +739,11 @@
       fixh2:'Live Sports Coverage',
       sportCri:'CRICKET',sportFbl:'FOOTBALL',sportKbd:'KABADDI',sportHky:'HOCKEY',sportTns:'TENNIS',sportBdm:'BADMINTON',
       lg1:'International & Domestic',lg2:'Premier League, LaLiga, ISL',lg3:'Pro Kabaddi League',lg4:'International Matches',lg5:'Grand Slams & Masters',lg6:'BWF & National',
-      subbtn:'Get SMS Alerts ›',
+      subbtn:'Get FREE SMS Alerts ›',
       errPhone:'Enter a valid mobile number.',
-      formnote:'Free · No spam · Reply STOP to stop',
+      formnote:'100% FREE · No spam · Reply STOP to stop',
       footFormTitle:'Still Thinking?',
-      footFormDesc:'Get alerts for all 6 sports. One SMS, one tap. That\'s it.',
+      footFormDesc:'Get FREE alerts for all 6 sports. One SMS, one tap. That\'s it.',
       formnote:'Free service · No spam · Reply STOP to stop',
       footBlurb:'Livescore Alerts sends live sports scores by SMS. Free for all users. Standard operator charges may apply to replies.',
       footCovH:'Coverage',footCov1:'International cricket',footCov2:'T20 Telangana League',footCov3:'FIFA World Cup',footCov4:"Today's matches",
@@ -763,25 +763,25 @@
     },
     hi:{
       locale:'hi-IN',
-      brandTag:'फ्री SMS से लाइव स्कोर',
+      brandTag:'FREE SMS से लाइव स्कोर',
       navMatches:'लाइव मैच',navHow:'कैसे काम करता है',
-      topFormTitle:'लाइव स्कोर अलर्ट पाएं',
-      topFormDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल और टेनिस। तुरंत SMS अलर्ट।',
+      topFormTitle:'FREE लाइव स्कोर अलर्ट पाएं',
+      topFormDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल और टेनिस। FREE तुरंत SMS अलर्ट।',
       lphone:'मोबाइल नंबर',
       kicker:'लाइव: क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस, बैडमिंटन',
-      h1a:'फ्री लाइव',h1b:'स्कोर अलर्ट',h1c:'तुरंत SMS',
-      sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस और बैडमिंटन। <b>किसी भी फोन पर तुरंत SMS। कोई ऐप नहीं।</b>',
-      stat1:'अलर्ट स्पीड',stat2:'बिल्कुल फ्री',stat3:'कवरेज',
+      h1a:'FREE लाइव',h1b:'स्कोर अलर्ट',h1c:'तुरंत SMS',
+      sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस और बैडमिंटन। <b>किसी भी फोन पर FREE तुरंत SMS। कोई ऐप नहीं।</b>',
+      stat1:'अलर्ट स्पीड',stat2:'100% FREE',stat3:'कवरेज',
       notifSms:'ताज़ा स्कोर SMS से!',
       fixh2:'लाइव स्पोर्ट्स कवरेज',
       sportCri:'क्रिकेट',sportFbl:'फुटबॉल',sportKbd:'कबड्डी',sportHky:'हॉकी',sportTns:'टेनिस',sportBdm:'बैडमिंटन',
       lg1:'इंटरनेशनल और देशीय',lg2:'प्रीमियर लीग, लालीगा, आईएसएल',lg3:'प्रो कबड्डी लीग',lg4:'इंटरनेशनल मैच',lg5:'ग्रैंड स्लैम और मास्टर्स',lg6:'बीडब्ल्यूएफ और नेशनल',
-      subbtn:'SMS अलर्ट पाएं ›',
+      subbtn:'FREE SMS अलर्ट पाएं ›',
       errPhone:'सही मोबाइल नंबर डालें।',
       formnote:'फ्री · स्पैम नहीं · बंद करने के लिए STOP भेजें',
       footFormTitle:'अभी भी सोच रहे हैं?',
-      footFormDesc:'6 स्पोर्ट्स के लिए अलर्ट पाएं। एक SMS, एक टैप। बस।',
-      formnote:'फ्री सेवा · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
+      footFormDesc:'6 स्पोर्ट्स के लिए FREE अलर्ट पाएं। एक SMS, एक टैप। बस।',
+      formnote:'100% FREE सेवा · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
       footBlurb:'लाइवस्कोर अलर्ट्स SMS पर लाइव स्पोर्ट्स स्कोर भेजता है। सभी के लिए फ्री। जवाब भेजने पर ऑपरेटर का सामान्य शुल्क लग सकता है।',
       footCovH:'कवरेज',footCov1:'इंटरनेशनल क्रिकेट',footCov2:'टी20 तेलंगाना लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आज के मैच',
       footHelpH:'मदद',footHelp1:'सब्सक्राइब',footHelp2:'कैसे काम करता है',footHelp3:'नियम व शर्तें',footHelp4:'प्राइवेसी पॉलिसी',
@@ -800,25 +800,25 @@
     },
     mr:{
       locale:'mr-IN',
-      brandTag:'मोफत लाइव स्कोर SMS ने',
+      brandTag:'FREE लाइव स्कोर SMS ने',
       navMatches:'लाइव सामने',navHow:'कसे चालते',
-      topFormTitle:'लाइव स्कोर अलर्ट मिळवा',
-      topFormDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल आणि टेनिस। तात्काल SMS अलर्ट।',
+      topFormTitle:'FREE लाइव स्कोर अलर्ट मिळवा',
+      topFormDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल आणि टेनिस। FREE तात्काल SMS अलर्ट।',
       lphone:'मोबाईल नंबर',
       kicker:'लाइव्ह: क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस, बॅडमिंटन',
-      h1a:'मोफत लाइव्ह',h1b:'स्कोर अलर्ट',h1c:'तात्काल SMS',
-      sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस आणि बॅडमिंटन. <b>कोणत्याही फोनवर तात्काल SMS. कोणतेही ऍप नाही.</b>',
-      stat1:'अलर्ट स्पीड',stat2:'पूर्ण मोफत',stat3:'कव्हरेज',
+      h1a:'FREE लाइव्ह',h1b:'स्कोर अलर्ट',h1c:'तात्काल SMS',
+      sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस आणि बॅडमिंटन. <b>कोणत्याही फोनवर FREE तात्काल SMS. कोणतेही ऍप नाही.</b>',
+      stat1:'अलर्ट स्पीड',stat2:'100% FREE',stat3:'कव्हरेज',
       notifSms:'ताजा स्कोर SMS ने!',
       fixh2:'लाइव्ह स्पोर्ट्स कव्हरेज',
       sportCri:'क्रिकेट',sportFbl:'फुटबॉल',sportKbd:'कबड्डी',sportHky:'हॉकी',sportTns:'टेनिस',sportBdm:'बॅडमिंटन',
       lg1:'इंटरनॅशनल आणि देशीय',lg2:'प्रीमियर लीग, लालीगा, आयएसएल',lg3:'प्रो कबड्डी लीग',lg4:'इंटरनॅशनल सामने',lg5:'ग्रँड स्लॅम आणि मास्टर्स',lg6:'बीडब्ल्यूएफ आणि नेशनल',
-      subbtn:'SMS अलर्ट मिळवा ›',
+      subbtn:'FREE SMS अलर्ट मिळवा ›',
       errPhone:'योग्य मोबाईल नंबर टाका.',
       formnote:'मोफत · स्पॅम नाही · बंद करण्यासाठी STOP पाठवा',
       footFormTitle:'अजूनही विचार करत आहात?',
-      footFormDesc:'६ स्पोर्ट्सचे अलर्ट मिळवा. एक SMS, एक टॅप. बस.',
-      formnote:'मोफत सेवा · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
+      footFormDesc:'६ स्पोर्ट्सचे FREE अलर्ट मिळवा. एक SMS, एक टॅप. बस.',
+      formnote:'100% FREE सेवा · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
       footBlurb:'लाइव्हस्कोर अलर्ट्स SMS वर लाइव्ह स्पोर्ट्स स्कोर पाठवते. सर्वांसाठी मोफत. उत्तर पाठवल्यास ऑपरेटरचे शुल्क लागू शकते.',
       footCovH:'कव्हरेज',footCov1:'इंटरनॅशनल क्रिकेट',footCov2:'टी20 तेलंगणा लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आजचे सामने',
       footHelpH:'मदत',footHelp1:'सबस्क्राईब',footHelp2:'कसे चालते',footHelp3:'नियम व अटी',footHelp4:'प्रायव्हसी पॉलिसी',
