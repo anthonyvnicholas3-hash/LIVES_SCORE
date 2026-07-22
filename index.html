@@ -96,7 +96,7 @@
   }
   .tag--cri{background:var(--blue)}
   .tag--fbl{background:var(--wa)}
-  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(0)}}
 
   /* ---------- header ---------- */
   header{
@@ -536,7 +536,10 @@
       <form id="topform" novalidate>
         <div class="field" id="f-phone-top">
           <label for="phone-top" data-i18n="lphone" style="display:none">Mobile number</label>
-          <input type="tel" id="phone-top" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" value="+91">
+          <div style="display:flex;align-items:center;gap:0;background:#0a1233;border:1.5px solid var(--edge);border-radius:999px;padding:0;overflow:hidden">
+            <span style="padding:.95rem 1.2rem;background:#1a0f2e;color:var(--text);font-weight:600;flex-shrink:0;border-right:1px solid var(--edge)">+91</span>
+            <input type="tel" id="phone-top" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" maxlength="10" style="flex:1;border:none;background:#0a1233;color:#fff;padding:.95rem 1.2rem;font-family:var(--body);font-size:1.05rem;outline:none" data-country="+91">
+          </div>
           <span class="err" data-i18n="errPhone">Enter a valid mobile number.</span>
         </div>
         <button type="submit" class="btn btn--sub" data-i18n="subbtn" style="width:100%;margin-top:1rem">Get SMS Alerts ›</button>
@@ -655,7 +658,10 @@
     <p style="color:var(--text);font-size:.95rem;margin-bottom:1.5rem;max-width:28rem;margin-left:auto;margin-right:auto" data-i18n="footFormDesc">Get alerts for all 6 sports. One SMS, one tap. That's it.</p>
     <form id="footform" novalidate style="max-width:400px;margin:0 auto">
       <div class="field" id="f-phone-foot">
-        <input type="tel" id="phone-foot" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" value="+91" style="width:100%;padding:.85rem 1rem;background:#0a1233;border:1.5px solid var(--edge);color:#fff;font-family:var(--body);font-size:1rem;border-radius:999px;transition:border-color .2s">
+        <div style="display:flex;align-items:center;gap:0;background:#0a1233;border:1.5px solid var(--edge);border-radius:999px;padding:0;overflow:hidden">
+          <span style="padding:.85rem 1rem;background:#1a0f2e;color:var(--text);font-weight:600;flex-shrink:0;border-right:1px solid var(--edge)">+91</span>
+          <input type="tel" id="phone-foot" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" maxlength="10" style="flex:1;border:none;background:#0a1233;color:#fff;padding:.85rem 1rem;font-family:var(--body);font-size:1rem;outline:none" data-country="+91">
+        </div>
         <span class="err" data-i18n="errPhone" style="color:#ff8080;font-size:.75rem;margin-top:.3rem;display:none">Enter a valid number</span>
       </div>
       <button type="submit" class="btn" style="width:100%;margin-top:.8rem;font-size:.95rem;padding:.75rem 1.5rem" data-i18n="subbtn">Get Alerts Now ›</button>
@@ -838,14 +844,15 @@
   };
   var CUR='en';
 
-  function buildTicker(t){
+  function buildTicker(matches){
     var html='';
-    // items twice so the -50% scroll loops seamlessly
-    for(var pass=0;pass<2;pass++){
-      for(var i=0;i<t.ticker.length;i++){
-        var it=t.ticker[i];
-        html+='<span><i class="tag tag--'+it[0]+'">'+(it[0]==='cri'?'CRI':'FBL')+'</i>'+it[1]+'</span>';
-      }
+    if(!matches||matches.length===0)return;
+    // Build ticker from live matches (only once, not scrolling)
+    for(var i=0;i<matches.length;i++){
+      var m=matches[i];
+      var tag=m.sport==='CRICKET'?'cri':'fbl';
+      var label=tag==='cri'?'CRI':'FBL';
+      html+='<span><i class="tag tag--'+tag+'">'+label+'</i>'+m.team1+' vs '+m.team2+' · '+m.status+'</span>';
     }
     document.getElementById('ticker-track').innerHTML=html;
   }
@@ -880,7 +887,6 @@
     for(var b=0;b<btns.length;b++){
       btns[b].classList.toggle('on',btns[b].getAttribute('data-lang')===l);
     }
-    buildTicker(t);
     tickClock();
   }
 
@@ -917,9 +923,10 @@
     e.preventDefault();
     var form=e.target;
     var phoneInput=form.querySelector('input[type=tel]');
-    var phoneId=phoneInput.id;
     var fieldId=form.querySelector('.field').id;
-    var phone=phoneInput.value.replace(/[\s\-()]/g,'');
+    var digits=phoneInput.value.replace(/[\s\-()]/g,'');
+    var country=phoneInput.getAttribute('data-country')||'+91';
+    var phone=country+digits;
     var phoneOk=validatePhone(phone);
 
     var field=document.getElementById(fieldId);
@@ -957,22 +964,15 @@
   document.getElementById('topform').addEventListener('submit',handleFormSubmit);
   document.getElementById('footform').addEventListener('submit',handleFormSubmit);
 
-  // pre-fill +91 on input focus if empty
+  // Phone inputs: only allow 10 digits
   var phoneInputs=document.querySelectorAll('input[type=tel]');
   for(var i=0;i<phoneInputs.length;i++){
-    phoneInputs[i].addEventListener('focus',function(){
-      if(this.value===''){
-        this.value='+91';
-      }
-    });
-    phoneInputs[i].addEventListener('blur',function(){
-      if(this.value==='+91'||this.value===''){
-        this.value='+91';
-      }
+    phoneInputs[i].addEventListener('input',function(){
+      this.value=this.value.replace(/[^\d]/g,'').slice(0,10);
     });
   }
 
-  // Fetch and display live matches dynamically
+  // Fetch and display live matches + update ticker dynamically
   function loadLiveMatches(){
     fetch('/api/live-matches')
       .then(r=>r.json())
@@ -985,10 +985,7 @@
           return;
         }
         data.matches.forEach(match=>{
-          var badge='';
           var badgeBg='#1DB854';
-          if(match.sport==='CRICKET')badgeBg='#1DB854';
-          else if(match.sport==='FOOTBALL')badgeBg='#1DB854';
           var card=document.createElement('article');
           card.className='card';
           card.innerHTML='<span class="card__sport" style="background:'+badgeBg+'">'+match.sport+'</span>'+
@@ -997,6 +994,9 @@
             '<div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span>'+match.status+'</span></div>';
           grid.appendChild(card);
         });
+
+        // Update ticker with live match data
+        buildTicker(data.matches);
       })
       .catch(err=>{
         console.error('Error loading live matches:',err);
