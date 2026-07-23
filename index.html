@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIVESCORE ALERTS — Free SMS Live Scores</title>
-<meta name="description" content="Free live cricket and football scores on your phone by SMS and WhatsApp. English, Hindi and Marathi.">
+<title>LIVESCORE ALERTS — Free SMS Live Scores, 7 Seconds Faster Than TV</title>
+<meta name="description" content="Free live cricket scores by SMS. 7 seconds faster than TV. No app needed. Trusted by 5,00,000+ fans. English, Hindi and Marathi.">
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
@@ -17,8 +17,6 @@
     --head:#ffffff;
     --text:#e0d5ff;
     --muted:#b8a8d8;
-    --wa:#1DB854;
-    --sms:#1DB854;
     --live:#ff1493;
     --disp:'Syne','Baloo 2',sans-serif;
     --body:'Epilogue','Mukta',sans-serif;
@@ -38,21 +36,13 @@
   }
   ::selection{background:var(--blue);color:#fff}
 
-  /* Devanagari display faces need looser leading for matras */
   html[lang=hi] h1,html[lang=mr] h1{line-height:1.15;letter-spacing:0}
-  html[lang=hi] h2,html[lang=mr] h2{line-height:1.15}
-  html[lang=hi] .card__teams,html[lang=mr] .card__teams{line-height:1.3}
-  html[lang=hi] nav a,html[lang=mr] nav a,
+  html[lang=hi] h2,html[lang=mr] h2{line-height:1.2}
   html[lang=hi] .btn,html[lang=mr] .btn{letter-spacing:.03em}
-  /* Devanagari conjuncts break apart under wide tracking */
-  html[lang=hi] .kicker,html[lang=mr] .kicker,
   html[lang=hi] label,html[lang=mr] label,
-  html[lang=hi] .stat span,html[lang=mr] .stat span,
-  html[lang=hi] .card__league,html[lang=mr] .card__league,
-  html[lang=hi] .form-note,html[lang=mr] .form-note,
-  html[lang=hi] .foot-bottom,html[lang=mr] .foot-bottom{letter-spacing:.04em}
+  html[lang=hi] .kicker,html[lang=mr] .kicker,
+  html[lang=hi] .form-note,html[lang=mr] .form-note{letter-spacing:.04em}
 
-  /* ---------- backdrop: deep navy with halftone dots ---------- */
   .stadium{
     position:fixed;inset:0;z-index:-2;
     background:
@@ -68,37 +58,7 @@
     mask-image:radial-gradient(ellipse 42% 34% at 92% 6%, #000, transparent 72%);
     pointer-events:none;
   }
-  .stadium::after{
-    content:"";position:absolute;inset:0;
-    background-image:radial-gradient(rgba(29,184,84,.10) 1.3px, transparent 1.3px);
-    background-size:17px 17px;
-    -webkit-mask-image:radial-gradient(ellipse 34% 26% at 4% 62%, #000, transparent 72%);
-    mask-image:radial-gradient(ellipse 34% 26% at 4% 62%, #000, transparent 72%);
-    pointer-events:none;
-  }
 
-  /* ---------- score ticker ---------- */
-  .ticker{
-    background:#030718;
-    border-bottom:1px solid #1b2755;
-    overflow:hidden;white-space:nowrap;
-    font-family:var(--mono);
-    font-size:.76rem;letter-spacing:.03em;
-    padding:.5rem 0;
-    position:relative;z-index:6;
-  }
-  .ticker__track{display:inline-block;animation:tick 38s linear infinite}
-  .ticker__track span{margin:0 1.7rem;color:#93a7dd}
-  .tag{
-    display:inline-block;padding:.05rem .45rem;margin-right:.5rem;
-    font-size:.6rem;font-weight:600;letter-spacing:.08em;
-    color:#fff;vertical-align:1px;font-style:normal;border-radius:999px;
-  }
-  .tag--cri{background:var(--blue)}
-  .tag--fbl{background:var(--wa)}
-  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-  /* ---------- header ---------- */
   header{
     position:relative;z-index:5;
     display:flex;align-items:center;gap:1.6rem;
@@ -144,30 +104,28 @@
     transition:background .15s,color .15s;
   }
   .lang button:last-child{border-right:none}
-  .lang button:hover{color:#fff}
   .lang button.on{background:var(--blue);color:#fff;font-weight:600}
+  @media(max-width:700px){nav{display:none}}
+
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
     font-family:var(--disp);font-weight:800;
     text-transform:uppercase;letter-spacing:.03em;text-decoration:none;
     background:var(--blue);color:#fff;border:none;cursor:pointer;
     border-radius:999px;
-    box-shadow:0 10px 30px rgba(46,99,255,.4);
+    box-shadow:0 10px 30px rgba(29,184,84,.4);
     transition:transform .12s,box-shadow .12s,background .12s;
   }
-  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(46,99,255,.55);background:var(--blue-dk)}
-  .btn:active{transform:translateY(0);box-shadow:0 6px 18px rgba(46,99,255,.35)}
-  .btn--head{font-size:.85rem;padding:.6rem 1.4rem;white-space:nowrap}
-  @media(max-width:900px){nav{display:none}.lang{margin-left:auto}}
-  @media(max-width:560px){.btn--head{display:none}.wordmark span{display:none}}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(29,184,84,.55);background:var(--blue-dk)}
+  .btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 
   /* ---------- hero ---------- */
   .hero{
     position:relative;z-index:4;
-    display:grid;grid-template-columns:1.15fr .85fr;
+    display:grid;grid-template-columns:1.1fr .9fr;
     gap:clamp(2rem,4vw,4rem);
     align-items:center;
-    padding:clamp(2rem,6vh,4.5rem) clamp(1rem,4vw,3.5rem) clamp(3rem,8vh,5.5rem);
+    padding:clamp(2rem,6vh,4rem) clamp(1rem,4vw,3.5rem) clamp(2rem,5vh,3rem);
     max-width:1220px;margin:0 auto;
   }
   .kicker{
@@ -180,63 +138,78 @@
   }
   .kicker::before{content:"";width:.45rem;height:.45rem;background:var(--live);border-radius:50%;box-shadow:0 0 8px var(--live);animation:pulse 1.6s infinite;flex-shrink:0}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.82)}}
+
   h1{
     font-family:var(--disp);
     font-weight:800;text-transform:uppercase;
-    font-size:clamp(2.5rem,6.2vw,4.8rem);
+    font-size:clamp(2.2rem,5.6vw,4rem);
     line-height:1;letter-spacing:-.01em;
-    color:var(--blue-hi);
+    color:var(--live);
   }
-  h1 .score{
-    display:block;color:var(--head);
-  }
-  h1 .l3{
-    display:inline-block;font-size:.32em;font-weight:700;
-    letter-spacing:.02em;color:#fff;margin-top:.45em;
-    background:var(--blue);padding:.38em 1.1em;border-radius:999px;
-    box-shadow:0 10px 30px rgba(46,99,255,.35);
-  }
+  h1 .score{display:block;color:var(--head);font-size:.75em;margin-top:.3em}
+
   .sub{
     margin-top:1.4rem;max-width:34rem;
     font-size:1.06rem;line-height:1.7;color:var(--text);
   }
   .sub b{color:var(--head);font-weight:600}
-  .channel-row{display:flex;gap:.8rem;margin-top:1.6rem;flex-wrap:wrap}
-  .chip{
-    display:inline-flex;align-items:center;gap:.5rem;
-    font-family:var(--disp);font-weight:800;
-    text-transform:uppercase;letter-spacing:.02em;font-size:.85rem;
-    padding:.5rem 1.1rem;color:#fff;border-radius:999px;
+
+  .match-card{
+    margin-top:1.6rem;background:var(--card);border:1.5px solid var(--edge);
+    border-radius:16px;padding:1rem 1.3rem;max-width:30rem;
   }
-  .chip--wa{background:var(--wa);box-shadow:0 8px 24px rgba(37,192,95,.35)}
-  .chip--sms{background:var(--sms);box-shadow:0 8px 24px rgba(61,139,255,.35)}
-  .chip svg{width:1.05rem;height:1.05rem;fill:#fff}
-  .hero-stats{display:flex;gap:0;margin-top:2.3rem;flex-wrap:wrap;border:1.5px solid var(--edge);background:var(--card);border-radius:16px;overflow:hidden}
-  .stat{padding:.9rem 1.4rem;border-right:1.5px solid var(--edge);flex:1;min-width:8rem}
-  .stat:last-child{border-right:none}
-  .stat b{
-    display:block;font-family:var(--disp);
-    font-weight:800;font-size:1.5rem;color:var(--blue-hi);line-height:1.1;
+  .match-card .mc-top{
+    display:flex;align-items:center;gap:.6rem;font-family:var(--mono);
+    font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:.6rem;
   }
-  .stat span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .match-card .mc-top i{width:.4rem;height:.4rem;border-radius:50%;background:var(--live);box-shadow:0 0 6px var(--live);animation:pulse 1.6s infinite}
+  .match-card .mc-score{
+    font-family:var(--disp);font-weight:800;font-size:1.3rem;color:var(--head);
+    display:flex;align-items:center;gap:.7rem;
+  }
+  .match-card .mc-score .vs{
+    font-family:var(--mono);font-size:.62rem;background:#1b2755;color:#93a7dd;
+    padding:.15rem .5rem;border-radius:999px;font-weight:600;
+  }
+  .match-card .mc-note{margin-top:.5rem;font-size:.85rem;color:var(--live);font-weight:600}
+
+  .trust-strip{
+    margin-top:1.8rem;display:flex;gap:1rem;flex-wrap:wrap;
+  }
+  .trust-strip span{
+    display:inline-flex;align-items:center;gap:.4rem;
+    font-size:.85rem;color:var(--text);
+    background:rgba(29,184,84,.1);border:1px solid var(--blue);
+    border-radius:999px;padding:.4rem .9rem;
+  }
+  .trust-strip span i{color:#1DB854;font-style:normal;font-weight:800}
 
   /* ---------- phone mock ---------- */
   .phone-wrap{position:relative;display:flex;justify-content:center}
+  .phone-badge{
+    position:absolute;z-index:2;left:-6%;top:20%;
+    width:3.6rem;height:3.6rem;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 30% 30%,#3ee07f,#149a4c);
+    box-shadow:0 0 34px rgba(29,184,84,.5);animation:bob 4s ease-in-out infinite;
+    font-family:var(--disp);font-weight:800;color:#fff;font-size:.75rem;letter-spacing:.02em;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   .phone{
     width:min(300px,80vw);
     border:3px solid #32406f;border-radius:2.4rem;
-    background:linear-gradient(165deg,#2456f0 0%,#0f2fae 80%);
+    background:linear-gradient(165deg,#3a2570 0%,#1a0f45 80%);
     padding:1.1rem .9rem 1.6rem;
-    box-shadow:0 30px 80px rgba(0,8,40,.7),0 0 70px rgba(46,99,255,.22);
+    box-shadow:0 30px 80px rgba(0,8,40,.7),0 0 70px rgba(29,184,84,.18);
     position:relative;
     transform:rotate(3deg);
   }
   .phone__notch{width:38%;height:.85rem;background:#101740;border-radius:1rem;margin:0 auto .9rem}
   .phone__time{
     text-align:center;font-family:'Syne',sans-serif;
-    font-size:3rem;font-weight:700;color:#fff;letter-spacing:.06em;
+    font-size:2.6rem;font-weight:700;color:#fff;letter-spacing:.06em;
   }
-  .phone__date{text-align:center;font-family:var(--mono);font-size:.68rem;color:#bcd0ff;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.1rem}
+  .phone__date{text-align:center;font-family:var(--mono);font-size:.62rem;color:#bcd0ff;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.1rem}
   .notif{
     background:#fff;color:#1a2450;
     border-radius:.9rem;padding:.7rem .8rem;
@@ -245,124 +218,81 @@
     box-shadow:0 8px 24px rgba(0,4,30,.4);
     animation:slidein .7s cubic-bezier(.2,.9,.3,1.2) both;
   }
-  .notif:nth-child(5){animation-delay:.35s}
+  .notif:nth-child(4){animation-delay:.35s}
   @keyframes slidein{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
   .notif__icon{
-    width:2.1rem;height:2.1rem;border-radius:.55rem;flex-shrink:0;
+    width:2rem;height:2rem;border-radius:.55rem;flex-shrink:0;background:var(--blue);
     display:flex;align-items:center;justify-content:center;
+    font-family:var(--disp);font-weight:800;color:#fff;font-size:.62rem;
   }
-  .notif__icon--wa{background:var(--wa)}
-  .notif__icon--sms{background:var(--sms)}
-  .notif__icon svg{width:1.2rem;height:1.2rem;fill:#fff}
   .notif__body{font-size:.72rem;line-height:1.45;min-width:0}
   .notif__body b{display:block;font-size:.73rem;letter-spacing:.02em;color:#141b4d}
-  .notif__body .mono{font-family:var(--mono);font-size:.66rem;color:#1c4be0}
+  .notif__body .mono{font-family:var(--mono);font-size:.66rem;color:#149a4c;font-weight:600}
   .notif__now{margin-left:auto;font-size:.62rem;color:#8a97c0;flex-shrink:0}
-  .phone-badge{
-    position:absolute;z-index:2;
-    width:4.2rem;height:4.2rem;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .phone-badge svg{width:2.2rem;height:2.2rem;fill:#fff}
-  .phone-badge--wa{
-    left:-8%;top:24%;background:radial-gradient(circle at 30% 30%,#3ee07f,#149a4c);
-    box-shadow:0 0 34px rgba(37,192,95,.55);animation:bob 4s ease-in-out infinite;
-  }
-  .phone-badge--sms{
-    right:-8%;top:38%;background:radial-gradient(circle at 30% 30%,#63b0ff,#1c5dc9);
-    box-shadow:0 0 34px rgba(61,139,255,.5);animation:bob 4s ease-in-out 1.2s infinite;
-  }
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-  /* ---------- fixtures ---------- */
-  .fixtures{
-    position:relative;z-index:4;
-    max-width:1220px;margin:0 auto;
-    padding:0 clamp(1rem,4vw,3.5rem) clamp(3rem,7vh,5rem);
+  /* ---------- speed comparison ---------- */
+  .speed-section{
+    position:relative;z-index:4;max-width:900px;margin:0 auto;
+    padding:clamp(1.5rem,5vh,3rem) clamp(1rem,4vw,2rem);
   }
-  .section-head{
-    display:flex;align-items:center;gap:1rem;margin-bottom:1.6rem;flex-wrap:wrap;
+  .speed-box{
+    background:linear-gradient(135deg,rgba(29,184,84,.14),rgba(255,20,147,.08));
+    border:1.5px solid var(--blue);border-radius:22px;
+    padding:clamp(1.5rem,4vw,2.4rem);text-align:center;
   }
-  h2{
-    font-family:var(--disp);font-weight:800;
-    text-transform:uppercase;font-size:clamp(1.4rem,2.8vw,2rem);
-    color:var(--head);letter-spacing:.01em;
+  .speed-box h2{
+    font-family:var(--disp);font-weight:800;color:var(--head);
+    font-size:clamp(1.3rem,3vw,1.9rem);margin-bottom:1.3rem;letter-spacing:.01em;
+    text-transform:uppercase;
   }
-  .section-head .rule{flex:1;height:3px;background:repeating-linear-gradient(90deg,var(--blue) 0 14px,transparent 14px 24px);min-width:60px;opacity:.5;border-radius:2px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1rem}
-  .card{
-    background:var(--card);
-    border:1.5px solid var(--edge);
-    border-radius:18px;
-    padding:1.1rem 1.2rem 1.1rem;
-    position:relative;overflow:hidden;
-    transition:transform .2s,border-color .2s,box-shadow .2s;
+  .speed-rows{display:flex;flex-direction:column;gap:.7rem;max-width:480px;margin:0 auto 1.2rem}
+  .speed-row{
+    display:flex;align-items:center;gap:.8rem;
+    background:#0a1233;border:1px solid var(--edge);border-radius:14px;
+    padding:.8rem 1.1rem;text-align:left;
   }
-  .card:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 18px 44px rgba(46,99,255,.2)}
-  .card__sport{
-    position:absolute;right:0;top:0;
-    font-family:var(--mono);font-size:.56rem;font-weight:600;
-    letter-spacing:.14em;color:#fff;
-    padding:.24rem .7rem;border-radius:0 16px 0 12px;
-  }
-  .card__sport--cri{background:var(--blue)}
-  .card__sport--fbl{background:var(--wa)}
-  .card__league{
-    font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--blue-hi);margin:.9rem 0 .7rem;
-    max-width:85%;
-  }
-  .card__teams{font-family:var(--disp);font-weight:700;text-transform:uppercase;font-size:1.02rem;line-height:1.3;letter-spacing:0;color:var(--head)}
-  .card__vs{
-    display:inline-block;background:#1b2755;color:#93a7dd;font-size:.62rem;
-    font-family:var(--mono);font-weight:600;
-    padding:.14rem .5rem;margin:.3rem 0;vertical-align:.15em;border-radius:999px;
-  }
-  .card__time{
-    margin-top:.95rem;display:flex;align-items:center;justify-content:center;gap:.45rem;
-    font-family:var(--mono);font-size:.72rem;color:#fff;
-    background:var(--blue);border-radius:999px;padding:.42rem .9rem;
-  }
-  .card__time svg{width:.85rem;height:.85rem;fill:none;stroke:#fff;stroke-width:2;flex-shrink:0}
+  .speed-row.win{border-color:var(--blue);background:rgba(29,184,84,.1)}
+  .speed-row .sr-icon{font-size:1.3rem;flex-shrink:0}
+  .speed-row .sr-label{flex:1;font-size:.92rem;color:var(--text)}
+  .speed-row .sr-time{font-family:var(--mono);font-weight:700;font-size:.85rem;color:var(--muted)}
+  .speed-row.win .sr-time{color:var(--blue-hi)}
+  .speed-box .tagline{color:var(--text);font-size:1rem;font-weight:600}
+  .speed-box .tagline b{color:var(--blue-hi)}
 
-  /* ---------- top-of-fold form ---------- */
-  .hero-form{
-    position:relative;z-index:4;
-    max-width:760px;margin:0 auto;
-    padding:clamp(2rem,6vh,3.5rem) clamp(1rem,4vw,2rem) clamp(3rem,8vh,5rem);
+  /* ---------- testimonial ---------- */
+  .testimonial-section{
+    position:relative;z-index:4;max-width:700px;margin:0 auto;
+    padding:0 clamp(1rem,4vw,2rem) clamp(2rem,5vh,3rem);
   }
-  .hero-form-shell{
-    background:var(--card);
-    border:1.5px solid var(--edge);
-    border-radius:22px;
-    padding:clamp(2rem,5vw,3rem);
-    box-shadow:0 30px 80px rgba(0,6,30,.6);
-    text-align:center;
+  .testimonial{
+    background:var(--card);border:1.5px solid var(--edge);border-radius:20px;
+    padding:clamp(1.4rem,4vw,2rem);text-align:center;
   }
-  .hero-form-shell h2{
-    font-family:var(--disp);font-weight:800;
-    text-transform:uppercase;font-size:clamp(1.5rem,3vw,2rem);
-    color:var(--head);margin-bottom:.5rem;letter-spacing:.01em;
-  }
-  .hero-form-shell p{color:var(--text);font-size:.95rem;margin-bottom:1.6rem;line-height:1.5}
+  .testimonial .stars{color:#FFD700;font-size:1.1rem;margin-bottom:.8rem;letter-spacing:.2em}
+  .testimonial p{font-size:1.05rem;line-height:1.6;color:var(--head);font-style:italic;margin-bottom:.9rem}
+  .testimonial .who{font-family:var(--mono);font-size:.75rem;color:var(--blue-hi);letter-spacing:.05em}
 
   /* ---------- form ---------- */
   .signup{
     position:relative;z-index:4;
-    max-width:760px;margin:0 auto;
-    padding:0 clamp(1rem,4vw,2rem) clamp(4rem,9vh,6.5rem);
+    max-width:640px;margin:0 auto;
+    padding:0 clamp(1rem,4vw,2rem) clamp(3rem,7vh,4.5rem);
   }
   .form-shell{
     background:var(--card);
     border:1.5px solid var(--edge);
     border-radius:22px;
-    padding:clamp(1.6rem,4vw,2.8rem);
+    padding:clamp(1.6rem,4vw,2.6rem);
     box-shadow:0 30px 80px rgba(0,6,30,.6);
     text-align:center;
   }
-  .form-shell h2{margin-bottom:.4rem}
-  .form-shell p.lede{color:var(--text);font-size:.98rem;margin-bottom:1.8rem}
-  .field{margin-bottom:1.4rem;text-align:left}
+  .form-shell h2{
+    font-family:var(--disp);font-weight:800;
+    text-transform:uppercase;font-size:clamp(1.3rem,2.8vw,1.7rem);
+    color:var(--head);margin-bottom:.5rem;letter-spacing:.01em;
+  }
+  .form-shell p.lede{color:var(--text);font-size:.95rem;margin-bottom:1.6rem}
+  .field{margin-bottom:1.2rem;text-align:left}
   label{
     display:block;font-family:var(--mono);font-size:.64rem;
     letter-spacing:.18em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:.45rem;
@@ -378,46 +308,17 @@
   .err{color:#ff8080;font-size:.78rem;margin-top:.35rem;margin-left:1.2rem;display:none}
   .field.invalid .err{display:block}
   .field.invalid input{border-color:var(--live)}
-  .btn--sub{
-    width:100%;font-size:clamp(1rem,2.2vw,1.2rem);padding:1rem 1.5rem;
-  }
+  .btn--sub{width:100%;font-size:clamp(1rem,2.2vw,1.15rem);padding:1rem 1.5rem}
   .form-note{
     text-align:center;margin-top:1.2rem;font-family:var(--mono);
     font-size:.66rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;
   }
-
-  /* ---------- exit-intent popup ---------- */
-  .modal{
-    position:fixed;inset:0;z-index:60;
-    background:rgba(2,5,18,.85);backdrop-filter:blur(5px);
-    display:flex;align-items:center;justify-content:center;padding:1rem;
-    opacity:0;pointer-events:none;transition:opacity .3s ease-out;
-  }
-  .modal.show{opacity:1;pointer-events:auto}
-  .modal__content{
-    background:var(--card);
-    border:1.5px solid var(--edge);border-radius:22px;
-    padding:clamp(2rem,5vw,3rem);max-width:520px;width:100%;
-    text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.8);
-    animation:slideup .4s cubic-bezier(.2,.9,.3,1.2) both;
-  }
-  @keyframes slideup{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-  .modal__close{
-    position:absolute;top:1rem;right:1rem;
-    width:2rem;height:2rem;border:none;background:none;
-    font-size:1.4rem;color:var(--muted);cursor:pointer;
-    transition:color .15s;
-  }
-  .modal__close:hover{color:var(--head)}
-  .modal h3{
-    font-family:var(--disp);font-weight:800;
-    text-transform:uppercase;font-size:1.4rem;color:var(--head);
-    margin-bottom:.8rem;letter-spacing:.01em;
-  }
-  .modal p{color:var(--text);font-size:.98rem;line-height:1.6;margin-bottom:1.6rem}
-  .modal .field{margin-bottom:1.2rem}
-  .modal input[type=tel]{padding:.85rem 1rem;font-size:1rem}
-  .modal .btn--sub{font-size:1rem;padding:.85rem 1.5rem;margin-top:.5rem}
+  .sport-check{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid var(--edge)}
+  .sport-check label{display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text);text-transform:none;letter-spacing:0;font-family:var(--body)}
+  .sport-check input{width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854}
+  .phone-field-wrap{display:flex;align-items:center;gap:0;background:#0a1233;border:1.5px solid var(--edge);border-radius:999px;padding:0;overflow:hidden}
+  .phone-field-wrap .cc{padding:.95rem 1.2rem;background:#1a0f2e;color:var(--text);font-weight:600;flex-shrink:0;border-right:1px solid var(--edge)}
+  .phone-field-wrap input{flex:1;border:none;background:#0a1233;color:#fff;padding:.95rem 1.2rem;font-family:var(--body);font-size:1.05rem;outline:none;border-radius:0}
 
   /* ---------- footer ---------- */
   footer{
@@ -427,11 +328,12 @@
   }
   .foot-grid{
     max-width:1220px;margin:0 auto;
-    display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;
+    display:grid;grid-template-columns:2fr 1fr;gap:2.5rem;
     padding:2.6rem clamp(1rem,4vw,3.5rem) 2.2rem;
   }
   .foot-brand .brand{margin-bottom:1rem}
   .foot-brand p{font-size:.86rem;line-height:1.65;color:var(--text);max-width:26rem}
+  .foot-brand .social{margin-top:.9rem;font-size:.95rem;color:var(--blue-hi);font-weight:600}
   .foot-col h4{
     font-family:var(--disp);font-weight:800;
     font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;
@@ -450,9 +352,7 @@
     text-transform:uppercase;color:var(--muted);
   }
   .foot-bottom .stop{color:var(--blue-hi)}
-  @media(max-width:760px){
-    .foot-grid{grid-template-columns:1fr;gap:1.8rem}
-  }
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:1.8rem}}
 
   /* ---------- language popup ---------- */
   .langpop{
@@ -485,28 +385,19 @@
     border-radius:999px;cursor:pointer;transition:all .15s;
   }
   .langpop__btns button:hover{border-color:var(--blue);color:#fff;background:var(--blue)}
-  .langpop__note{
-    margin-top:1.2rem;font-family:var(--mono);font-size:.6rem;
-    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
-  }
 
   @media(max-width:860px){
     .hero{grid-template-columns:1fr;text-align:center;padding-top:2.5rem}
-    .sub{margin-left:auto;margin-right:auto}
-    .channel-row{justify-content:center}
+    .sub,.match-card,.trust-strip{margin-left:auto;margin-right:auto}
+    .trust-strip{justify-content:center}
     .kicker{margin-left:auto;margin-right:auto}
     .phone{transform:rotate(0)}
-    .row-2{grid-template-columns:1fr}
+    .phone-badge{display:none}
   }
 </style>
 </head>
 <body>
 <div class="stadium" aria-hidden="true"></div>
-
-<!-- live ticker (built by JS per language) -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__track" id="ticker-track"></div>
-</div>
 
 <header>
   <a class="brand" href="#">
@@ -517,8 +408,8 @@
     </span>
   </a>
   <nav>
-    <a href="#matches" data-i18n="navMatches">Live Matches</a>
     <a href="how-it-works.html" data-i18n="navHow">How it works</a>
+    <a href="#signup" data-i18n="navSignup">Get Alerts</a>
   </nav>
   <div class="lang" id="lang-switch" role="group" aria-label="Language">
     <button type="button" data-lang="en">EN</button>
@@ -528,241 +419,117 @@
 </header>
 
 <main>
-  <!-- TOP OF FOLD: Subscribe Form -->
-  <section class="hero-form">
-    <div class="hero-form-shell">
-      <h2 data-i18n="topFormTitle">Get Live Score Alerts</h2>
-      <p data-i18n="topFormDesc">Cricket, Kabaddi, Hockey, Football & Tennis. Instant SMS alerts as it happens.</p>
-      <form id="topform" novalidate>
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--edge)">
-          <label style="display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:.8rem">Which sports?</label>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
-              <input type="checkbox" name="sport" value="cricket" checked style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
-              <span>Cricket</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
-              <input type="checkbox" name="sport" value="football" style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
-              <span>Football</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
-              <input type="checkbox" name="sport" value="kabaddi" style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
-              <span>Kabaddi</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
-              <input type="checkbox" name="sport" value="hockey" style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
-              <span>Hockey</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
-              <input type="checkbox" name="sport" value="tennis" style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
-              <span>Tennis</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;color:var(--text)">
-              <input type="checkbox" name="sport" value="badminton" style="width:1.1rem;height:1.1rem;cursor:pointer;accent-color:#1DB854">
-              <span>Badminton</span>
-            </label>
-          </div>
-        </div>
-        <div class="field" id="f-phone-top">
-          <label for="phone-top" data-i18n="lphone" style="display:none">Mobile number</label>
-          <div style="display:flex;align-items:center;gap:0;background:#0a1233;border:1.5px solid var(--edge);border-radius:999px;padding:0;overflow:hidden">
-            <span style="padding:.95rem 1.2rem;background:#1a0f2e;color:var(--text);font-weight:600;flex-shrink:0;border-right:1px solid var(--edge)">+91</span>
-            <input type="tel" id="phone-top" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" maxlength="10" style="flex:1;border:none;background:#0a1233;color:#fff;padding:.95rem 1.2rem;font-family:var(--body);font-size:1.05rem;outline:none" data-country="+91">
-          </div>
-          <span class="err" data-i18n="errPhone">Enter a valid mobile number.</span>
-        </div>
-        <button type="submit" class="btn btn--sub" data-i18n="subbtn" style="width:100%;margin-top:1rem">Get SMS Alerts ›</button>
-        <p class="form-note" data-i18n="formnote">Free · No spam · Reply STOP to stop</p>
-      </form>
-    </div>
-  </section>
-
   <section class="hero">
     <div>
-      <span class="kicker" data-i18n="kicker">LIVE: ENG vs IND · FRA vs MAR</span>
+      <span class="kicker" data-i18n="kicker">WICKET FALLS · LIVE</span>
       <h1>
-        <span data-i18n="h1a">Free Live</span>
-        <span class="score" data-i18n="h1b">Score Alerts</span>
-        <span class="l3" data-i18n="h1c">Instant SMS</span>
+        <span data-i18n="h1a">Wicket Falls…</span>
+        <span class="score" data-i18n="h1b">And You Don't Even Know?</span>
       </h1>
-      <p class="sub" data-i18n="sub">Cricket, Kabaddi, Hockey, Football, Tennis & Badminton. <b>Instant SMS on any phone. No app needed.</b></p>
-      <div class="channel-row">
-        <span class="chip chip--sms">
-          <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM8 11H6V9h2v2zm5 0h-2V9h2v2zm5 0h-2V9h2v2z"/></svg>
-          SMS Alerts
-        </span>
+      <p class="sub" data-i18n="sub">Never miss it again. <b>Every wicket, every boundary — straight to your phone by SMS.</b> No app. No data. Just instant alerts.</p>
+
+      <div class="match-card">
+        <div class="mc-top"><i></i><span data-i18n="mcLeague">IPL 2026 · FINAL</span></div>
+        <div class="mc-score">
+          <span>MI 187/7</span>
+          <span class="vs">VS</span>
+          <span>CSK 184/6</span>
+        </div>
+        <div class="mc-note" data-i18n="mcNote">2 balls · 4 runs needed</div>
       </div>
-      <div class="hero-stats">
-        <div class="stat"><b>&lt;10s</b><span data-i18n="stat1">Alert speed</span></div>
-        <div class="stat"><b>100%</b><span data-i18n="stat2">Free</span></div>
-        <div class="stat"><b>6 Sports</b><span data-i18n="stat3">Coverage</span></div>
-      </div>
-      <div style="margin-top:2rem;padding:1.2rem;background:rgba(29,184,84,.1);border:1px solid var(--blue);border-radius:999px;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;font-size:.9rem;color:var(--text)">
-        <span style="display:flex;align-items:center;gap:.4rem"><span style="color:#1DB854">✓</span> No app</span>
-        <span style="display:flex;align-items:center;gap:.4rem"><span style="color:#1DB854">✓</span> No data</span>
-        <span style="display:flex;align-items:center;gap:.4rem"><span style="color:#1DB854">✓</span> Just SMS</span>
+
+      <div class="trust-strip">
+        <span><i>✓</i> <span data-i18n="tr1">No app</span></span>
+        <span><i>✓</i> <span data-i18n="tr2">No data</span></span>
+        <span><i>✓</i> <span data-i18n="tr3">Just SMS</span></span>
+        <span><i>✓</i> <span data-i18n="tr4">Free forever</span></span>
       </div>
     </div>
 
     <div class="phone-wrap">
-      <div class="phone-badge phone-badge--sms" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-      </div>
+      <div class="phone-badge" aria-hidden="true">SMS</div>
       <div class="phone" aria-hidden="true">
         <div class="phone__notch"></div>
-        <div class="phone__time" id="clock">10:30</div>
-        <div class="phone__date" id="dateline">Tuesday</div>
+        <div class="phone__time" id="clock">19:42</div>
         <div class="notif">
-          <div class="notif__icon notif__icon--sms">
-            <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-          </div>
+          <div class="notif__icon">LS</div>
           <div class="notif__body">
-            <b>LIVE SCORE ALERT</b>
-            <span class="mono">ENG vs IND: IND 128/4 (15.2)</span><br>
-            <span data-i18n="notifSms">Latest score by SMS!</span>
+            <b data-i18n="notif1h">WICKET! 🏏</b>
+            <span class="mono">IND 187/4 · 18.2 overs</span>
           </div>
-          <span class="notif__now">now</span>
+          <span class="notif__now" data-i18n="now">now</span>
         </div>
         <div class="notif">
-          <div class="notif__icon notif__icon--sms">
-            <svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg>
-          </div>
+          <div class="notif__icon">LS</div>
           <div class="notif__body">
-            <b>LIVE SCORE ALERT</b>
-            <span class="mono">FRA vs MAR: FRA 1-0 MAR (HT)</span><br>
-            <span data-i18n="notifSms">Latest score by SMS!</span>
+            <b data-i18n="notif2h">FOUR! 🔥</b>
+            <span class="mono">Kohli 72* (44)</span>
           </div>
-          <span class="notif__now">now</span>
+          <span class="notif__now" data-i18n="now">now</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section style="position:relative;z-index:4;max-width:1220px;margin:0 auto;padding:clamp(2rem,6vh,3.5rem) clamp(1rem,4vw,2rem);text-align:center">
-    <div style="background:linear-gradient(135deg,rgba(29,184,84,.15),rgba(128,0,255,.1));border:1.5px solid var(--blue);border-radius:22px;padding:clamp(1.5rem,4vw,2.5rem)">
-      <h3 style="font-family:var(--disp);font-weight:800;color:var(--head);font-size:clamp(1.2rem,2.5vw,1.8rem);margin-bottom:.8rem;letter-spacing:.01em">📺 TV — 3 seconds behind</h3>
-      <p style="color:var(--text);font-size:1.05rem;margin-bottom:.5rem;max-width:540px;margin-left:auto;margin-right:auto"><b style="color:#1DB854">Get Scores delivered 3 Seconds before TV LIVE score</b></p>
-      <p style="color:var(--muted);font-size:.95rem;max-width:540px;margin-left:auto;margin-right:auto">The fastest score alerts — 100% free. No waiting. No ads. Just instant SMS.</p>
+  <section class="speed-section">
+    <div class="speed-box">
+      <h2 data-i18n="speedH">Bullet-Speed SMS Alerts</h2>
+      <div class="speed-rows">
+        <div class="speed-row">
+          <span class="sr-icon">📺</span>
+          <span class="sr-label" data-i18n="speedTv">Live TV broadcast</span>
+          <span class="sr-time" data-i18n="speedTvTime">7 sec behind</span>
+        </div>
+        <div class="speed-row">
+          <span class="sr-icon">📱</span>
+          <span class="sr-label" data-i18n="speedDigital">Other score apps</span>
+          <span class="sr-time" data-i18n="speedDigitalTime">10 sec behind</span>
+        </div>
+        <div class="speed-row win">
+          <span class="sr-icon">⚡</span>
+          <span class="sr-label" data-i18n="speedUs"><b>Livescore Alerts SMS</b></span>
+          <span class="sr-time" data-i18n="speedUsTime">Fastest</span>
+        </div>
+      </div>
+      <p class="tagline" data-i18n="speedTag">The fastest score alerts — <b>100% free</b>. No waiting. No ads.</p>
     </div>
   </section>
 
-  <section class="fixtures" id="matches">
-    <div class="section-head">
-      <h2 data-i18n="fixh2">Live Sports Coverage</h2>
-      <div class="rule"></div>
-    </div>
-
-    <!-- League Selector -->
-    <div style="display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;justify-content:center">
-      <button onclick="switchLeague('PL')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="PL">⚽ Premier League</button>
-      <button onclick="switchLeague('LA')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="LA">⚽ La Liga</button>
-      <button onclick="switchLeague('SA')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="SA">⚽ Serie A</button>
-      <button onclick="switchLeague('BL1')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="BL1">⚽ Bundesliga</button>
-      <button onclick="switchLeague('CL')" style="padding:.7rem 1.2rem;border:2px solid var(--edge);background:var(--card);color:var(--text);border-radius:999px;cursor:pointer;font-weight:600;font-family:var(--disp);transition:all .2s" class="league-btn" data-league="CL">🏆 Champions League</button>
-    </div>
-
-    <!-- Live Matches Grid -->
-    <div style="margin-bottom:3rem">
-      <h3 style="font-family:var(--disp);font-weight:700;font-size:1.2rem;color:var(--head);margin-bottom:1rem;text-transform:uppercase">LIVE NOW</h3>
-      <div class="grid" id="live-matches-grid">
-        <p style="text-align:center;color:var(--muted);grid-column:1/-1">Loading matches...</p>
-      </div>
-    </div>
-
-    <!-- League Standings -->
-    <div style="margin-bottom:3rem">
-      <h3 style="font-family:var(--disp);font-weight:700;font-size:1.2rem;color:var(--head);margin-bottom:1rem;text-transform:uppercase">Standings</h3>
-      <div style="background:var(--card);border:1.5px solid var(--edge);border-radius:12px;overflow-x:auto">
-        <table id="standings-table" style="width:100%;font-size:.9rem;text-align:left;border-collapse:collapse">
-          <thead>
-            <tr style="border-bottom:1px solid var(--edge);background:#0a1233">
-              <th style="padding:.8rem;color:var(--blue-hi);font-weight:600">Pos</th>
-              <th style="padding:.8rem;color:var(--blue-hi);font-weight:600">Team</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">P</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">W</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">D</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">L</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">GF</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">GA</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">Pts</th>
-            </tr>
-          </thead>
-          <tbody id="standings-body">
-            <tr><td colspan="9" style="padding:1rem;text-align:center;color:var(--muted)">Loading standings...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Top Scorers -->
-    <div style="margin-bottom:3rem">
-      <h3 style="font-family:var(--disp);font-weight:700;font-size:1.2rem;color:var(--head);margin-bottom:1rem;text-transform:uppercase">Top Scorers</h3>
-      <div style="background:var(--card);border:1.5px solid var(--edge);border-radius:12px;overflow-x:auto">
-        <table id="scorers-table" style="width:100%;font-size:.9rem;text-align:left;border-collapse:collapse">
-          <thead>
-            <tr style="border-bottom:1px solid var(--edge);background:#0a1233">
-              <th style="padding:.8rem;color:var(--blue-hi);font-weight:600">Player</th>
-              <th style="padding:.8rem;color:var(--blue-hi);font-weight:600">Team</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">Goals</th>
-              <th style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:600">Assists</th>
-            </tr>
-          </thead>
-          <tbody id="scorers-body">
-            <tr><td colspan="4" style="padding:1rem;text-align:center;color:var(--muted)">Loading scorers...</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <section class="testimonial-section">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p data-i18n="testiQuote">"My friends ask me how I always know the player is going to get out… haha!"</p>
+      <div class="who" data-i18n="testiWho">— Rohit, Pune</div>
     </div>
   </section>
 
+  <section class="signup" id="signup">
+    <div class="form-shell">
+      <h2 data-i18n="formTitle">Get Scores 3 Seconds Before TV</h2>
+      <p class="lede" data-i18n="formDesc">Cricket, Kabaddi, Hockey, Football, Tennis & Badminton — FREE instant SMS alerts.</p>
+      <form id="signupform" novalidate>
+        <div class="sport-check">
+          <label><input type="checkbox" name="sport" value="cricket" checked><span data-i18n="spCri">Cricket</span></label>
+          <label><input type="checkbox" name="sport" value="football"><span data-i18n="spFbl">Football</span></label>
+          <label><input type="checkbox" name="sport" value="kabaddi"><span data-i18n="spKbd">Kabaddi</span></label>
+          <label><input type="checkbox" name="sport" value="hockey"><span data-i18n="spHky">Hockey</span></label>
+          <label><input type="checkbox" name="sport" value="tennis"><span data-i18n="spTns">Tennis</span></label>
+          <label><input type="checkbox" name="sport" value="badminton"><span data-i18n="spBdm">Badminton</span></label>
+        </div>
+        <div class="field" id="f-phone">
+          <label for="phone" data-i18n="lphone" style="display:none">Mobile number</label>
+          <div class="phone-field-wrap">
+            <span class="cc">+91</span>
+            <input type="tel" id="phone" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" maxlength="10" data-country="+91">
+          </div>
+          <span class="err" data-i18n="errPhone">Enter a valid mobile number.</span>
+        </div>
+        <button type="submit" class="btn btn--sub" data-i18n="subbtn">Get FREE SMS Alerts ›</button>
+        <p class="form-note" data-i18n="formnote">100% Free · No spam · Reply STOP to stop</p>
+      </form>
+    </div>
+  </section>
 </main>
-
-<!-- Footer CTA Form -->
-<section style="background:var(--card);border-top:1.5px solid var(--edge);padding:clamp(2rem,5vh,3.5rem) clamp(1rem,4vw,3.5rem);position:relative;z-index:4">
-  <div style="max-width:760px;margin:0 auto;text-align:center">
-    <h2 style="font-family:var(--disp);font-weight:800;text-transform:uppercase;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--head);margin-bottom:.8rem;letter-spacing:.01em" data-i18n="footFormTitle">Still Thinking?</h2>
-    <p style="color:var(--text);font-size:.95rem;margin-bottom:1.5rem;max-width:28rem;margin-left:auto;margin-right:auto" data-i18n="footFormDesc">Get alerts for all 6 sports. One SMS, one tap. That's it.</p>
-    <form id="footform" novalidate style="max-width:400px;margin:0 auto">
-      <div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--edge)">
-        <label style="display:block;font-family:var(--mono);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-hi);margin-bottom:.6rem">Which sports?</label>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
-          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
-            <input type="checkbox" name="sport" value="cricket" checked style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
-            <span>Cricket</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
-            <input type="checkbox" name="sport" value="football" style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
-            <span>Football</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
-            <input type="checkbox" name="sport" value="kabaddi" style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
-            <span>Kabaddi</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
-            <input type="checkbox" name="sport" value="hockey" style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
-            <span>Hockey</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
-            <input type="checkbox" name="sport" value="tennis" style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
-            <span>Tennis</span>
-          </label>
-          <label style="display:flex;align-items:center;gap:.4rem;cursor:pointer;font-size:.85rem;color:var(--text)">
-            <input type="checkbox" name="sport" value="badminton" style="width:1rem;height:1rem;cursor:pointer;accent-color:#1DB854">
-            <span>Badminton</span>
-          </label>
-        </div>
-      </div>
-      <div class="field" id="f-phone-foot">
-        <div style="display:flex;align-items:center;gap:0;background:#0a1233;border:1.5px solid var(--edge);border-radius:999px;padding:0;overflow:hidden">
-          <span style="padding:.85rem 1rem;background:#1a0f2e;color:var(--text);font-weight:600;flex-shrink:0;border-right:1px solid var(--edge)">+91</span>
-          <input type="tel" id="phone-foot" name="phone" placeholder="98765 43210" autocomplete="tel" inputmode="tel" maxlength="10" style="flex:1;border:none;background:#0a1233;color:#fff;padding:.85rem 1rem;font-family:var(--body);font-size:1rem;outline:none" data-country="+91">
-        </div>
-        <span class="err" data-i18n="errPhone" style="color:#ff8080;font-size:.75rem;margin-top:.3rem;display:none">Enter a valid number</span>
-      </div>
-      <button type="submit" class="btn" style="width:100%;margin-top:.8rem;font-size:.95rem;padding:.75rem 1.5rem" data-i18n="subbtn">Get Alerts Now ›</button>
-    </form>
-  </div>
-</section>
 
 <footer>
   <div class="foot-grid">
@@ -775,12 +542,12 @@
         </span>
       </a>
       <p data-i18n="footBlurb">Livescore Alerts sends live sports scores by SMS. Free for all users. Standard operator charges may apply to replies.</p>
-      <p style="margin-top:1rem;font-size:.95rem;color:var(--blue-hi);font-weight:600">✓ 5,00,000+ fans joined</p>
+      <p class="social" data-i18n="footSocial">✓ 5,00,000+ fans joined</p>
     </div>
     <div class="foot-col">
       <h4 data-i18n="footHelpH">Help</h4>
       <ul>
-        <li><a href="#subscribe" data-i18n="footHelp1">Subscribe</a></li>
+        <li><a href="#signup" data-i18n="footHelp1">Subscribe</a></li>
         <li><a href="how-it-works.html" data-i18n="footHelp2">How it works</a></li>
         <li><a href="terms.html" data-i18n="footHelp3">Terms of use</a></li>
         <li><a href="privacy.html" data-i18n="footHelp4">Privacy policy</a></li>
@@ -793,7 +560,6 @@
   </div>
 </footer>
 
-<!-- first-visit language popup -->
 <div class="langpop" id="langpop" hidden>
   <div class="langpop__card">
     <span class="crest">LS</span>
@@ -805,174 +571,122 @@
       <button type="button" data-lang="hi">हिंदी</button>
       <button type="button" data-lang="mr">मराठी</button>
     </div>
-    <p class="langpop__note">Livescore Alerts</p>
   </div>
 </div>
 
 <script>
+  /* ================================================================
+     LEAD CAPTURE — Google Sheets via Apps Script Web App
+     Replace the URL below with your deployed Apps Script /exec URL.
+     See GOOGLE_SHEETS_SETUP.md for the 5-minute setup steps.
+  ================================================================ */
+  var SHEET_WEBHOOK_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
   var I18N={
     en:{
       locale:'en-IN',
       brandTag:'Free Live Scores by SMS',
-      navMatches:'Live Matches',navHow:'How it works',
-      topFormTitle:'Get FREE Live Score Alerts',
-      topFormDesc:'Cricket, Kabaddi, Hockey, Football & Tennis. FREE instant SMS alerts as it happens.',
+      navHow:'How it works',navSignup:'Get Alerts',
+      kicker:'WICKET FALLS · LIVE',
+      h1a:'Wicket Falls…',h1b:"And You Don't Even Know?",
+      sub:'Never miss it again. <b>Every wicket, every boundary — straight to your phone by SMS.</b> No app. No data. Just instant alerts.',
+      mcLeague:'IPL 2026 · FINAL',mcNote:'2 balls · 4 runs needed',
+      tr1:'No app',tr2:'No data',tr3:'Just SMS',tr4:'Free forever',
+      notif1h:'WICKET! 🏏',notif2h:'FOUR! 🔥',now:'now',
+      speedH:'Bullet-Speed SMS Alerts',
+      speedTv:'Live TV broadcast',speedTvTime:'7 sec behind',
+      speedDigital:'Other score apps',speedDigitalTime:'10 sec behind',
+      speedUs:'<b>Livescore Alerts SMS</b>',speedUsTime:'Fastest',
+      speedTag:'The fastest score alerts — <b>100% free</b>. No waiting. No ads.',
+      testiQuote:'"My friends ask me how I always know the player is going to get out… haha!"',
+      testiWho:'— Rohit, Pune',
+      formTitle:'Get Scores 3 Seconds Before TV',
+      formDesc:'Cricket, Kabaddi, Hockey, Football, Tennis & Badminton — FREE instant SMS alerts.',
+      spCri:'Cricket',spFbl:'Football',spKbd:'Kabaddi',spHky:'Hockey',spTns:'Tennis',spBdm:'Badminton',
       lphone:'Mobile number',
-      kicker:'LIVE: Cricket, Kabaddi, Hockey, Football, Tennis, Badminton',
-      h1a:'FREE Live',h1b:'Score Alerts',h1c:'Instant SMS',
-      sub:'Cricket, Kabaddi, Hockey, Football, Tennis & Badminton. <b>FREE instant SMS on any phone. No app needed.</b>',
-      stat1:'Alert speed',stat2:'100% FREE',stat3:'Coverage',
-      cri1:'Test, ODI, T20',cri2:'Scores',cri3:'Updates every ball',
-      fbl1:'Club & International',fbl2:'Goals',fbl3:'Goal alerts instant',
-      kbd1:'Indian Teams',kbd2:'Points',kbd3:'Raid alerts',
-      hky1:'India Champions',hky2:'Goals',hky3:'Match alerts',
-      tns1:'ATP & WTA',tns2:'Scores',tns3:'Set alerts',
-      bdm1:'India\'s Best',bdm2:'Scores',bdm3:'Point alerts',
-      notifSms:'Latest score by SMS!',
-      fixh2:'Football Coverage',
-      sportCri:'CRICKET',sportFbl:'FOOTBALL',sportKbd:'KABADDI',sportHky:'HOCKEY',sportTns:'TENNIS',sportBdm:'BADMINTON',
-      lg1:'International & Domestic',lg2:'Premier League, LaLiga, ISL',lg3:'Pro Kabaddi League',lg4:'International Matches',lg5:'Grand Slams & Masters',lg6:'BWF & National',
       subbtn:'Get FREE SMS Alerts ›',
       errPhone:'Enter a valid mobile number.',
-      formnote:'100% FREE · No spam · Reply STOP to stop',
-      footFormTitle:'Get Scores 3 Seconds Before TV',
-      footFormDesc:'Get FREE alerts for all 6 sports',
-      formnote:'Free service · No spam · Reply STOP to stop',
+      formnote:'100% Free · No spam · Reply STOP to stop',
       footBlurb:'Livescore Alerts sends live sports scores by SMS. Free for all users. Standard operator charges may apply to replies.',
-      footCovH:'Coverage',footCov1:'International cricket',footCov2:'T20 Telangana League',footCov3:'FIFA World Cup',footCov4:"Today's matches",
+      footSocial:'✓ 5,00,000+ fans joined',
       footHelpH:'Help',footHelp1:'Subscribe',footHelp2:'How it works',footHelp3:'Terms of use',footHelp4:'Privacy policy',
       footCopy:'© 2026 Livescore Alerts. All rights reserved.',
       footStop:'Reply STOP to any alert to unsubscribe.',
-      today:'Today',
-      modalh:'Wait, get alerts first',
-      modalp:'Join before you go. Free cricket and football alerts direct to your phone.',
-      ticker:[
-        ['cri','2nd T20I: IND 128/4 (15.2) vs ENG · IND need 52 off 28 balls'],
-        ['fbl','World Cup SF: FRA 1-0 MAR (half-time)'],
-        ['cri','Telangana T20: Hyderabad E-Champions vs Avita Khammam Aces, 7:15 PM today'],
-        ['cri','Telangana T20: Karimnagar Diamonds vs Ranga Reddy Risers, 2:15 PM today'],
-        ['fbl','World Cup SF: France vs Morocco, 1:30 AM tomorrow']
-      ]
+      sending:'Sending...'
     },
     hi:{
       locale:'hi-IN',
       brandTag:'FREE SMS से लाइव स्कोर',
-      navMatches:'लाइव मैच',navHow:'कैसे काम करता है',
-      topFormTitle:'FREE लाइव स्कोर अलर्ट पाएं',
-      topFormDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल और टेनिस। FREE तुरंत SMS अलर्ट।',
+      navHow:'कैसे काम करता है',navSignup:'अलर्ट पाएं',
+      kicker:'विकेट गिरी · लाइव',
+      h1a:'विकेट गिरी…',h1b:'और आपको पता ही नहीं चला?',
+      sub:'दोबारा मिस मत करो। <b>हर विकेट, हर चौका — सीधे आपके फोन पर SMS से।</b> कोई ऐप नहीं। कोई डेटा नहीं। बस तुरंत अलर्ट।',
+      mcLeague:'IPL 2026 · फाइनल',mcNote:'2 गेंद · 4 रन चाहिए',
+      tr1:'ऐप नहीं',tr2:'डेटा नहीं',tr3:'सिर्फ SMS',tr4:'हमेशा फ्री',
+      notif1h:'विकेट! 🏏',notif2h:'चौका! 🔥',now:'अभी',
+      speedH:'बुलेट-स्पीड SMS अलर्ट',
+      speedTv:'लाइव टीवी प्रसारण',speedTvTime:'7 सेकंड पीछे',
+      speedDigital:'अन्य स्कोर ऐप',speedDigitalTime:'10 सेकंड पीछे',
+      speedUs:'<b>लाइवस्कोर अलर्ट्स SMS</b>',speedUsTime:'सबसे तेज़',
+      speedTag:'सबसे तेज़ स्कोर अलर्ट — <b>100% फ्री</b>। कोई इंतजार नहीं। कोई विज्ञापन नहीं।',
+      testiQuote:'"मेरे दोस्त पूछते हैं कि मुझे कैसे पता चल जाता है कि खिलाड़ी आउट होने वाला है... हाहा!"',
+      testiWho:'— रोहित, पुणे',
+      formTitle:'TV से 3 सेकंड पहले स्कोर पाएं',
+      formDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस और बैडमिंटन — FREE तुरंत SMS अलर्ट।',
+      spCri:'क्रिकेट',spFbl:'फुटबॉल',spKbd:'कबड्डी',spHky:'हॉकी',spTns:'टेनिस',spBdm:'बैडमिंटन',
       lphone:'मोबाइल नंबर',
-      kicker:'लाइव: क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस, बैडमिंटन',
-      h1a:'FREE लाइव',h1b:'स्कोर अलर्ट',h1c:'तुरंत SMS',
-      sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस और बैडमिंटन। <b>किसी भी फोन पर FREE तुरंत SMS। कोई ऐप नहीं।</b>',
-      stat1:'अलर्ट स्पीड',stat2:'100% FREE',stat3:'कवरेज',
-      notifSms:'ताज़ा स्कोर SMS से!',
-      fixh2:'फुटबॉल कवरेज',
-      sportCri:'क्रिकेट',sportFbl:'फुटबॉल',sportKbd:'कबड्डी',sportHky:'हॉकी',sportTns:'टेनिस',sportBdm:'बैडमिंटन',
-      lg1:'इंटरनेशनल और देशीय',lg2:'प्रीमियर लीग, लालीगा, आईएसएल',lg3:'प्रो कबड्डी लीग',lg4:'इंटरनेशनल मैच',lg5:'ग्रैंड स्लैम और मास्टर्स',lg6:'बीडब्ल्यूएफ और नेशनल',
       subbtn:'FREE SMS अलर्ट पाएं ›',
       errPhone:'सही मोबाइल नंबर डालें।',
-      formnote:'फ्री · स्पैम नहीं · बंद करने के लिए STOP भेजें',
-      footFormTitle:'TV से 3 सेकंड पहले स्कोर पाएं',
-      footFormDesc:'6 स्पोर्ट्स के लिए FREE अलर्ट पाएं',
-      formnote:'100% FREE सेवा · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
+      formnote:'100% फ्री · कोई स्पैम नहीं · बंद करने के लिए STOP भेजें',
       footBlurb:'लाइवस्कोर अलर्ट्स SMS पर लाइव स्पोर्ट्स स्कोर भेजता है। सभी के लिए फ्री। जवाब भेजने पर ऑपरेटर का सामान्य शुल्क लग सकता है।',
-      footCovH:'कवरेज',footCov1:'इंटरनेशनल क्रिकेट',footCov2:'टी20 तेलंगाना लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आज के मैच',
+      footSocial:'✓ 5,00,000+ फैंस जुड़े',
       footHelpH:'मदद',footHelp1:'सब्सक्राइब',footHelp2:'कैसे काम करता है',footHelp3:'नियम व शर्तें',footHelp4:'प्राइवेसी पॉलिसी',
       footCopy:'© 2026 लाइवस्कोर अलर्ट्स। सर्वाधिकार सुरक्षित।',
       footStop:'अनसब्सक्राइब करने के लिए किसी भी अलर्ट पर STOP भेजें।',
-      modalh:'पहले अलर्ट ले लीजिए',
-      modalp:'जाने से पहले जुड़ जाइए। सीधे अपने फोन पर क्रिकेट और फुटबॉल के तुरंत अलर्ट।',
-      today:'आज',
-      ticker:[
-        ['cri','दूसरा टी20: IND 128/4 (15.2) बनाम ENG · भारत को 28 गेंदों में 52 रन चाहिए'],
-        ['fbl','वर्ल्ड कप सेमीफाइनल: FRA 1-0 MAR (हाफ टाइम)'],
-        ['cri','तेलंगाना टी20: हैदराबाद ई-चैंपियंस बनाम अविता खम्मम एसेस, आज शाम 7:15'],
-        ['cri','तेलंगाना टी20: करीमनगर डायमंड्स बनाम रंगा रेड्डी राइजर्स, आज दोपहर 2:15'],
-        ['fbl','वर्ल्ड कप सेमीफाइनल: फ्रांस बनाम मोरक्को, कल रात 1:30']
-      ]
+      sending:'भेजा जा रहा है...'
     },
     mr:{
       locale:'mr-IN',
-      brandTag:'FREE लाइव स्कोर SMS ने',
-      navMatches:'लाइव सामने',navHow:'कसे चालते',
-      topFormTitle:'FREE लाइव स्कोर अलर्ट मिळवा',
-      topFormDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल आणि टेनिस। FREE तात्काल SMS अलर्ट।',
+      brandTag:'FREE लाइव्ह स्कोर SMS ने',
+      navHow:'कसे चालते',navSignup:'अलर्ट मिळवा',
+      kicker:'विकेट पडली · लाइव्ह',
+      h1a:'विकेट पडली…',h1b:'आणि तुम्हाला कळलंच नाही?',
+      sub:'पुन्हा कधीही चुकवू नका. <b>प्रत्येक विकेट, प्रत्येक चौकार — थेट तुमच्या फोनवर SMS वर.</b> अ‍ॅप नाही. डेटा नाही. फक्त तात्काळ अलर्ट.',
+      mcLeague:'IPL 2026 · फायनल',mcNote:'2 चेंडू · 4 धावा हव्यात',
+      tr1:'अ‍ॅप नाही',tr2:'डेटा नाही',tr3:'फक्त SMS',tr4:'कायम मोफत',
+      notif1h:'विकेट! 🏏',notif2h:'चौकार! 🔥',now:'आत्ता',
+      speedH:'बुलेट-स्पीड SMS अलर्ट',
+      speedTv:'थेट टीव्ही प्रक्षेपण',speedTvTime:'7 सेकंद उशीर',
+      speedDigital:'इतर स्कोर अ‍ॅप्स',speedDigitalTime:'10 सेकंद उशीर',
+      speedUs:'<b>लाइव्हस्कोर अलर्ट्स SMS</b>',speedUsTime:'सर्वात वेगवान',
+      speedTag:'सर्वात वेगवान स्कोर अलर्ट — <b>100% मोफत</b>. वाट नाही. जाहिराती नाहीत.',
+      testiQuote:'"माझे मित्र विचारतात मला कसं कळतं की खेळाडू आउट होणार आहे... हाहा!"',
+      testiWho:'— रोहित, पुणे',
+      formTitle:'TV पूर्वी 3 सेकंद स्कोर मिळवा',
+      formDesc:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस आणि बॅडमिंटन — FREE तात्काळ SMS अलर्ट.',
+      spCri:'क्रिकेट',spFbl:'फुटबॉल',spKbd:'कबड्डी',spHky:'हॉकी',spTns:'टेनिस',spBdm:'बॅडमिंटन',
       lphone:'मोबाईल नंबर',
-      kicker:'लाइव्ह: क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस, बॅडमिंटन',
-      h1a:'FREE लाइव्ह',h1b:'स्कोर अलर्ट',h1c:'तात्काल SMS',
-      sub:'क्रिकेट, कबड्डी, हॉकी, फुटबॉल, टेनिस आणि बॅडमिंटन. <b>कोणत्याही फोनवर FREE तात्काल SMS. कोणतेही ऍप नाही.</b>',
-      stat1:'अलर्ट स्पीड',stat2:'100% FREE',stat3:'कव्हरेज',
-      notifSms:'ताजा स्कोर SMS ने!',
-      fixh2:'फुटबॉल कव्हरेज',
-      sportCri:'क्रिकेट',sportFbl:'फुटबॉल',sportKbd:'कबड्डी',sportHky:'हॉकी',sportTns:'टेनिस',sportBdm:'बॅडमिंटन',
-      lg1:'इंटरनॅशनल आणि देशीय',lg2:'प्रीमियर लीग, लालीगा, आयएसएल',lg3:'प्रो कबड्डी लीग',lg4:'इंटरनॅशनल सामने',lg5:'ग्रँड स्लॅम आणि मास्टर्स',lg6:'बीडब्ल्यूएफ आणि नेशनल',
       subbtn:'FREE SMS अलर्ट मिळवा ›',
       errPhone:'योग्य मोबाईल नंबर टाका.',
-      formnote:'मोफत · स्पॅम नाही · बंद करण्यासाठी STOP पाठवा',
-      footFormTitle:'TV पूर्वी 3 सेकंद स्कोर मिळवा',
-      footFormDesc:'६ स्पोर्ट्सचे FREE अलर्ट मिळवा',
-      formnote:'100% FREE सेवा · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
+      formnote:'100% मोफत · स्पॅम नाही · थांबवण्यासाठी STOP पाठवा',
       footBlurb:'लाइव्हस्कोर अलर्ट्स SMS वर लाइव्ह स्पोर्ट्स स्कोर पाठवते. सर्वांसाठी मोफत. उत्तर पाठवल्यास ऑपरेटरचे शुल्क लागू शकते.',
-      footCovH:'कव्हरेज',footCov1:'इंटरनॅशनल क्रिकेट',footCov2:'टी20 तेलंगणा लीग',footCov3:'फीफा वर्ल्ड कप',footCov4:'आजचे सामने',
+      footSocial:'✓ 5,00,000+ चाहते जोडले गेले',
       footHelpH:'मदत',footHelp1:'सबस्क्राईब',footHelp2:'कसे चालते',footHelp3:'नियम व अटी',footHelp4:'प्रायव्हसी पॉलिसी',
       footCopy:'© 2026 लाइव्हस्कोर अलर्ट्स. सर्व हक्क राखीव.',
       footStop:'अनसबस्क्राईब करण्यासाठी कोणत्याही अलर्टला STOP पाठवा.',
-      modalh:'पहिले अलर्ट मिळवा',
-      modalp:'जाण्यापूर्वी सुदिप्त व्हा. तुमच्या फोनवर तुरंत क्रिकेट आणि फुटबॉल अलर्ट.',
-      today:'आज',
-      ticker:[
-        ['cri','दुसरा टी20: IND 128/4 (15.2) वि. ENG · भारताला 28 चेंडूंत 52 धावा हव्यात'],
-        ['fbl','वर्ल्ड कप उपांत्य: FRA 1-0 MAR (हाफ टाइम)'],
-        ['cri','तेलंगणा टी20: हैदराबाद ई-चॅम्पियन्स वि. अविता खम्मम एसेस, आज सायं. 7:15'],
-        ['cri','तेलंगणा टी20: करीमनगर डायमंड्स वि. रंगा रेड्डी रायझर्स, आज दु. 2:15'],
-        ['fbl','वर्ल्ड कप उपांत्य: फ्रान्स वि. मोरोक्को, उद्या रात्री 1:30']
-      ]
+      sending:'पाठवत आहे...'
     }
   };
-  var CUR='en';
-
-  function buildTicker(matches){
-    var html='';
-    if(!matches||matches.length===0)return;
-    // Build ticker from live matches, duplicated for seamless scrolling loop
-    for(var pass=0;pass<2;pass++){
-      for(var i=0;i<matches.length;i++){
-        var m=matches[i];
-        var tag=m.sport==='CRICKET'?'cri':'fbl';
-        var label=tag==='cri'?'CRI':'FBL';
-        html+='<span><i class="tag tag--'+tag+'">'+label+'</i>'+m.team1+' vs '+m.team2+' · '+m.status+'</span>';
-      }
-    }
-    document.getElementById('ticker-track').innerHTML=html;
-  }
-
-  function buildTickerFromI18N(lang){
-    var t=I18N[lang];
-    if(!t||!t.ticker)return;
-    var html='';
-    for(var pass=0;pass<2;pass++){
-      for(var i=0;i<t.ticker.length;i++){
-        var item=t.ticker[i];
-        var tag=item[0];
-        var label=tag==='cri'?'CRI':'FBL';
-        html+='<span><i class="tag tag--'+tag+'">'+label+'</i>'+item[1]+'</span>';
-      }
-    }
-    document.getElementById('ticker-track').innerHTML=html;
-  }
+  var CUR='mr';
 
   function tickClock(){
-    var d=new Date(),t=I18N[CUR];
+    var d=new Date();
     document.getElementById('clock').textContent=
       String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-    var wd;
-    try{wd=d.toLocaleDateString(t.locale,{weekday:'long'});}
-    catch(e){wd=d.toLocaleDateString(undefined,{weekday:'long'});}
-    document.getElementById('dateline').textContent=wd+', '+t.today;
   }
 
   function setLang(l){
-    if(!I18N[l])l='en';
+    if(!I18N[l])l='mr';
     CUR=l;
     var t=I18N[l];
     document.documentElement.lang=l;
@@ -982,20 +696,12 @@
       var k=els[i].getAttribute('data-i18n');
       if(t[k]!==undefined)els[i].innerHTML=t[k];
     }
-    var phs=document.querySelectorAll('[data-i18n-ph]');
-    for(var j=0;j<phs.length;j++){
-      var pk=phs[j].getAttribute('data-i18n-ph');
-      if(t[pk]!==undefined)phs[j].setAttribute('placeholder',t[pk]);
-    }
     var btns=document.querySelectorAll('.lang button');
     for(var b=0;b<btns.length;b++){
       btns[b].classList.toggle('on',btns[b].getAttribute('data-lang')===l);
     }
-    buildTickerFromI18N(l);
-    tickClock();
   }
 
-  // language switcher + popup
   document.getElementById('lang-switch').addEventListener('click',function(e){
     var b=e.target.closest('button[data-lang]');
     if(b)setLang(b.getAttribute('data-lang'));
@@ -1007,192 +713,67 @@
   });
 
   var saved=null;
-  var migrated=false;
-  try{saved=localStorage.getItem('lsa-lang');migrated=localStorage.getItem('lsa-lang-mr-migrated');}catch(e){}
-  if(!migrated&&saved==='en'){
-    try{localStorage.setItem('lsa-lang-mr-migrated','true');}catch(e){}
-    setLang('mr');
-    pop.hidden=false;
-  }else if(saved&&I18N[saved]){
+  try{saved=localStorage.getItem('lsa-lang');}catch(e){}
+  if(saved&&I18N[saved]){
     setLang(saved);
   }else{
     setLang('mr');
     pop.hidden=false;
   }
+  tickClock();
   setInterval(tickClock,15000);
-
-  // form submission handler with backend API
-  var API_URL='/api/subscribe';
 
   function validatePhone(phone){
     var cleaned=phone.replace(/[\s\-()]/g,'');
     return /^\+?\d{10,15}$/.test(cleaned);
   }
 
-  function handleFormSubmit(e){
+  // Phone input: digits only, max 10
+  document.getElementById('phone').addEventListener('input',function(){
+    this.value=this.value.replace(/[^\d]/g,'').slice(0,10);
+  });
+
+  document.getElementById('signupform').addEventListener('submit',function(e){
     e.preventDefault();
     var form=e.target;
-    var phoneInput=form.querySelector('input[type=tel]');
-    var fieldId=form.querySelector('.field').id;
+    var phoneInput=document.getElementById('phone');
     var digits=phoneInput.value.replace(/[\s\-()]/g,'');
-    var country=phoneInput.getAttribute('data-country')||'+91';
-    var phone=country+digits;
+    var phone='+91'+digits;
     var phoneOk=validatePhone(phone);
 
-    // Get selected sports
-    var sportCheckboxes=form.querySelectorAll('input[name="sport"]:checked');
-    var sports=Array.from(sportCheckboxes).map(cb=>cb.value);
-    if(sports.length===0)sports=['cricket'];
-
-    var field=document.getElementById(fieldId);
+    var field=document.getElementById('f-phone');
     field.classList.toggle('invalid',!phoneOk);
     if(!phoneOk)return;
 
-    var btn=form.querySelector('[type=submit]');
-    btn.disabled=true;
-    var originalText=btn.textContent;
-    btn.textContent='Sending SMS...';
+    var sportCheckboxes=form.querySelectorAll('input[name="sport"]:checked');
+    var sports=Array.from(sportCheckboxes).map(function(cb){return cb.value;});
+    if(sports.length===0)sports=['cricket'];
 
-    fetch(API_URL,{
+    var btn=form.querySelector('[type=submit]');
+    var originalText=btn.textContent;
+    btn.disabled=true;
+    btn.textContent=I18N[CUR].sending;
+
+    if(!SHEET_WEBHOOK_URL||SHEET_WEBHOOK_URL.indexOf('PASTE_YOUR')===0){
+      // No webhook configured yet — fall back gracefully
+      console.warn('Google Sheets webhook not configured. See GOOGLE_SHEETS_SETUP.md');
+      setTimeout(function(){ window.location.href='thanks.html'; }, 400);
+      return;
+    }
+
+    fetch(SHEET_WEBHOOK_URL,{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({phone:phone,sports:sports})
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({phone:phone,sports:sports,language:CUR,timestamp:new Date().toISOString()})
     })
-    .then(function(res){return res.json()})
-    .then(function(data){
-      if(data.success){
-        window.location.href='thanks.html';
-      }else{
-        field.classList.add('invalid');
-        btn.disabled=false;
-        btn.textContent=originalText;
-      }
-    })
+    .then(function(){ window.location.href='thanks.html'; })
     .catch(function(err){
       console.error(err);
       btn.disabled=false;
       btn.textContent=originalText;
+      field.classList.add('invalid');
     });
-  }
-
-  // attach handlers to all forms
-  document.getElementById('topform').addEventListener('submit',handleFormSubmit);
-  document.getElementById('footform').addEventListener('submit',handleFormSubmit);
-
-  // Phone inputs: only allow 10 digits
-  var phoneInputs=document.querySelectorAll('input[type=tel]');
-  for(var i=0;i<phoneInputs.length;i++){
-    phoneInputs[i].addEventListener('input',function(){
-      this.value=this.value.replace(/[^\d]/g,'').slice(0,10);
-    });
-  }
-
-  var currentLeague='PL';
-
-  // Switch league and reload data
-  function switchLeague(league){
-    currentLeague=league;
-    document.querySelectorAll('.league-btn').forEach(btn=>{
-      btn.style.borderColor=btn.getAttribute('data-league')===league?'#1DB854':'var(--edge)';
-      btn.style.background=btn.getAttribute('data-league')===league?'#1DB854':'var(--card)';
-      btn.style.color=btn.getAttribute('data-league')===league?'#000':'var(--text)';
-    });
-    loadLiveData();
-  }
-
-  // Load comprehensive live data (matches, standings, scorers)
-  function loadLiveData(){
-    fetch('/api/live-matches?league='+currentLeague)
-      .then(r=>r.json())
-      .then(data=>{
-        // LIVE MATCHES GRID
-        var grid=document.getElementById('live-matches-grid');
-        if(!grid)return;
-        grid.innerHTML='';
-
-        if(!data.liveMatches||data.liveMatches.length===0){
-          var upcoming=fetch('/api/live-matches?league='+currentLeague)
-            .then(r=>r.json())
-            .then(d=>d.liveMatches);
-          grid.innerHTML='<p style="text-align:center;color:var(--muted);grid-column:1/-1;padding:2rem">No live matches right now. Check standings below!</p>';
-        }else{
-          data.liveMatches.forEach(match=>{
-            var card=document.createElement('article');
-            card.className='card';
-            var isLive=match.status.includes('LIVE');
-            card.style.borderColor=isLive?'#1DB854':'var(--edge)';
-            card.innerHTML='<span class="card__sport" style="background:#1DB854">'+match.sport+'</span>'+
-              '<div class="card__league">'+data.competition.name+'</div>'+
-              '<div class="card__teams">'+
-                '<span style="font-size:.9rem">'+match.team1+'</span><br>'+
-                '<span style="font-size:1.3rem;color:#1DB854;font-weight:700">'+
-                  (match.score1!==null?match.score1:'-')+' - '+(match.score2!==null?match.score2:'-')+
-                '</span><br>'+
-                '<span style="font-size:.9rem">'+match.team2+'</span>'+
-              '</div>'+
-              '<div class="card__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span style="color:'+(isLive?'#ff1493':'var(--text)')+'">'+match.status+'</span></div>';
-            grid.appendChild(card);
-          });
-        }
-
-        // STANDINGS TABLE
-        var standingsBody=document.getElementById('standings-body');
-        if(standingsBody){
-          standingsBody.innerHTML='';
-          if(data.standings.length>0){
-            data.standings.slice(0,10).forEach(team=>{
-              var row=document.createElement('tr');
-              row.style.borderBottom='1px solid var(--edge)';
-              row.innerHTML='<td style="padding:.8rem;color:var(--blue-hi);font-weight:700">'+team.pos+'</td>'+
-                '<td style="padding:.8rem">'+team.team+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:var(--text)">'+team.played+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:#1DB854;font-weight:600">'+team.wins+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:var(--text)">'+team.draws+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:#ff6b6b">'+team.losses+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:var(--text)">'+team.goalsFor+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:var(--muted)">'+team.goalsAgainst+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:var(--blue-hi);font-weight:700;font-size:1.1rem">'+team.points+'</td>';
-              standingsBody.appendChild(row);
-            });
-          }
-        }
-
-        // TOP SCORERS TABLE
-        var scorersBody=document.getElementById('scorers-body');
-        if(scorersBody){
-          scorersBody.innerHTML='';
-          if(data.topScorers.length>0){
-            data.topScorers.slice(0,10).forEach((scorer,idx)=>{
-              var row=document.createElement('tr');
-              row.style.borderBottom='1px solid var(--edge)';
-              row.innerHTML='<td style="padding:.8rem"><strong>'+(idx+1)+'.</strong> '+scorer.name+'</td>'+
-                '<td style="padding:.8rem;color:var(--muted)">'+scorer.team+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:#1DB854;font-weight:700;font-size:1.1rem">'+scorer.goals+'</td>'+
-                '<td style="padding:.8rem;text-align:center;color:var(--text)">'+(scorer.assists||0)+'</td>';
-              scorersBody.appendChild(row);
-            });
-          }
-        }
-
-        // Update ticker with live match data
-        if(data.liveMatches.length>0){
-          buildTicker(data.liveMatches);
-        }
-      })
-      .catch(err=>{
-        console.error('Error loading live data:',err);
-      });
-  }
-
-  // Load on page load
-  loadLiveData();
-  // Refresh every 15 seconds for real-time updates
-  setInterval(loadLiveData,15000);
-
-  // Set initial league button style
-  document.querySelector('[data-league="PL"]').style.borderColor='#1DB854';
-  document.querySelector('[data-league="PL"]').style.background='#1DB854';
-  document.querySelector('[data-league="PL"]').style.color='#000';
+  });
 </script>
 </body>
 </html>
